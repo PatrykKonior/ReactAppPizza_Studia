@@ -1,11 +1,10 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 
-
 const DashboardCard = () => (
     <>
-        <Col md={3} style={{ marginTop: '-25px', marginLeft: '-20px' }}>
-            <Card border="dark" style={{ transform: 'scale(0.8)', transformOrigin: 'center', width: '300px' }} >
+        <Col md={3}>
+            <Card className="card-custom card-notify" border="dark">
                 <Card.Header>Powiadomienia</Card.Header>
                 <Card.Body>
                     <Card.Title>Sprawdz powiadomienia...</Card.Title>
@@ -15,9 +14,9 @@ const DashboardCard = () => (
                 </Card.Body>
             </Card>
         </Col>
-        <Col md={3} style={{ marginTop: '-25px' }}>
-            <Card border="primary" style={{ transform: 'scale(0.8)', transformOrigin: 'center', width: '300px' }}>
-                <Card.Header>Widomosci</Card.Header>
+        <Col md={3}>
+            <Card className="card-custom card-message" border="primary">
+                <Card.Header>Wiadomosci</Card.Header>
                 <Card.Body>
                     <Card.Title>Sprawdz wiadomosci...</Card.Title>
                     <Card.Text>
@@ -26,9 +25,9 @@ const DashboardCard = () => (
                 </Card.Body>
             </Card>
         </Col>
-        <Col md={3} style={{ marginTop: '-25px' }}>
-            <Card border="primary" style={{ transform: 'scale(0.8)', transformOrigin: 'center', width: '300px' }}>
-                <Card.Header>Widomosci</Card.Header>
+        <Col md={3}>
+            <Card className="card-custom card-message" border="primary">
+                <Card.Header>Wiadomosci</Card.Header>
                 <Card.Body>
                     <Card.Title>Sprawdz wiadomosci...</Card.Title>
                     <Card.Text>
@@ -37,8 +36,8 @@ const DashboardCard = () => (
                 </Card.Body>
             </Card>
         </Col>
-        <Col md={3} style={{ marginTop: '-25px' }}>
-            <Card border="dark" style={{ transform: 'scale(0.8)', transformOrigin: 'center', width: '300px' }}>
+        <Col md={3}>
+            <Card className="card-custom card-invoice" border="dark">
                 <Card.Header>Faktury</Card.Header>
                 <Card.Body>
                     <Card.Title>Sprawdz faktury...</Card.Title>

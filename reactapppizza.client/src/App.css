@@ -1,7 +1,7 @@
 ﻿/* stylizacja kart */
 
 body, html {
-    background-color: #a7c0da; /* Jasnoniebieskie tło */
+    background-color: #9a9a9a2e !important; /* Jasnoniebieskie tło */
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
@@ -11,12 +11,38 @@ body, html {
 .card {
     background-color: #fff; /* Białe tło karty */
     border-radius: 8px; /* Zaokrąglone rogi */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Delikatny cień */
     padding: 12px; /* Wewnętrzny odstęp */
     margin-bottom: 12px; /* Odstęp między kartami */
     overflow: hidden; /* Ukrywa przewijanie wewnątrz karty, jeśli to konieczne */
+    border: 2px solid black; /* Czarna obramówka */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień od dołu */
+    margin-right: -10px; /* Nachodzenie na prawą stronę */
 }
 
+
+/* Dashboards cards */
+
+.card-custom {
+    transform: scale(0.8);
+    transform-origin: center;
+    width: 300px;
+    margin-top: -25px;
+}
+
+.card-notify {
+    border-color: #007bff; /* Niebieskie obramowanie */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5); /* Niebieski cień */
+}
+
+.card-message {
+    border-color: #28a745; /* Zielone obramowanie */
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.5); /* Zielony cień */
+}
+
+.card-invoice {
+    border-color: #dc3545; /* Czerwone obramowanie */
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.5); /* Czerwony cień */
+}
 
 /* Dodatkowe style mogą być potrzebne dla kontenerów */
 .container-fluid {
@@ -26,6 +52,11 @@ body, html {
 .icon {
     color: inherit; /* Ikony przyjmują kolor tekstu z .nav-link */
     font-size: 1.25rem; /* rozmiar ikon */
+    border: 2px solid black; /* Czarna obramówka */
+    border-radius: 50%; /* Pełne zaokrąglenie dla kształtu koła */
+    padding: 10px; /* Dostosuj w zależności od wielkości ikony */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień */
+    background-color: white; /* Białe tło ikon, aby były bardziej widoczne */
 }
 
 .header {
@@ -71,12 +102,27 @@ body, html {
             transform: translateX(10%); /* Przesunięcie całkowicie na zewnątrz tekstu */
         }
 
+/* LOGO */
+.logo {
+    width: 100%; /* Zapewnia, że logo zajmuje całą szerokość sidebaru */
+    display: flex; /* Używa flexboxa do centrowania treści */
+    justify-content: center; /* Centruje logo w poziomie */
+    align-items: center; /* Centruje logo w pionie */
+    padding: 20px 0 10px 20px; /* Dodaje padding na górze, dole i zwiększa lewy padding */
+    margin-top: -70px; /* Przesuwa logo wyżej o 20px */
+    margin-left: -18px; /* Przesuwa logo w lewo o 10px */
+}
+
+.header h1 {
+    margin: 0; /* Usuwa domyślny margines */
+}
+
 /* NAPIS MENU W SIDEBAR */
 .menu-header {
     font-size: 1.0rem; /* Dostosuj rozmiar czcionki */
     color: #d3d3d3; /* Kolor tekstu */
     text-transform: uppercase; /* Wielkie litery */
-    padding: 10px 20px; /* Odstępy */
+    padding: 50px 20px; /* Odstępy */
     padding-bottom: 20px;
     border-bottom: 2px solid #8e8e86; /* Linia oddzielająca */
 }
@@ -89,7 +135,6 @@ body, html {
 
 .navbar-custom {
     margin-left: 275px;
-    background-color: #789abc;
     display: flex;
     align-items: center; /* Wyśrodkowanie wszystkich elementów w pionie */
     justify-content: space-between; /* Rozłożenie elementów na całą szerokość */
@@ -115,7 +160,10 @@ body, html {
     align-items: center;
     background-color: #f8f9fa;
     padding: 0.5rem;
-    border-radius: 10px; 
+    border-radius: 10px;
+    border: 2px solid black; /* Czarna obramówka */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień od dołu */
+    margin-right: -10px; /* Nachodzenie na prawą stronę */
 }
 
     .search-box input {
@@ -149,7 +197,7 @@ body, html {
     bottom: 0;
     left: 0;
     overflow-y: auto;
-    background-color: #011F26;
+    background-color: #011a20;
     padding-top: 80px; /* odstęp na górze */
     border-right: 2px solid #8e8e86;
 }
