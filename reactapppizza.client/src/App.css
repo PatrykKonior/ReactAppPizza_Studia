@@ -1,0 +1,268 @@
+﻿/* stylizacja kart */
+
+body, html {
+    background-color: #a7c0da; /* Jasnoniebieskie tło */
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%; /* Ustawienie wysokości na 100% */
+    overflow: hidden; /* Ukrycie przewijania na poziomie body */
+}
+.card {
+    background-color: #fff; /* Białe tło karty */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Delikatny cień */
+    padding: 12px; /* Wewnętrzny odstęp */
+    margin-bottom: 12px; /* Odstęp między kartami */
+    overflow: hidden; /* Ukrywa przewijanie wewnątrz karty, jeśli to konieczne */
+}
+
+
+/* Dodatkowe style mogą być potrzebne dla kontenerów */
+.container-fluid {
+    padding: 0 5px; /* Odstęp po bokach dla lepszego wyglądu */
+}
+
+.icon {
+    color: inherit; /* Ikony przyjmują kolor tekstu z .nav-link */
+    font-size: 1.25rem; /* rozmiar ikon */
+}
+
+.header {
+    align-self: stretch;
+    position: relative;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+}
+
+    .header h1 {
+        color: #BFB78F;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        position: relative;
+        padding: 0 60px;
+        padding-top: 10px;
+    }
+
+        .header h1::before,
+        .header h1::after {
+            content: "";
+            height: 2px;
+            width: 55px;
+            background-color: #c7a42f;
+            position: absolute;
+            top: 65%;
+            transform: translateY(-50%);
+        }
+
+
+        .header h1::before {
+            left: 0;
+            transform: translateX(-10%); /* Przesunięcie całkowicie na zewnątrz tekstu */
+        }
+
+        .header h1::after {
+            right: 0;
+            transform: translateX(10%); /* Przesunięcie całkowicie na zewnątrz tekstu */
+        }
+
+/* NAPIS MENU W SIDEBAR */
+.menu-header {
+    font-size: 1.0rem; /* Dostosuj rozmiar czcionki */
+    color: #d3d3d3; /* Kolor tekstu */
+    text-transform: uppercase; /* Wielkie litery */
+    padding: 10px 20px; /* Odstępy */
+    padding-bottom: 20px;
+    border-bottom: 2px solid #8e8e86; /* Linia oddzielająca */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.navbar-custom {
+    margin-left: 275px;
+    background-color: #789abc;
+    display: flex;
+    align-items: center; /* Wyśrodkowanie wszystkich elementów w pionie */
+    justify-content: space-between; /* Rozłożenie elementów na całą szerokość */
+}
+.nav-icons {
+    display: flex;
+    align-items: center; /* Wyśrodkowanie ikon względem pionu */
+}
+
+    .nav-icons .nav-link {
+        padding: 0.5rem 1rem; /* przestrzeń wokół ikon */
+        margin: 0 10px; /* Odstępy między ikonami */
+        color: #6c757d; 
+    }
+
+        .nav-icons .nav-link:hover {
+            background-color: #e9ecef; 
+            border-radius: 10px; 
+        }
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 10px; 
+}
+
+    .search-box input {
+        border: none;
+        background-color: transparent;
+        margin-right: 0.5rem; /* Odstęp od ikony lupy */
+        color: #495057; 
+        width: 100%; 
+    }
+
+        .search-box input::placeholder {
+            color: #6c757d; 
+        }
+
+        .search-box input:focus {
+            outline: none; 
+        }
+
+    .search-box button {
+        background: none;
+        border: none;
+        color: #6c757d; 
+        cursor: pointer;
+    }
+
+/* Sidebar styles */
+.sidebar {
+    width: 275px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: #011F26;
+    padding-top: 80px; /* odstęp na górze */
+    border-right: 2px solid #8e8e86;
+}
+
+.sidebar-icon {
+    margin-right: 1.2rem; /* Odstęp między ikoną a tekstem */
+    color: #F2A71B;
+}
+
+.sidebar .sidebar-item {
+    color: #BFB78F;
+    padding: 10px 15px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.sidebar-icon {
+    margin-right: 1.2rem;
+    color: #BFB78F;
+}
+
+.sidebar-item:hover {
+    background-color: #e9ecef;
+    color: #2c3e50;
+}
+
+
+.sidebar-item-declarations {
+    margin-top: 20px; 
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.85rem;
+    border-top: 1px solid #d3d3d3;
+    padding-bottom: 10px; /* dodatkowa przestrzeń na dole */
+}
+
+.user-badge {
+    color: #fff; 
+    background-color: #2c3e50; 
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: block; /* to daje aby zająć całą szerokość */
+    text-align: center; 
+    font-size: 0.85rem;
+}
+
+/* treść główna, aby nie nachodziła na sidebar */
+.ms-sm-auto.px-md-4 {
+    margin-left: 275px; 
+    padding: 20px; 
+}
+
+/*style dla czesci glownej */
+.main-content {
+    flex-grow: 1; /* Zapewnia, że treść rozciągnie się do dostępnej przestrzeni */
+    margin-left: 275px;
+    padding: 1rem;
+    overflow-y: hidden; /* Blokuje pionowe przewijanie wewnątrz tego elementu */
+    max-height: 100vh; /* Ogranicza maksymalną wysokość do widoku ekranu */
+}
+
+.carousel-img {
+    max-height: 180px;
+}
+
+.carousel-caption {
+    left: 5px; 
+    right: 5px; 
+    bottom: 0; 
+    border-radius: 10px; 
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 10px 15px; 
+    text-align: center; 
+    margin: auto; 
+}
+
+    .carousel-caption h3,
+    .carousel-caption p {
+        text-align: center; 
+        color: #2c3e50; 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Cień tekstu */
+    }
+
+/* style dla kalendarza w App.jsx */
+
+.rbc-btn-group {
+    font-size: 12px; /* zmniejsz rozmiar czcionki przycisków */
+}
+
+.rbc-toolbar-label {
+    font-size: 14px; /* zmniejsz rozmiar czcionki etykiety (np. miesiąc i rok) */
+}
+
+.rbc-header {
+    padding: 4px 10px; /* zmniejsz padding nagłówków dni */
+    font-size: 14px; /* zmniejsz rozmiar czcionki */
+}
+
+.rbc-row-segment .rbc-event-content {
+    font-size: 12px; /* zmniejsz rozmiar czcionki wydarzeń */
+}
+
+.rbc-toolbar {
+    display: flex;
+    justify-content: space-between; /* Rozmieść elementy równomiernie */
+    align-items: center; /* Wyrównaj elementy pionowo */
+}
+

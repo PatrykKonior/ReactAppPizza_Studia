@@ -1,0 +1,6 @@
+@ReactAppPizza.Server_HostAddress = http://localhost:5029
+
+GET {{ReactAppPizza.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
