@@ -15,6 +15,9 @@ export function Layout() {
             <Container fluid>
                 <Navbar className="navbar-custom" expand="lg" sticky="top">
                     <Container fluid>
+                        <Navbar.Brand className="me-auto" style={{ fontSize: '35px', fontFamily: 'Montserrat, sans-serif' }}>
+                            Dzien dobry!
+                        </Navbar.Brand>
                         <Nav className="ms-auto nav-icons">
                             <Nav.Link href="#notifications">
                                 <FontAwesomeIcon icon={faBell} className="icon" />
