@@ -1,20 +1,28 @@
-import react from 'react';
-import Container from 'react-bootstrap/Container';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import HeadLine from './TowarComponents/HeadLine';
 import AddTable from './TowarComponents/AddTable';
 import AddedTowar from './TowarComponents/AddedTowar';
-import '../App.css'
+import ItemList from './TowarComponents/ItemList';
+import '../App.css';
 
 function Towar() {
     return (
         <div className="main-content">
             <Container fluid>
                 <HeadLine />
-                <AddTable />
-                <AddedTowar />
+                <Row>
+                    <Col>
+                        <AddTable />
+                    </Col>
+                    <Col>
+                        <AddedTowar />
+                    </Col>
+                </Row>
+                <ItemList />
             </Container>
         </div>
-    )
+    );
 }
 
 export { Towar };
