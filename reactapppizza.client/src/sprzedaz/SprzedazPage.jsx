@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Grid, Paper } from '@mui/material';
+import { Container, Grid, Paper, TextField, IconButton, Button, Typography } from '@mui/material';
 import SalesForm from './components/SalesForm';
 import SalesTable from './components/SalesTable';
 import ExportOptions from './components/ExportOptions';
 import SalesSummary from './components/SalesSummary';
+import PrintIcon from '@mui/icons-material/Print';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import DescriptionIcon from '@mui/icons-material/Description';
 import './SprzedazPage.css';
 
 const Sprzedaz = () => {
     const [sales, setSales] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleAddSale = (sale) => {
         setSales([...sales, sale]);
@@ -15,6 +19,20 @@ const Sprzedaz = () => {
 
     return (
         <Container className="sprzedaz-page">
+            <div className="top-bar">
+                <TextField
+                    label="Szukaj sprzeda¿y"
+                    variant="outlined"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    style={{ width: '70%' }}
+                />
+                <div>
+                    <IconButton><PrintIcon className="icon" /></IconButton>
+                    <IconButton><FileDownloadIcon className="icon" /></IconButton>
+                    <IconButton><DescriptionIcon className="icon" /></IconButton>
+                </div>
+            </div>
             <Grid container spacing={3} className="sprzedaz-grid">
                 <Grid item xs={12} className="sprzedaz-item">
                     <Paper className="card">
@@ -23,7 +41,7 @@ const Sprzedaz = () => {
                 </Grid>
                 <Grid item xs={12} className="sprzedaz-item">
                     <Paper className="card">
-                        <SalesTable sales={sales} />
+                        <SalesTable sales={sales.filter(sale => sale.product.toLowerCase().includes(searchTerm.toLowerCase()))} />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} className="sprzedaz-item">
