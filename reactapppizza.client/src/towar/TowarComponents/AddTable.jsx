@@ -27,7 +27,7 @@ const AddTable = () => {
                                     <Col>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Nazwa</Form.Label>
-                                            <Form.Control type="text" placeholder="Wpisz nazwe..." />
+                                            <Form.Control type="text" placeholder="Wpisz nazwê..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
@@ -35,7 +35,7 @@ const AddTable = () => {
                                             <Form.Label>Kategoria</Form.Label>
                                             <Form.Select aria-label="Default select example">
                                                 <option>Wybierz:</option>
-                                                <option value="1">Cegly</option>
+                                                <option value="1">Ceg³y</option>
                                                 <option value="2">Wylewki</option>
                                                 <option value="3">Farby</option>
                                             </Form.Select>
@@ -59,14 +59,14 @@ const AddTable = () => {
                                     </Col>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>VAT sprzedazy</Form.Label>
-                                            <Form.Control type="text" placeholder="VAT sprzedazy..." />
+                                            <Form.Label>VAT sprzeda¿y</Form.Label>
+                                            <Form.Control type="text" placeholder="VAT sprzeda¿y..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Cena domyslna</Form.Label>
-                                            <Form.Control type="text" placeholder="Cena domyslna..." />
+                                            <Form.Label>Cena domyœlna</Form.Label>
+                                            <Form.Control type="text" placeholder="Cena domyœlna..." />
                                         </Form.Group>
                                     </Col>
                                 </Row>

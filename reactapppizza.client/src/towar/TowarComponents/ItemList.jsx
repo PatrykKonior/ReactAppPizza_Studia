@@ -3,9 +3,9 @@ import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 
 const ItemList = () => {
     const [items, setItems] = useState([
-        { id: 1, name: 'Cegla', category: 'Cegly', price: 10 },
-        { id: 2, name: 'Wylewka', category: 'Wylewki', price: 20 },
-        { id: 3, name: 'Farba', category: 'Farby', price: 30 },
+        { id: 1, name: 'Margherita', category: 'Pizza', price: 25 },
+        { id: 2, name: 'Pepperoni', category: 'Pizza', price: 30 },
+        { id: 3, name: 'Coca Cola', category: 'Napoj', price: 5 },
         // Dodaj wiêcej elementów tutaj
     ]);
     const [filter, setFilter] = useState('');

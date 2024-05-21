@@ -9,17 +9,19 @@ import '../App.css';
 function Towar() {
     return (
         <div className="main-content">
-            <Container fluid>
+            <Container fluid className="d-flex flex-column">
                 <HeadLine />
-                <Row>
-                    <Col>
+                <Row className="row-container flex-grow-1">
+                    <Col className="col-container">
                         <AddTable />
                     </Col>
-                    <Col>
+                    <Col className="col-container">
                         <AddedTowar />
                     </Col>
                 </Row>
-                <ItemList />
+                <div className="item-list-container">
+                    <ItemList />
+                </div>
             </Container>
         </div>
     );

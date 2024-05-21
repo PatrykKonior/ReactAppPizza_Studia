@@ -20,20 +20,57 @@ body, html {
 }
 .headline-card {
     width: 100%;
-    margin-bottom: 20px;
-    margin-top: -20px; /* Przesunięcie komponentu w górę */
+    margin-bottom: 10px;
+    margin-top: -10px; /* Przesunięcie komponentu w górę */
 }
 
 .add-table-card, .added-towar-card {
     width: 100%;
-    margin-bottom: 120px;
+    margin-bottom: 10px;
 }
 
-.item-list {
-    margin-top: -40px;
-    width: 100%;
+.item-list-container {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
 }
 
+/* style dla dodawania towaru */
+
+.row-container {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%; /* Adjust this to match the space you need for other components */
+    overflow: hidden;
+}
+
+.col-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Style dla sprzedaz*/
+
+/* Dodaj stylizację dla głównego kontenera */
+
+.sprzedaz-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sprzedaz-grid {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.sprzedaz-item {
+    flex: 1 1 auto;
+}
 
 /* Dashboards cards */
 
@@ -274,12 +311,14 @@ body, html {
 
 /*style dla czesci glownej */
 .main-content {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1; /* Zapewnia, że treść rozciągnie się do dostępnej przestrzeni */
     margin-left: 275px;
     padding: 1rem;
     overflow-y: hidden; /* Blokuje pionowe przewijanie wewnątrz tego elementu */
     max-height: 100vh; /* Ogranicza maksymalną wysokość do widoku ekranu */
-    margin-top: -20px; /* Przesunięcie całości w górę */
+    margin-top: -50px; /* Przesunięcie całości w górę */
 }
 
 .carousel-img {
@@ -287,6 +326,8 @@ body, html {
 }
 
 .carousel-caption {
+    display: flex;
+    flex-direction: column;
     left: 5px; 
     right: 5px; 
     bottom: 0; 
