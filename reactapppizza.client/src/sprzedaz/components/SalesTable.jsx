@@ -18,8 +18,8 @@ const SalesTable = ({ sales = [] }) => {
                         <TableRow key={index}>
                             <TableCell>{sale.product}</TableCell>
                             <TableCell>{sale.quantity}</TableCell>
-                            <TableCell>{sale.price}</TableCell>
-                            <TableCell>{sale.quantity * sale.price}</TableCell>
+                            <TableCell>{sale.price} PLN</TableCell>
+                            <TableCell>{sale.quantity * sale.price} PLN</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
