@@ -27,7 +27,7 @@ const SalesForm = ({ onAddSale }) => {
                 </Grid>
                 <Grid item xs={4}>
                     <TextField
-                        label="Iloœæ"
+                        label="Ilosc"
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         fullWidth

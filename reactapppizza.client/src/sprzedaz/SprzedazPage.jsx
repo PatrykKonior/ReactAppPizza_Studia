@@ -21,16 +21,16 @@ const Sprzedaz = () => {
         <Container className="sprzedaz-page">
             <div className="top-bar">
                 <TextField
-                    label="Szukaj sprzeda¿y"
+                    label="Szukaj sprzedazy"
                     variant="outlined"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    style={{ width: '70%' }}
+                    style={{ width: '66%' }}
                 />
                 <div>
-                    <IconButton><PrintIcon className="icon" /></IconButton>
-                    <IconButton><FileDownloadIcon className="icon" /></IconButton>
-                    <IconButton><DescriptionIcon className="icon" /></IconButton>
+                    <IconButton><PrintIcon  /></IconButton>
+                    <IconButton><FileDownloadIcon  /></IconButton>
+                    <IconButton><DescriptionIcon  /></IconButton>
                 </div>
             </div>
             <Grid container spacing={3} className="sprzedaz-grid">

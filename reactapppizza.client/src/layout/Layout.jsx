@@ -11,27 +11,6 @@ import {
 export function Layout() {
     const location = useLocation();
 
-    const getTitle = () => {
-        switch (location.pathname) {
-            case '/towar':
-                return 'Dodaj towar';
-            case '/sprzedaz':
-                return 'Zarejestruj sprzeda¿';
-            case '/magazyn':
-                return 'Aktualny stan magazynu';
-            case '/grafik':
-                return 'Aktualny grafik';
-            case '/dokumenty':
-                return 'Aktualne dokumenty';
-            case '/pracownik':
-                return 'Wybierz deklaracje';
-            case '/zestawienia':
-                return 'Aktualne zestawienia';
-            default:
-                return 'Dzien dobry!';
-        }
-    };
-
     const titleStyle = {
         fontSize: '35px',
         fontFamily: 'Montserrat, sans-serif',
@@ -111,11 +90,6 @@ export function Layout() {
                         </Nav>
                     </div>
                     <main className="ms-sm-auto px-md-4">
-                        {location.pathname !== '/' && (
-                            <Navbar.Brand className="me-auto" style={titleStyle}>
-                                {getTitle()}
-                            </Navbar.Brand>
-                        )}
                         <Outlet />
                     </main>
                 </div>

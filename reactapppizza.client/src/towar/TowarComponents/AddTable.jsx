@@ -27,7 +27,7 @@ const AddTable = () => {
                                     <Col>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Nazwa</Form.Label>
-                                            <Form.Control type="text" placeholder="Wpisz nazwê..." />
+                                            <Form.Control type="text" placeholder="Wpisz nazwe..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
@@ -59,14 +59,14 @@ const AddTable = () => {
                                     </Col>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>VAT sprzeda¿y</Form.Label>
-                                            <Form.Control type="text" placeholder="VAT sprzeda¿y..." />
+                                            <Form.Label>VAT sprzedazy</Form.Label>
+                                            <Form.Control type="text" placeholder="VAT sprzedazy..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Cena domyœlna</Form.Label>
-                                            <Form.Control type="text" placeholder="Cena domyœlna..." />
+                                            <Form.Label>Cena domyslna</Form.Label>
+                                            <Form.Control type="text" placeholder="Cena domyslna..." />
                                         </Form.Group>
                                     </Col>
                                 </Row>

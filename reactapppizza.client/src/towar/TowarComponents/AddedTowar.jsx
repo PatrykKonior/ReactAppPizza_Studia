@@ -13,7 +13,7 @@ const AddedTowar = () => {
                                     <Col>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Nazwa produktu</Form.Label>
-                                            <Form.Control type="text" placeholder="Wpisz nazwê produktu..." />
+                                            <Form.Control type="text" placeholder="Wpisz nazwe produktu..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
@@ -21,7 +21,7 @@ const AddedTowar = () => {
                                             <Form.Label>Kategoria</Form.Label>
                                             <Form.Select aria-label="Default select example">
                                                 <option>Wybierz:</option>
-                                                <option value="1">Sk³adniki</option>
+                                                <option value="1">Skladniki</option>
                                                 <option value="2">Napoje</option>
                                                 <option value="3">Akcesoria</option>
                                             </Form.Select>
@@ -31,8 +31,8 @@ const AddedTowar = () => {
                                 <Row>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Iloœæ</Form.Label>
-                                            <Form.Control type="number" placeholder="Wpisz iloœæ..." />
+                                            <Form.Label>Ilosc</Form.Label>
+                                            <Form.Control type="number" placeholder="Wpisz ilosc..." />
                                         </Form.Group>
                                     </Col>
                                     <Col>
@@ -52,7 +52,7 @@ const AddedTowar = () => {
                                 <Row>
                                     <Col>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Data wa¿noœci</Form.Label>
+                                            <Form.Label>Data waznosci</Form.Label>
                                             <Form.Control type="date" />
                                         </Form.Group>
                                     </Col>

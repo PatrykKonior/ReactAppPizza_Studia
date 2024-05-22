@@ -15,10 +15,10 @@ const SalesSummary = ({ sales = [] }) => {
     return (
         <Paper>
             <Typography variant="h6" component="h2" gutterBottom>
-                Podsumowanie sprzeda¿y
+                Podsumowanie sprzedazy
             </Typography>
             <Typography variant="h4" component="p">
-                £¹czna kwota: {totalSales} PLN
+                Aktualna kwota: {totalSales} PLN
             </Typography>
             <PieChart width={400} height={400}>
                 <Pie
