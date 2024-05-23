@@ -6,7 +6,8 @@ import WarningIcon from '@mui/icons-material/Warning';
 import PrintIcon from '@mui/icons-material/Print';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DescriptionIcon from '@mui/icons-material/Description'; // Ikona dla Excela
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
+import '../App.css';
 
 function Magazyn() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -18,38 +19,33 @@ function Magazyn() {
         { id: 5, nazwa: 'Szynka', ilosc: '15 kg', lowStock: false }
     ];
 
-    const dataPie = [
-        { name: 'M¹ka', value: 400 },
-        { name: 'Ser', value: 300 },
-        { name: 'Pomidory', value: 300 },
-        { name: 'Pieczarki', value: 200 },
-        { name: 'Szynka', value: 200 }
+    const dataBar = [
+        { name: 'M¹ka', value: 50 },
+        { name: 'Ser', value: 30 },
+        { name: 'Pomidory', value: 20 },
+        { name: 'Pieczarki', value: 10 },
+        { name: 'Szynka', value: 15 }
     ];
 
-    const COLORS = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51']; // Nowa paleta kolorów
+    const COLORS = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51'];
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ width: '20%', padding: '20px' }}>
-                <PieChart width={200} height={200}>
-                    <Pie
-                        data={dataPie}
-                        cx={100}
-                        cy={100}
-                        labelLine={false}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    >
-                        {dataPie.map((entry, index) => (
+        <div id="content-container">
+            <div id="left-container">
+                <BarChart width={300} height={200} data={dataBar}>
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="value">
+                        {dataBar.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
-                    </Pie>
-                    <Tooltip />
-                </PieChart>
-                <Card variant="outlined" sx={{ mb: 2, backgroundColor: '#f0f4f8', width: '100%' }}>
-                    <CardContent>
+                    </Bar>
+                </BarChart>
+                <Card variant="outlined" className="gradient-card gradient-green">
+                    <CardContent className="card-inner">
                         <Typography variant="h6" component="div">
                             Zamówienie #001
                         </Typography>
@@ -58,8 +54,8 @@ function Magazyn() {
                         </Typography>
                     </CardContent>
                 </Card>
-                <Card variant="outlined" sx={{ backgroundColor: '#f0f4f8', width: '100%' }}>
-                    <CardContent>
+                <Card variant="outlined" className="gradient-card gradient-yellow">
+                    <CardContent className="card-inner">
                         <Typography variant="h6" component="div">
                             Zamówienie #002
                         </Typography>
@@ -69,17 +65,24 @@ function Magazyn() {
                     </CardContent>
                 </Card>
             </div>
-            <div style={{ width: '75%' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                    <TextField label="Szukaj sk³adnika" variant="outlined" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} style={{ width: '70%' }} />
-                    <div>
+            <div id="right-container">
+                <div id="header-container">
+                    <Typography id="title">Aktualny stan magazynu</Typography>
+                    <TextField
+                        label="Szukaj sk³adnika"
+                        variant="outlined"
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                        id="search-bar"
+                    />
+                    <div id="icon-container">
                         <IconButton><PrintIcon /></IconButton>
                         <IconButton><FileDownloadIcon /></IconButton>
-                        <IconButton><DescriptionIcon /></IconButton> 
+                        <IconButton><DescriptionIcon /></IconButton>
                     </div>
                 </div>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="prosta tabela">
+                <TableContainer component={Paper} style={{ marginBottom: '20px' }}>
+                    <Table sx={{ minWidth: 650, maxHeight: 400 }} aria-label="prosta tabela">
                         <TableHead>
                             <TableRow>
                                 <TableCell>ID</TableCell>
@@ -119,8 +122,8 @@ function Magazyn() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <div style={{ marginTop: '20px' }}>
-                    <Button variant="contained" color="primary">PrzejdŸ do sk³adania zamówienia</Button>
+                <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                    <Button variant="contained" id="action-button">PrzejdŸ do sk³adania zamówienia</Button>
                 </div>
             </div>
         </div>
