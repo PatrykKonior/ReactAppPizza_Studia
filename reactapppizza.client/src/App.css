@@ -419,7 +419,7 @@ body, html {
     padding: 20px;
     text-align: left;
     position: relative;
-    top: 80px; /* Increased top offset */
+    top: 100px; /* Further increased top offset */
 }
 
 #right-container {
@@ -429,13 +429,13 @@ body, html {
 #header-container {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Further reduced margin-bottom */
 }
 
 #title {
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
-    margin: 20px 0;
+    margin: 10px 0; /* Further reduced margin */
     color: #000;
     text-align: left;
     flex: 1;
