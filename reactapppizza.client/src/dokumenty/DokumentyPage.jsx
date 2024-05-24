@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, IconButton, Button, Typography, Divider, Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemText, Grid, ListItemIcon } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+ï»¿import React, { useState } from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, IconButton, Button, Typography, List, ListItem, ListItemText, Grid, ListItemIcon, Box } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DescriptionIcon from '@mui/icons-material/Description';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
+import LockIcon from '@mui/icons-material/Lock';
+import { green, red, blue } from '@mui/material/colors';
+import '../App.css';
 
 function Dokumenty() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -17,50 +19,11 @@ function Dokumenty() {
     ];
 
     return (
-        <div style={{ display: 'flex', padding: 20 }}>
+        <div className="dokumenty-container">
+            <Typography variant="h4" className="dokumenty-header">ZarzÄ…dzanie dokumentami</Typography>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={4}>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Zarz¹dzanie umowami</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <List>
-                                <ListItem button>
-                                    <ListItemText primary="Przegl¹daj umowy" />
-                                </ListItem>
-                                <ListItem button>
-                                    <ListItemText primary="Dodaj now¹ umowê" />
-                                    <ListItemIcon>
-                                        <AddIcon />
-                                    </ListItemIcon>
-                                </ListItem>
-                                <ListItem button>
-                                    <ListItemText primary="Edytuj umowy" />
-                                </ListItem>
-                            </List>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Zarz¹dzanie przepisami kulinarnymi</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography variant="body2">
-                                Tutaj mo¿na dodawaæ, edytowaæ i udostêpniaæ przepisy kulinarnie w restauracji.
-                            </Typography>
-                            <Button variant="contained" startIcon={<AddIcon />} sx={{ mt: 2 }}>
-                                Dodaj przepis
-                            </Button>
-                            <Button variant="contained" startIcon={<EditIcon />} sx={{ mt: 2, ml: 2 }}>
-                                Edytuj przepisy
-                            </Button>
-                        </AccordionDetails>
-                    </Accordion>
-                </Grid>
-                <Grid item xs={12} md={8}>
-                    <Typography variant="h4" sx={{ marginBottom: 2 }}>Zarz¹dzanie dokumentami</Typography>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Grid item xs={12}>
+                    <div className="dokumenty-search-container">
                         <TextField
                             label="Szukaj dokumentu"
                             variant="outlined"
@@ -73,8 +36,9 @@ function Dokumenty() {
                                     </IconButton>
                                 ),
                             }}
+                            className="dokumenty-search-field"
                         />
-                        <div>
+                        <div className="dokumenty-icons">
                             <IconButton color="primary" aria-label="print">
                                 <PrintIcon />
                             </IconButton>
@@ -86,9 +50,9 @@ function Dokumenty() {
                             </IconButton>
                         </div>
                     </div>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }}>
-                            <TableHead>
+                    <TableContainer component={Paper} className="dokumenty-table-container">
+                        <Table>
+                            <TableHead className="dokumenty-table-header">
                                 <TableRow>
                                     <TableCell>ID</TableCell>
                                     <TableCell>Typ</TableCell>
@@ -98,13 +62,16 @@ function Dokumenty() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {dokumenty.filter(dok => dok.nazwa.toLowerCase().includes(searchTerm.toLowerCase())).map((dok) => (
-                                    <TableRow key={dok.id}>
+                                {dokumenty.filter(dok => dok.nazwa.toLowerCase().includes(searchTerm.toLowerCase())).map((dok, index) => (
+                                    <TableRow key={dok.id} className={index % 2 === 0 ? 'dokumenty-table-row-even' : 'dokumenty-table-row-odd'}>
                                         <TableCell>{dok.id}</TableCell>
                                         <TableCell>{dok.typ}</TableCell>
                                         <TableCell>{dok.nazwa}</TableCell>
                                         <TableCell>{dok.data}</TableCell>
                                         <TableCell>
+                                            <IconButton style={{ color: green[500] }}><AddIcon /></IconButton>
+                                            <IconButton style={{ color: red[500] }}><LockIcon /></IconButton>
+                                            <IconButton style={{ color: blue[500] }}><SearchIcon /></IconButton>
                                             <IconButton><EditIcon /></IconButton>
                                         </TableCell>
                                     </TableRow>
@@ -112,6 +79,37 @@ function Dokumenty() {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                </Grid>
+                <Grid item xs={12} md={4} className="dokumenty-left-panel">
+                    <Typography variant="h6">ZarzÄ…dzanie umowami</Typography>
+                    <List className="dokumenty-left-panel-list">
+                        <ListItem button>
+                            <ListItemText primary="PrzeglÄ…daj umowy" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemText primary="Dodaj nowÄ… umowÄ™" />
+                            <ListItemIcon>
+                                <AddIcon />
+                            </ListItemIcon>
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemText primary="Edytuj umowy" />
+                        </ListItem>
+                    </List>
+                </Grid>
+                <Grid item xs={12} md={8} className="dokumenty-right-panel">
+                    <div className="dokumenty-przepisy-container">
+                        <Typography variant="h6">ZarzÄ…dzanie przepisami kulinarnymi</Typography>
+                        <Typography variant="body2">
+                            Tutaj moÅ¼na dodawaÄ‡, edytowaÄ‡ i udostÄ™pniaÄ‡ przepisy kulinarnie w restauracji.
+                        </Typography>
+                        <Button variant="contained" startIcon={<AddIcon />} sx={{ mt: 2 }}>
+                            Dodaj przepis
+                        </Button>
+                        <Button variant="contained" startIcon={<EditIcon />} sx={{ mt: 2, ml: 2 }}>
+                            Edytuj przepisy
+                        </Button>
+                    </div>
                 </Grid>
             </Grid>
         </div>
