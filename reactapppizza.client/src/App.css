@@ -467,3 +467,36 @@ body, html {
     margin-top: 20px;
     height: 40px;
 }
+
+/* style dla Grafik */
+
+.grafik-title {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px 0;
+    color: #000;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 220px; /* Przesunięcie, aby nie nachodziło na sidebar */
+    display: block; /* Przywraca widoczność napisu */
+}
+
+.gradient-card {
+    padding: 1px;
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9); /* Zmniejszenie skali kart */
+    margin-bottom: 10px;
+    border-image-slice: 1;
+    border-width: 3px;
+}
+
+.calendar-container-grafik {
+    margin-top: 30px;
+    transform: scale(0.85); /* Zmniejszenie skali kalendarza o 1/3 */
+    transform-origin: bottom right; /* Ustawienie punktu zaczepienia skalowania */
+    width: 90%; /* Dostosowanie szerokości, aby skalowanie nie zmniejszało całkowitej szerokości */
+}

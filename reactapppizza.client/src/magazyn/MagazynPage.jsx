@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, TextField, Button, Card, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,7 +12,7 @@ import '../App.css';
 function Magazyn() {
     const [searchTerm, setSearchTerm] = useState('');
     const skladniki = [
-        { id: 1, nazwa: 'M¹ka', ilosc: '50 kg', lowStock: false },
+        { id: 1, nazwa: 'MÄ…ka', ilosc: '50 kg', lowStock: false },
         { id: 2, nazwa: 'Ser', ilosc: '30 kg', lowStock: false },
         { id: 3, nazwa: 'Pomidory', ilosc: '20 kg', lowStock: true },
         { id: 4, nazwa: 'Pieczarki', ilosc: '10 kg', lowStock: false },
@@ -20,7 +20,7 @@ function Magazyn() {
     ];
 
     const dataBar = [
-        { name: 'M¹ka', value: 50 },
+        { name: 'MÄ…ka', value: 50 },
         { name: 'Ser', value: 30 },
         { name: 'Pomidory', value: 20 },
         { name: 'Pieczarki', value: 10 },
@@ -48,17 +48,17 @@ function Magazyn() {
                 <Card variant="outlined" className="gradient-card gradient-green">
                     <CardContent className="card-inner">
                         <Typography variant="h6" component="div">
-                            Zamówienie #001
+                            ZamÃ³wienie #001
                         </Typography>
                         <Typography color="text.secondary">
-                            10 kg m¹ki - Zrealizowane
+                            10 kg mÄ…ki - Zrealizowane
                         </Typography>
                     </CardContent>
                 </Card>
                 <Card variant="outlined" className="gradient-card gradient-yellow">
                     <CardContent className="card-inner">
                         <Typography variant="h6" component="div">
-                            Zamówienie #002
+                            ZamÃ³wienie #002
                         </Typography>
                         <Typography color="text.secondary">
                             20 kg sera - W trakcie realizacji
@@ -69,7 +69,7 @@ function Magazyn() {
             <div id="right-container">
                 <div id="header-container" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
                     <TextField
-                        label="Szukaj sk³adnika"
+                        label="Szukaj skÅ‚adnika"
                         variant="outlined"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
@@ -87,8 +87,8 @@ function Magazyn() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>ID</TableCell>
-                                <TableCell>Nazwa sk³adnika</TableCell>
-                                <TableCell align="right">Iloœæ na magazynie</TableCell>
+                                <TableCell>Nazwa skÅ‚adnika</TableCell>
+                                <TableCell align="right">IloÅ›Ä‡ na magazynie</TableCell>
                                 <TableCell align="right">Akcje</TableCell>
                             </TableRow>
                         </TableHead>
@@ -124,10 +124,10 @@ function Magazyn() {
                     </Table>
                 </TableContainer>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" id="action-button">PrzejdŸ do sk³adania zamówienia</Button>
+                    <Button variant="contained" id="action-button">PrzejdÅº do skÅ‚adania zamÃ³wienia</Button>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" id="action-button">PrzejdŸ do œledzenia zammówieñ</Button>
+                    <Button variant="contained" id="action-button">PrzejdÅº do Å›ledzenia zammÃ³wieÅ„</Button>
                 </div>
             </div>
         </div>

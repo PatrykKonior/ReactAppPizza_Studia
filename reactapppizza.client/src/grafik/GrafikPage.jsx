@@ -1,9 +1,12 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { Card, Col, Row, Container } from 'react-bootstrap';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import plLocale from '@fullcalendar/core/locales/pl';
+import { Typography } from '@mui/material';
+import '../App.css';
 
 const Grafik = () => {
     const workers = [
@@ -14,20 +17,27 @@ const Grafik = () => {
         { name: "Sylwia", role: "Barman", color: "#BDA523" },
     ];
 
-    const events = workers.flatMap(worker => [
-        { title: `${worker.name} - ${worker.role}`, start: '2023-05-08T10:00:00', end: '2023-05-08T21:00:00', color: worker.color },
-        { title: `${worker.name} - ${worker.role}`, start: '2023-05-09T10:00:00', end: '2023-05-09T21:00:00', color: worker.color },
-        { title: `${worker.name} - ${worker.role}`, start: '2023-05-10T10:00:00', end: '2023-05-10T21:00:00', color: worker.color },
-        { title: `${worker.name} - ${worker.role}`, start: '2023-05-11T10:00:00', end: '2023-05-11T21:00:00', color: worker.color },
-        { title: `${worker.name} - ${worker.role}`, start: '2023-05-12T10:00:00', end: '2023-05-12T21:00:00', color: worker.color },
-    ]);
+    // Daty od 24 maja 2024 do 28 maja 2024
+    const days = ['2024-05-24', '2024-05-25', '2024-05-26', '2024-05-27', '2024-05-28'];
+
+    const events = workers.flatMap(worker =>
+        days.map(day => ({
+            title: `${worker.name} - ${worker.role}`,
+            start: `${day}T10:00:00`,
+            end: `${day}T21:00:00`,
+            color: worker.color
+        }))
+    );
 
     return (
         <Container fluid>
+            <Row className="mb-1 justify-content-start">
+                <Typography id="grafik-title" className="grafik-title">Aktualny grafik</Typography>
+            </Row>
             <Row className="mb-1 justify-content-end">
                 {workers.map((worker, index) => (
                     <Col key={index} xs={6} sm={4} md={2}>
-                        <Card className="mb-1" border="dark" style={{ borderColor: worker.color, maxWidth: "180px" }}>
+                        <Card className={`gradient-card mb-1`} style={{ borderImageSource: `linear-gradient(to right, ${worker.color}, #808080)` }}>
                             <Card.Header style={{ backgroundColor: worker.color, color: '#ffffff' }}>{worker.name}</Card.Header>
                             <Card.Body>
                                 <Card.Title>{worker.role}</Card.Title>
@@ -40,7 +50,7 @@ const Grafik = () => {
                 ))}
             </Row>
             <Row>
-                <div className="calendar-container" style={{ width: "100%" }}>
+                <div className="calendar-container-grafik">
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                         initialView="timeGridWeek"
@@ -50,7 +60,7 @@ const Grafik = () => {
                             right: 'dayGridMonth,timeGridWeek,timeGridDay'
                         }}
                         allDaySlot={false}
-                        slotMinTime="01:00:00"
+                        slotMinTime="06:00:00"
                         slotMaxTime="24:00:00"
                         slotLabelFormat={{
                             hour: '2-digit',
@@ -58,7 +68,8 @@ const Grafik = () => {
                             hour12: false
                         }}
                         events={events}
-                        height="550px"  // Ustaw wysokoœæ kalendarza
+                        height="350px"
+                        locale={plLocale}  // Ustawienie jÄ™zyka na polski
                     />
                 </div>
             </Row>
@@ -66,5 +77,4 @@ const Grafik = () => {
     );
 };
 
-
-export{ Grafik};
+export { Grafik };
