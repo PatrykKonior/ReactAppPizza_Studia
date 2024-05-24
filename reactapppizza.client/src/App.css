@@ -389,24 +389,31 @@ body, html {
 
 .gradient-card {
     animation: gradient-animation 3s linear infinite;
-    padding: 1px; /* Padding to show the border */
-    border-radius: 8px; /* Rounded corners */
-    border: 2px solid transparent;
+    padding: 2px;
+    border-radius: 8px;
+    border: 3px solid #e76f51; /* Kolor obramowania szynki z wykresu */
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-    height: 140px; /* Increased height */
-    width: calc(100% + 40px); /* Full width with extra space */
-    margin-bottom: 10px; /* Reduced space at the bottom */
-    margin-left: -20px; /* Center the card */
+    height: 150px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .gradient-green {
-    background-image: linear-gradient(white, white), linear-gradient(to right, #00FF00, #808080);
+    background-image: linear-gradient(white, white), linear-gradient(to right, #e76f51, rgba(255, 255, 255, 0.8));
 }
 
 .gradient-yellow {
-    background-image: linear-gradient(white, white), linear-gradient(to right, #FFFF00, #808080);
+    background-image: linear-gradient(white, white), linear-gradient(to right, rgba(255, 255, 255, 0.8), #e76f51);
+}
+
+.BarChart {
+    margin-left: auto;
+}
+
+.TableContainer {
+    margin-top: auto;
 }
 
 #content-container {
@@ -415,36 +422,36 @@ body, html {
 }
 
 #left-container {
-    width: 20%;
-    padding: 20px;
+    width: 40%;
+    padding: 25px;
     text-align: left;
     position: relative;
-    top: 100px; /* Further increased top offset */
+    top: -50px;
 }
 
 #right-container {
-    width: 75%;
+    width: 80%;
 }
 
 #header-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Further reduced margin-bottom */
+    margin-bottom: 30px;
 }
 
 #title {
-    font-size: 35px;
+    font-size: 38px;
     font-family: 'Montserrat', sans-serif;
-    margin: 10px 0; /* Further reduced margin */
+    margin: 10px 0;
     color: #000;
     text-align: left;
-    flex: 1;
+    margin-bottom: 20px;
 }
 
 #search-bar {
-    flex-grow: 2;
-    padding: 10px;
-    margin-right: 20px;
+    width: 600px;
+    height: 20px; /* Zmniejszona wysokość */
+    margin-left: 20px;
 }
 
 #icon-container {
@@ -457,4 +464,6 @@ body, html {
     background-color: #000;
     color: #fff;
     text-transform: none;
+    margin-top: 20px;
+    height: 40px;
 }

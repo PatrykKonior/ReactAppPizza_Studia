@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import WarningIcon from '@mui/icons-material/Warning';
 import PrintIcon from '@mui/icons-material/Print';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import DescriptionIcon from '@mui/icons-material/Description'; // Ikona dla Excela
+import DescriptionIcon from '@mui/icons-material/Description';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import '../App.css';
 
@@ -32,7 +32,8 @@ function Magazyn() {
     return (
         <div id="content-container">
             <div id="left-container">
-                <BarChart width={300} height={200} data={dataBar}>
+                <Typography id="title">Aktualny stan magazynu</Typography>
+                <BarChart width={320} height={220} data={dataBar} style={{ marginLeft: '-10px' }}>
                     <XAxis dataKey="name" />
                     <YAxis />
                     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
@@ -66,14 +67,14 @@ function Magazyn() {
                 </Card>
             </div>
             <div id="right-container">
-                <div id="header-container">
-                    <Typography id="title">Aktualny stan magazynu</Typography>
+                <div id="header-container" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
                     <TextField
                         label="Szukaj sk³adnika"
                         variant="outlined"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
                         id="search-bar"
+                        style={{ width: '400px', height: '40px' }}
                     />
                     <div id="icon-container">
                         <IconButton><PrintIcon /></IconButton>
@@ -81,7 +82,7 @@ function Magazyn() {
                         <IconButton><DescriptionIcon /></IconButton>
                     </div>
                 </div>
-                <TableContainer component={Paper} style={{ marginBottom: '20px' }}>
+                <TableContainer component={Paper} style={{ marginBottom: '20px', marginTop: '20px' }}>
                     <Table sx={{ minWidth: 650, maxHeight: 400 }} aria-label="prosta tabela">
                         <TableHead>
                             <TableRow>
@@ -122,8 +123,11 @@ function Magazyn() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                <div style={{ textAlign: 'right' }}>
                     <Button variant="contained" id="action-button">PrzejdŸ do sk³adania zamówienia</Button>
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                    <Button variant="contained" id="action-button">PrzejdŸ do œledzenia zammówieñ</Button>
                 </div>
             </div>
         </div>
