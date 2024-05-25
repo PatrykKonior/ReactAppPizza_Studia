@@ -13,7 +13,7 @@ const SalesSummary = ({ sales = [] }) => {
     return (
         <Paper style={{ padding: '16px', height: '100%' }}>
             <Typography variant="h7" component="h2" gutterBottom>
-                Podsumowanie sprzedazy
+                Podsumowanie sprzedaży
             </Typography>
             <Typography variant="h5" component="p">
                 Aktualna kwota: {totalSales} PLN

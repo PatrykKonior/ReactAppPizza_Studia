@@ -8,9 +8,9 @@ const SalesTable = ({ sales = [] }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Produkt</TableCell>
-                        <TableCell>Ilosc</TableCell>
+                        <TableCell>Ilość</TableCell>
                         <TableCell>Cena</TableCell>
-                        <TableCell>Laczna kwota</TableCell>
+                        <TableCell>Łączna kwota</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

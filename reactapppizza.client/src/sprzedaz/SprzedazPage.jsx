@@ -13,8 +13,8 @@ const Sprzedaz = () => {
     const [sales, setSales] = useState([
         { product: 'Margherita', quantity: 10, price: 18 },
         { product: 'Pepperoni', quantity: 5, price: 38 },
-        { product: 'Hawaiian', quantity: 7, price: 37 },
-        { product: 'Vegetarian', quantity: 3, price: 45 },
+        { product: 'Hawajska', quantity: 7, price: 37 },
+        { product: 'Wegetariańska', quantity: 3, price: 45 },
         { product: 'Kawa', quantity: 50, price: 12 },
     ]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -33,9 +33,9 @@ const Sprzedaz = () => {
     return (
         <Container className="sprzedaz-page">
             <div className="top-bar">
-                <div style={titleStyle}>Zarejestruj sprzedaz</div>
+                <div style={titleStyle}>Zarejestruj sprzedaż</div>
                 <TextField
-                    label="Szukaj sprzedazy"
+                    label="Szukaj sprzedaży"
                     variant="outlined"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
