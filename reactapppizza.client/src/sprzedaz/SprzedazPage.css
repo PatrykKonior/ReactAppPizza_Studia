@@ -3,6 +3,7 @@
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    padding-left: 60px;
 }
 
 .top-bar {
@@ -10,32 +11,37 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-}
-
-
-.sprzedaz-grid {
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
-.sprzedaz-item {
-    flex: 1 1 auto;
+    padding-left: 50px; /* Przesuniêcie w prawo */
 }
 
 .sprzedaz-grid {
     flex-grow: 1;
     overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 50px; /* Przesuniêcie w prawo */
 }
 
+
 .sprzedaz-item {
-    flex: 1 1 auto;
+    flex: 1 1 50%; /* Ustawienie elementów na po³owê szerokoœci */
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+.sprzedaz-grid {
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .card {
     background-color: #fff;
     border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 12px;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
     overflow: hidden;
     border: 2px solid black;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 1);
@@ -55,5 +61,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height:300px; /* Mo¿esz dostosowaæ wysokoœæ wed³ug potrzeb */
+    height: calc(50vh - 50px); /* Zmniejszenie wysokoœci kafelka z podsumowaniem sprzeda¿y */
+    overflow: hidden;
+    padding: 5px;
+}
+
+.sales-form-button {
+    background-color: #264653 !important; /* T³o w kolorze jak w magazynie */
+    color: #fff !important;
+    text-transform: none;
+    height: 40px;
+    width: 32%; /* Ustawienie szerokoœci przycisku */
+    transition: background-color 0.3s, transform 0.3s; /* Efekt po najechaniu */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .sales-form-button:hover {
+        background-color: #2a9d8f !important; /* Jaœniejszy ciemnoszary przy najechaniu */
+        transform: scale(1.05); /* Powiêkszenie przy najechaniu */
+    }
+
+.sales-table-card, .sales-summary-card {
+    height: calc(50vh - 50px); /* Ustalanie wysokoœci kart na 1/2 wysokoœci okna minus dodatkowa wysokoœæ */
+    width: calc(100% - 24px); /* Ustawienie szerokoœci na pe³n¹ szerokoœæ kontenera */
+    margin: 0 auto; /* Wyœrodkowanie kart */
+    overflow: hidden;
 }

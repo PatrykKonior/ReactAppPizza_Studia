@@ -26,7 +26,7 @@ const Sprzedaz = () => {
     const titleStyle = {
         fontSize: '35px',
         fontFamily: 'Montserrat, sans-serif',
-        margin: '20px 0',
+        margin: '15px 0',
         color: '#000'
     };
 
@@ -39,7 +39,7 @@ const Sprzedaz = () => {
                     variant="outlined"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    style={{ width: '33%' }}
+                    style={{ width: '50%' }}
                 />
                 <div>
                     <IconButton><PrintIcon /></IconButton>

@@ -16,7 +16,7 @@ const SalesForm = ({ onAddSale }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignItems="center">
                 <Grid item xs={4}>
                     <TextField
                         label="Produkt"
@@ -27,7 +27,7 @@ const SalesForm = ({ onAddSale }) => {
                 </Grid>
                 <Grid item xs={4}>
                     <TextField
-                        label="Ilosc"
+                        label="Ilość"
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         fullWidth
@@ -41,10 +41,8 @@ const SalesForm = ({ onAddSale }) => {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
-                        Dodaj
-                    </Button>
+                <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button variant="contained" className="sales-form-button">Dodaj</Button>
                 </Grid>
             </Grid>
         </form>

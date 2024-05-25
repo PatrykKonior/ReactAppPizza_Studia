@@ -51,27 +51,6 @@ body, html {
     overflow: hidden;
 }
 
-/* Style dla sprzedaz*/
-
-/* Dodaj stylizację dla głównego kontenera */
-
-.sprzedaz-page {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.sprzedaz-grid {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
-.sprzedaz-item {
-    flex: 1 1 auto;
-}
-
 /* Dashboards cards */
 
 .card-custom {
