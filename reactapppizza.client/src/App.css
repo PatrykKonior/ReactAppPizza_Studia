@@ -460,21 +460,13 @@ body, html {
     flex: 1;
 }
 
-#action-button {
-    background-color: #000;
-    color: #fff;
-    text-transform: none;
-    margin-top: 20px;
-    height: 40px;
-}
-
 .action-button {
     background-color: #333; /* Ciemnoszare tło */
     color: #fff;
     text-transform: none;
     height: 40px;
     transition: background-color 0.3s, transform 0.3s; /* Efekt po najechaniu */
-    margin-left: 10px; /* Dodanie marginesu po lewej stronie */
+    margin-top: 20px;
 }
 
     .action-button:hover {
@@ -485,111 +477,112 @@ body, html {
 .left-button {
     margin-right: 10px; /* Przesunięcie w lewo */
 }
+/* style dla magazynu */
 
-/* style dla Grafik */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
 
-.grafik-title {
-    font-size: 24px;
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-card {
+    animation: gradient-animation 3s linear infinite;
+    padding: 2px;
+    border-radius: 8px;
+    border: 3px solid #e76f51; /* Kolor obramowania szynki z wykresu */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    height: 150px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.gradient-green {
+    background-image: linear-gradient(white, white), linear-gradient(to right, #e76f51, rgba(255, 255, 255, 0.8));
+}
+
+.gradient-yellow {
+    background-image: linear-gradient(white, white), linear-gradient(to right, rgba(255, 255, 255, 0.8), #e76f51);
+}
+
+.BarChart {
+    margin-left: auto;
+}
+
+.TableContainer {
+    margin-top: auto;
+}
+
+#content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#left-container {
+    width: 40%;
+    padding: 25px;
+    text-align: left;
+    position: relative;
+    top: -50px;
+}
+
+#right-container {
+    width: 80%;
+}
+
+#header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#title {
+    font-size: 38px;
     font-family: 'Montserrat', sans-serif;
     margin: 10px 0;
     color: #000;
     text-align: left;
     margin-bottom: 20px;
-    margin-left: 220px; /* Przesunięcie, aby nie nachodziło na sidebar */
-    display: block; /* Przywraca widoczność napisu */
 }
 
-.gradient-card {
-    padding: 1px;
-    border-radius: 8px;
-    border: 3px solid transparent;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-    transform: scale(0.9); /* Zmniejszenie skali kart */
-    margin-bottom: 10px;
-    border-image-slice: 1;
-    border-width: 3px;
+#search-bar {
+    width: 600px;
+    height: 20px; /* Zmniejszona wysokość */
+    margin-left: 20px;
 }
 
-.calendar-container-grafik {
-    margin-top: 30px;
-    transform: scale(0.85); /* Zmniejszenie skali kalendarza o 1/3 */
-    transform-origin: bottom right; /* Ustawienie punktu zaczepienia skalowania */
-    width: 90%; /* Dostosowanie szerokości, aby skalowanie nie zmniejszało całkowitej szerokości */
-}
-
-/* style dla dokumenty */
-
-.dokumenty-container {
+#icon-container {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin-left: 300px; /* Upewnij się, że treść nie nachodzi na sidebar */
+    justify-content: flex-end;
+    flex: 1;
 }
 
-.dokumenty-header {
-    margin-bottom: 16px;
-    position: relative;
-    left: 25px; /* Przesunięcie, aby nie nachodziło na sidebar */
+.action-button {
+    background-color: #333; /* Ciemnoszare tło */
+    color: #fff;
+    text-transform: none;
+    height: 40px;
+    transition: background-color 0.3s, transform 0.3s; /* Efekt po najechaniu */
+    margin-top: 20px;
 }
 
-.dokumenty-search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;
-    gap: 20px;
-}
-
-.dokumenty-search-field {
-    flex-grow: 1;
-}
-
-.dokumenty-icons {
-    display: flex;
-}
-
-.dokumenty-table-container {
-    margin-bottom: 16px;
-    overflow-x: auto; /* Umożliwia przewijanie w poziomie, jeśli tabela jest zbyt szeroka */
-}
-
-.dokumenty-table-header {
-    background-color: #f5f5f5; /* Delikatnie szare tło nagłówka tabeli */
-}
-
-.dokumenty-table-row-even {
-    background-color: #fafafa; /* Jasno szare tło co drugiego wiersza */
-}
-
-.dokumenty-left-panel {
-    position: relative;
-    left: 20px; /* Przesunięcie, aby nie nachodziło na sidebar */
-    width: 80%; /* Zmniejszenie szerokości */
-    border: 1px solid #ccc; /* Obramowanie */
-    padding: 10px; /* Wewnętrzne odstępy */
-}
-
-.dokumenty-left-panel-list {
-    border-top: 1px solid #ccc;
-    margin-top: 10px;
-    padding-top: 10px;
-}
-
-    .dokumenty-left-panel-list .MuiListItem-root {
-        border-bottom: 1px solid #ccc; /* Graficzne oddzielenie elementów listy */
+    .action-button:hover {
+        background-color: #555; /* Jaśniejszy ciemnoszary przy najechaniu */
+        transform: scale(1.05); /* Powiększenie przy najechaniu */
     }
 
-.dokumenty-right-panel {
-    margin-top: 16px;
-    padding-left: 50px; /* Dostosowanie przesunięcia w prawo */
+.left-button {
+    margin-right: 10px; /* Przesunięcie w lewo */
 }
-
-.dokumenty-przepisy-container {
-    margin-left: 100px; /* Przesunięcie wewnętrznych elementów w prawo */
-}
-
 /* style dla deklaracji */
 
 .declarations-container {

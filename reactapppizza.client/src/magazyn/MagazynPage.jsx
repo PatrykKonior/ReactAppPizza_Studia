@@ -125,10 +125,38 @@ function Magazyn() {
                     </Table>
                 </TableContainer>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" className="action-button left-button">Przejdź do składania zamówienia</Button>
-                    <Button variant="contained" className="action-button">Przejdź do śledzenia zamówień</Button>
+                    <Button
+                        variant="contained"
+                        style={{
+                            backgroundColor: '#333',
+                            color: '#fff',
+                            textTransform: 'none',
+                            height: '40px',
+                            transition: 'background-color 0.3s, transform 0.3s',
+                            marginTop: '20px',
+                            marginRight: '10px'
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#555'}
+                        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#333'}
+                    >
+                        Przejdź do składania zamówienia
+                    </Button>
+                    <Button
+                        variant="contained"
+                        style={{
+                            backgroundColor: '#333',
+                            color: '#fff',
+                            textTransform: 'none',
+                            height: '40px',
+                            transition: 'background-color 0.3s, transform 0.3s',
+                            marginTop: '20px'
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#555'}
+                        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#333'}
+                    >
+                        Przejdź do śledzenia zamówień
+                    </Button>
                 </div>
-                
             </div>
         </div>
     );
