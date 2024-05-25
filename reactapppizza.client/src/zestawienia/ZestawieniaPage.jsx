@@ -5,18 +5,18 @@ import { styled } from '@mui/material/styles';
 import '../App.css';
 
 const dataYear = [
-    { name: 'Styczeń', revenue: 2400 },
-    { name: 'Luty', revenue: 1398 },
-    { name: 'Marzec', revenue: 9800 },
-    { name: 'Kwiecień', revenue: 3908 },
-    { name: 'Maj', revenue: 4800 },
-    { name: 'Czerwiec', revenue: 3800 },
-    { name: 'Lipiec', revenue: 4300 },
-    { name: 'Sierpień', revenue: 4100 },
-    { name: 'Wrzesień', revenue: 8000 },
-    { name: 'Październik', revenue: 2400 },
-    { name: 'Listopad', revenue: 1398 },
-    { name: 'Grudzień', revenue: 9800 },
+    { name: 'Styczeń', Przychód: 2400 },
+    { name: 'Luty', Przychód: 1398 },
+    { name: 'Marzec', Przychód: 9800 },
+    { name: 'Kwiecień', Przychód: 3908 },
+    { name: 'Maj', Przychód: 4800 },
+    { name: 'Czerwiec', Przychód: 3800 },
+    { name: 'Lipiec', Przychód: 4300 },
+    { name: 'Sierpień', Przychód: 4100 },
+    { name: 'Wrzesień', Przychód: 8000 },
+    { name: 'Październik', Przychód: 2400 },
+    { name: 'Listopad', Przychód: 1398 },
+    { name: 'Grudzień', Przychód: 9800 },
 ];
 
 const dataQ1 = [
@@ -45,8 +45,12 @@ const dataQ4 = [
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57', '#ffc658'];
 
+const romanNumerals = [
+    'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'
+];
+
 const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.primary,
     backgroundColor: '#f5f5f5',
@@ -54,12 +58,12 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     transition: 'transform 0.2s, box-shadow 0.2s',
     '&:hover': {
-        transform: 'scale(1.05)',
+        transform: 'scale(1.02)',
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
     },
 }));
 
-const CustomActiveShapePieChart = ({ data, title }) => (
+const CustomActiveShapePieChart = ({ data, title, outerRadius = 60, startMonth }) => (
     <Item className="zestawienia-item">
         <Typography variant="h5" gutterBottom>{title}</Typography>
         <ResponsiveContainer width="100%" height={200}>
@@ -68,18 +72,27 @@ const CustomActiveShapePieChart = ({ data, title }) => (
                     data={data}
                     cx="50%"
                     cy="50%"
-                    label={({ name, value }) => `${name}: ${value}`}
-                    outerRadius={80}
+                    label={({ value }) => `${value}`} // Usunięcie napisu PLN
+                    outerRadius={outerRadius}
                     fill="#8884d8"
                     dataKey="value"
+                    labelStyle={{ fontSize: '0.5rem' }} // Dalsze zmniejszenie rozmiaru tekstu etykiet
                 >
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
-                <Tooltip />
+                <Tooltip formatter={(value, name) => [`${value} PLN`, name]} />
             </PieChart>
         </ResponsiveContainer>
+        <div className="legend">
+            {data.map((entry, index) => (
+                <div key={`legend-${index}`} style={{ color: COLORS[index % COLORS.length], margin: '5px' }}>
+                    <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: COLORS[index % COLORS.length], marginRight: '5px' }}></span>
+                    {romanNumerals[startMonth + index - 1]} {/* Poprawienie cyfr rzymskich */}
+                </div>
+            ))}
+        </div>
     </Item>
 );
 
@@ -89,7 +102,7 @@ const Zestawienia = () => {
             <Typography variant="h4" gutterBottom className="zestawienia-header">
                 Zestawienia Przychodów
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}> {/* Zmniejszenie odstępów */}
                 <Grid item xs={12}>
                     <Item className="zestawienia-item">
                         <Typography variant="h5" gutterBottom>Dochody w Podziale na Rok</Typography>
@@ -101,23 +114,23 @@ const Zestawienia = () => {
                                     <YAxis />
                                     <Tooltip />
                                     <Legend />
-                                    <Line type="monotone" dataKey="revenue" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                    <Line type="monotone" dataKey="Przychód" stroke="#8884d8" activeDot={{ r: 8 }} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </div>
                     </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ1} title="1. Kwartał" />
+                    <CustomActiveShapePieChart data={dataQ1} title="1. Kwartał" startMonth={1} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ2} title="2. Kwartał" />
+                    <CustomActiveShapePieChart data={dataQ2} title="2. Kwartał" startMonth={4} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ3} title="3. Kwartał" />
+                    <CustomActiveShapePieChart data={dataQ3} title="3. Kwartał" startMonth={7} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ4} title="4. Kwartał" />
+                    <CustomActiveShapePieChart data={dataQ4} title="4. Kwartał" startMonth={10} />
                 </Grid>
             </Grid>
         </Container>

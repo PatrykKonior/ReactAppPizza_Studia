@@ -13,10 +13,11 @@ function Magazyn() {
     const [searchTerm, setSearchTerm] = useState('');
     const skladniki = [
         { id: 1, nazwa: 'Mąka', ilosc: '50 kg', lowStock: false },
-        { id: 2, nazwa: 'Ser', ilosc: '30 kg', lowStock: false },
-        { id: 3, nazwa: 'Pomidory', ilosc: '20 kg', lowStock: true },
+        { id: 2, nazwa: 'Ser Grana Padano', ilosc: '30 kg', lowStock: false },
+        { id: 3, nazwa: 'Passata', ilosc: '20 kg', lowStock: true },
         { id: 4, nazwa: 'Pieczarki', ilosc: '10 kg', lowStock: false },
-        { id: 5, nazwa: 'Szynka', ilosc: '15 kg', lowStock: false }
+        { id: 5, nazwa: 'Szynka Parmeńska', ilosc: '15 kg', lowStock: true },
+        { id: 6, nazwa: 'Oliwa', ilosc: '50 l', lowStock: false }
     ];
 
     const dataBar = [
@@ -124,11 +125,10 @@ function Magazyn() {
                     </Table>
                 </TableContainer>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" id="action-button">Przejdź do składania zamówienia</Button>
+                    <Button variant="contained" className="action-button left-button">Przejdź do składania zamówienia</Button>
+                    <Button variant="contained" className="action-button">Przejdź do śledzenia zamówień</Button>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" id="action-button">Przejdź do śledzenia zammówień</Button>
-                </div>
+                
             </div>
         </div>
     );
