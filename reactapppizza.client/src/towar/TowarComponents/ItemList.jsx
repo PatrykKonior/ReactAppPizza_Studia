@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 
 const ItemList = () => {
@@ -6,7 +6,7 @@ const ItemList = () => {
         { id: 1, name: 'Margherita', category: 'Pizza', price: 25 },
         { id: 2, name: 'Pepperoni', category: 'Pizza', price: 30 },
         { id: 3, name: 'Coca Cola', category: 'Napoj', price: 5 },
-        // Dodaj wiêcej elementów tutaj
+        // Dodaj wiÄ™cej elementÃ³w tutaj
     ]);
     const [filter, setFilter] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');

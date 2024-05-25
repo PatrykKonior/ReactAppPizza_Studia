@@ -1,4 +1,4 @@
-import './App.css';
+ï»¿import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,7 +14,7 @@ const localizer = momentLocalizer(moment);
 // Wydarzenia do dodania (kalendarz)
 const events = [
     {
-        title: 'Spotkanie zespolu', // tytu³ zadania
+        title: 'Spotkanie zespolu', // tytuÅ‚ zadania
         start: moment().toDate(), //kiedy sie zaczyna
         end: moment().add(1, 'hours').toDate(), // kiedy sie konczy
     },
@@ -59,15 +59,15 @@ function App() {
             title: {
                 display: true,
                 text: 'Filia Katowice - Przychod 2024r.',
-                color: '#BFB78F',  // Kolor tekstu tytu³u
-                align: 'start',  // Wyrównanie do lewej strony
+                color: '#BFB78F',  // Kolor tekstu tytuÅ‚u
+                align: 'start',  // WyrÃ³wnanie do lewej strony
                 font: {
                     size: 16,  // Rozmiar czcionki
                     weight: 'bold'  // Pogrubienie czcionki
                 },
                 padding: {
                     top: 10,
-                    bottom: 30  // Odstêpy
+                    bottom: 30  // OdstÄ™py
                 }
             }
         }

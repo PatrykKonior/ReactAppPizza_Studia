@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Form, Row, Col, Tab, Tabs, Card } from 'react-bootstrap';
 
 const AddTable = () => {
@@ -35,7 +35,7 @@ const AddTable = () => {
                                             <Form.Label>Kategoria</Form.Label>
                                             <Form.Select aria-label="Default select example">
                                                 <option>Wybierz:</option>
-                                                <option value="1">Ceg�y</option>
+                                                <option value="1">Cegły</option>
                                                 <option value="2">Wylewki</option>
                                                 <option value="3">Farby</option>
                                             </Form.Select>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Paper, Typography } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 

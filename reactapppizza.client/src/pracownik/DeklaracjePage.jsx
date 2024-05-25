@@ -1,18 +1,19 @@
-// src/components/Declarations.js
-import React from 'react';
+ï»¿import React from 'react';
 import { Container, Typography, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(2),
+    padding: theme.spacing(1.5),
     textAlign: 'center',
     color: '#BFB78F',
     backgroundColor: '#011a20',
-    borderRadius: '8px',
+    borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     transition: 'transform 0.2s, box-shadow 0.2s',
+    transform: 'scale(0.96)', // zmniejszenie skali
+    marginLeft: '25px', // dodanie marginesu z lewej strony
     '&:hover': {
-        transform: 'scale(1.05)',
+        transform: 'scale(1)', // skalowanie na hover
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
     },
 }));
@@ -20,32 +21,32 @@ const Item = styled(Paper)(({ theme }) => ({
 const Deklaracje = () => {
     return (
         <Container maxWidth="lg" style={{ padding: '10px 0' }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom style={{ marginLeft: '30px' }}>
                 Deklaracje Pracownicze i Polityki
             </Typography>
             <Grid container spacing={3}>
                 {/* Deklaracje Pracownicze */}
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Kodeks Etyki</Typography>
+                        <Typography variant="h5" gutterBottom>Deklaracje urlopowe</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o kodeksie etyki naszej firmy...
+                            Tu znajdujÄ… siÄ™ informacje o deklaracjach urlopowych naszych pracownikÃ³w...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Procedury dotycz¹ce bezpieczeñstwa pracy</Typography>
+                        <Typography variant="h5" gutterBottom>Urlopy zdrowotne</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o procedurach dotycz¹cych bezpieczeñstwa pracy...
+                            Tu znajdujÄ… siÄ™ informacje o urlopach zdrowotnych naszych pracownikÃ³w...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Zasady rozwoju zawodowego</Typography>
+                        <Typography variant="h5" gutterBottom>Badania zdrowotne</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o zasadach rozwoju zawodowego...
+                            Tu znajdujÄ… siÄ™ informacje o badaniach zdrowotnych naszych pracownikÃ³w...
                         </Typography>
                     </Item>
                 </Grid>
@@ -55,55 +56,71 @@ const Deklaracje = () => {
                     <Item>
                         <Typography variant="h5" gutterBottom>Zasady zatrudnienia</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o zasadach zatrudnienia...
+                            Tu znajdujÄ… siÄ™ informacje o wszelkich umowach naszych pracownikÃ³w...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka antydyskryminacyjna</Typography>
+                        <Typography variant="h5" gutterBottom>Polityka godzin pracy i nadgodzin</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce antydyskryminacyjnej...
+                            Tu znajdujÄ… siÄ™ informacje o godzinach pracy pracownikÃ³w oraz iloÅ›ci wyrobionych nadgodzin...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka prywatnoœci pracowników</Typography>
+                        <Typography variant="h5" gutterBottom>Polityka wynagrodzeÅ„ oraz Å›wiadczeÅ„</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce prywatnoœci pracowników...
+                            Tu znajdujÄ… siÄ™ informacje o atualnych wynagrodzeniach pracownikÃ³w oraz z jakich Å›wiadczeÅ„ korzystajÄ…...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka równoœci i ró¿norodnoœci</Typography>
+                        <Typography variant="h5" gutterBottom>Inicjatywy oraz integracja</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce równoœci i ró¿norodnoœci...
+                            Tu znajdujÄ… siÄ™ informacje o Polityce dot. inicjatyw pracownikÃ³w oraz planach integracyjnych...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka urlopowa</Typography>
+                        <Typography variant="h5" gutterBottom>Media spoÅ‚ecznoÅ›ciowe oraz promocja</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce urlopowej...
+                            Tu znajdujÄ… siÄ™ informacje o promocjach w mediach spoÅ‚ecznoÅ›cowych...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka wynagrodzeñ i œwiadczeñ</Typography>
+                        <Typography variant="h5" gutterBottom>Polityka poziomu obsÅ‚ugi klienta</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce wynagrodzeñ i œwiadczeñ...
+                            Tu znajdujÄ… siÄ™ informacje o polityce standardÃ³w dot. obsÅ‚ugi klienta...
                         </Typography>
                     </Item>
                 </Grid>
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
-                        <Typography variant="h5" gutterBottom>Polityka komunikacji wewnêtrznej</Typography>
+                        <Typography variant="h5" gutterBottom>Polityka bezpieczeÅ„stwa</Typography>
                         <Typography variant="body1">
-                            Tu znajduj¹ siê informacje o polityce komunikacji wewnêtrznej...
+                            Tu znajdujÄ… siÄ™ informacje o BHP w miejscu pracy oraz dodatkowych zabezpieczeniach...
+                        </Typography>
+                    </Item>
+                </Grid>
+                <Grid item xs={6} sm={4} md={3}>
+                    <Item>
+                        <Typography variant="h5" gutterBottom>Listy obecnoÅ›ci pracownikÃ³w</Typography>
+                        <Typography variant="body1">
+                            Tu znajdujÄ… siÄ™ wszystkie listy obecnoÅ›ci pracownikÃ³w z kaÅ¼dego miesiÄ…ca...
+                        </Typography>
+                    </Item>
+                </Grid>
+                <Grid item xs={6} sm={4} md={3}>
+                    <Item>
+                        <Typography variant="h5" gutterBottom>Polityka sanitarna firmy</Typography>
+                        <Typography variant="body1">
+                            Tu znajdujÄ… siÄ™ informacje o polityce sanitarnej, ktÃ³ra ma panowaÄ‡ w lokalu...
                         </Typography>
                     </Item>
                 </Grid>

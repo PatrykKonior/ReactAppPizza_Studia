@@ -1,46 +1,46 @@
-// src/components/Zestawienia.js
-import React from 'react';
+ï»¿import React from 'react';
 import { Container, Grid, Typography, Paper } from '@mui/material';
 import { PieChart, Pie, Cell, Tooltip, LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
 import { styled } from '@mui/material/styles';
+import '../App.css';
 
 const dataYear = [
-    { name: 'Styczeñ', revenue: 2400 },
+    { name: 'StyczeÅ„', revenue: 2400 },
     { name: 'Luty', revenue: 1398 },
     { name: 'Marzec', revenue: 9800 },
-    { name: 'Kwiecieñ', revenue: 3908 },
+    { name: 'KwiecieÅ„', revenue: 3908 },
     { name: 'Maj', revenue: 4800 },
     { name: 'Czerwiec', revenue: 3800 },
     { name: 'Lipiec', revenue: 4300 },
-    { name: 'Sierpieñ', revenue: 4100 },
-    { name: 'Wrzesieñ', revenue: 8000 },
-    { name: 'PaŸdziernik', revenue: 2400 },
+    { name: 'SierpieÅ„', revenue: 4100 },
+    { name: 'WrzesieÅ„', revenue: 8000 },
+    { name: 'PaÅºdziernik', revenue: 2400 },
     { name: 'Listopad', revenue: 1398 },
-    { name: 'Grudzieñ', revenue: 9800 },
+    { name: 'GrudzieÅ„', revenue: 9800 },
 ];
 
 const dataQ1 = [
-    { name: 'Styczeñ', value: 2400 },
+    { name: 'StyczeÅ„', value: 2400 },
     { name: 'Luty', value: 1398 },
     { name: 'Marzec', value: 9800 },
 ];
 
 const dataQ2 = [
-    { name: 'Kwiecieñ', value: 3908 },
+    { name: 'KwiecieÅ„', value: 3908 },
     { name: 'Maj', value: 4800 },
     { name: 'Czerwiec', value: 3800 },
 ];
 
 const dataQ3 = [
     { name: 'Lipiec', value: 4300 },
-    { name: 'Sierpieñ', value: 4100 },
-    { name: 'Wrzesieñ', value: 8000 },
+    { name: 'SierpieÅ„', value: 4100 },
+    { name: 'WrzesieÅ„', value: 8000 },
 ];
 
 const dataQ4 = [
-    { name: 'PaŸdziernik', value: 2400 },
+    { name: 'PaÅºdziernik', value: 2400 },
     { name: 'Listopad', value: 1398 },
-    { name: 'Grudzieñ', value: 9800 },
+    { name: 'GrudzieÅ„', value: 9800 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57', '#ffc658'];
@@ -60,7 +60,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const CustomActiveShapePieChart = ({ data, title }) => (
-    <Item>
+    <Item className="zestawienia-item">
         <Typography variant="h5" gutterBottom>{title}</Typography>
         <ResponsiveContainer width="100%" height={200}>
             <PieChart>
@@ -85,37 +85,39 @@ const CustomActiveShapePieChart = ({ data, title }) => (
 
 const Zestawienia = () => {
     return (
-        <Container maxWidth="lg" style={{ padding: '20px 0' }}>
-            <Typography variant="h4" gutterBottom>
-                Zestawienia Przychodów
+        <Container maxWidth="lg" className="zestawienia-container">
+            <Typography variant="h4" gutterBottom className="zestawienia-header">
+                Zestawienia PrzychodÃ³w
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <Item>
+                    <Item className="zestawienia-item">
                         <Typography variant="h5" gutterBottom>Dochody w Podziale na Rok</Typography>
-                        <ResponsiveContainer width="100%" height={250}>
-                            <LineChart data={dataYear}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="revenue" stroke="#8884d8" activeDot={{ r: 8 }} />
-                            </LineChart>
-                        </ResponsiveContainer>
+                        <div className="zestawienia-chart-container">
+                            <ResponsiveContainer>
+                                <LineChart data={dataYear}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="revenue" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
                     </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ1} title="1. Kwarta³" />
+                    <CustomActiveShapePieChart data={dataQ1} title="1. KwartaÅ‚" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ2} title="2. Kwarta³" />
+                    <CustomActiveShapePieChart data={dataQ2} title="2. KwartaÅ‚" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ3} title="3. Kwarta³" />
+                    <CustomActiveShapePieChart data={dataQ3} title="3. KwartaÅ‚" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CustomActiveShapePieChart data={dataQ4} title="4. Kwarta³" />
+                    <CustomActiveShapePieChart data={dataQ4} title="4. KwartaÅ‚" />
                 </Grid>
             </Grid>
         </Container>
