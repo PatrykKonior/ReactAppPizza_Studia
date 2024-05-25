@@ -21,8 +21,8 @@ const events = [
 ];
 
 function App() {
-    // Dane do wykresu 
-    const chartData = {
+    // Dane do wykresu dla Katowic
+    const katowiceChartData = {
         labels: ['Styczen', 'Luty', 'Marzec', 'Kwiecien', 'Maj', 'Czerwiec'],
         datasets: [
             {
@@ -31,6 +31,20 @@ function App() {
                 fill: false,
                 backgroundColor: '#c7a42f',
                 borderColor: '#c7a42f',
+            },
+        ],
+    };
+
+    // Dane do wykresu dla Gliwic
+    const gliwiceChartData = {
+        labels: ['Styczen', 'Luty', 'Marzec', 'Kwiecien', 'Maj', 'Czerwiec'],
+        datasets: [
+            {
+                label: 'Przychod w zl',
+                data: [20000, 35000, 65000, 110000, 180000, 280000],
+                fill: false,
+                backgroundColor: '#e0b500', // Inny odcień żółtego
+                borderColor: '#e0b500',
             },
         ],
     };
@@ -58,7 +72,7 @@ function App() {
             },
             title: {
                 display: true,
-                text: 'Filia Katowice - Przychod 2024r.',
+                text: '',
                 color: '#BFB78F',  // Kolor tekstu tytułu
                 align: 'start',  // Wyrównanie do lewej strony
                 font: {
@@ -80,16 +94,16 @@ function App() {
                     <DashboardCard />
                 </Row>
                 <Row>
-                    <Col md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                        <div className="card" style={{ height: '25vh', marginBottom: '5px' }}>
-                            <RevenueChart data={chartData} options={chartOptions} />
+                    <Col md={6} className="d-flex flex-column justify-content-between">
+                        <div className="card w-100 mb-2" style={{ flex: '1 0 auto', height: '29vh' }}>
+                            <RevenueChart data={katowiceChartData} options={{ ...chartOptions, plugins: { ...chartOptions.plugins, title: { ...chartOptions.plugins.title, text: 'Filia Katowice - Przychod 2024r.' } } }} />
                         </div>
-                        <div className="card" style={{ height: '25vh' }}>
-                            <RevenueChart data={chartData} options={chartOptions} />
+                        <div className="card w-100" style={{ flex: '1 0 auto', height: '29vh' }}>
+                            <RevenueChart data={gliwiceChartData} options={{ ...chartOptions, plugins: { ...chartOptions.plugins, title: { ...chartOptions.plugins.title, text: 'Filia Gliwice - Przychod 2024r.' } } }} />
                         </div>
                     </Col>
                     <Col md={6}>
-                        <div className="card" style={{ height: '55vh' }}>
+                        <div className="card w-100" style={{ height: '60vh' }}>
                             <EventCalendar localizer={localizer} events={events} />
                         </div>
                     </Col>

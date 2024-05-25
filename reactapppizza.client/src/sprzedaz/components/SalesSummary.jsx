@@ -11,7 +11,7 @@ const SalesSummary = ({ sales = [] }) => {
     }));
 
     return (
-        <Paper style={{ padding: '16px', height: '100%' }}>
+        <Paper style={{ padding: '0px', height: '100%' }}>
             <Typography variant="h7" component="h2" gutterBottom>
                 Podsumowanie sprzedaży
             </Typography>

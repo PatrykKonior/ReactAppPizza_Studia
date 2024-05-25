@@ -54,10 +54,10 @@ body, html {
 /* Dashboards cards */
 
 .card-custom {
-    transform: scale(0.8);
+    transform: scale(0.8) translateX(-15px); /* Użyj transformacji do przesunięcia w lewo */
     transform-origin: center;
     width: 300px;
-    margin-top: -25px;
+    margin-top: -15px;
 }
 
 .card-notify {

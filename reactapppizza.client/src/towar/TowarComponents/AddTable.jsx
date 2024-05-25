@@ -35,9 +35,9 @@ const AddTable = () => {
                                             <Form.Label>Kategoria</Form.Label>
                                             <Form.Select aria-label="Default select example">
                                                 <option>Wybierz:</option>
-                                                <option value="1">Cegły</option>
-                                                <option value="2">Wylewki</option>
-                                                <option value="3">Farby</option>
+                                                <option value="1">Pizza</option>
+                                                <option value="2">Napoje</option>
+                                                <option value="3">Desery</option>
                                             </Form.Select>
                                         </Form.Group>
                                     </Col>
