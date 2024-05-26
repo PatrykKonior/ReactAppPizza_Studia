@@ -68,7 +68,7 @@ const Grafik = () => {
                             hour12: false
                         }}
                         events={events}
-                        height="350px"
+                        height="400px"
                         locale={plLocale}  // Ustawienie języka na polski
                     />
                 </div>
