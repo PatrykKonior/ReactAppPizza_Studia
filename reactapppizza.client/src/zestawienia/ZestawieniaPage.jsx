@@ -72,11 +72,11 @@ const CustomActiveShapePieChart = ({ data, title, outerRadius = 60, startMonth }
                     data={data}
                     cx="50%"
                     cy="50%"
-                    label={({ value }) => `${value}`} // Usunięcie napisu PLN
+                    label={({ value }) => `${value}`} 
                     outerRadius={outerRadius}
                     fill="#8884d8"
                     dataKey="value"
-                    labelStyle={{ fontSize: '0.5rem' }} // Dalsze zmniejszenie rozmiaru tekstu etykiet
+                    labelStyle={{ fontSize: '0.5rem' }} 
                 >
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -89,7 +89,7 @@ const CustomActiveShapePieChart = ({ data, title, outerRadius = 60, startMonth }
             {data.map((entry, index) => (
                 <div key={`legend-${index}`} style={{ color: COLORS[index % COLORS.length], margin: '5px' }}>
                     <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: COLORS[index % COLORS.length], marginRight: '5px' }}></span>
-                    {romanNumerals[startMonth + index - 1]} {/* Poprawienie cyfr rzymskich */}
+                    {romanNumerals[startMonth + index - 1]} 
                 </div>
             ))}
         </div>
@@ -102,7 +102,7 @@ const Zestawienia = () => {
             <Typography variant="h4" gutterBottom className="zestawienia-header">
                 Zestawienia Przychodów
             </Typography>
-            <Grid container spacing={2}> {/* Zmniejszenie odstępów */}
+            <Grid container spacing={2}> 
                 <Grid item xs={12}>
                     <Item className="zestawienia-item">
                         <Typography variant="h5" gutterBottom>Dochody w Podziale na Rok</Typography>

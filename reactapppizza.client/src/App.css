@@ -15,7 +15,7 @@ body, html {
     border-radius: 8px; /* Zaokrąglone rogi */
     padding: 12px; /* Wewnętrzny odstęp */
     margin-bottom: 12px; /* Odstęp między kartami */
-    overflow: hidden; /* Ukrywa przewijanie wewnątrz karty, jeśli to konieczne */
+    overflow: hidden; /* Ukrywa przewijanie wewnątrz karty */
     border: 2px solid black; /* Czarna obramówka */
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień od dołu */
     margin-right: -10px; /* Nachodzenie na prawą stronę */
@@ -23,7 +23,7 @@ body, html {
 .headline-card {
     width: 100%;
     margin-bottom: 10px;
-    margin-top: -10px; /* Przesunięcie komponentu w górę */
+    margin-top: -10px; 
 }
 
 .add-table-card, .added-towar-card {
@@ -42,7 +42,7 @@ body, html {
 .row-container {
     display: flex;
     flex-wrap: nowrap;
-    height: 100%; /* Adjust this to match the space you need for other components */
+    height: 100%; 
     overflow: hidden;
 }
 
@@ -56,40 +56,40 @@ body, html {
 /* Dashboards cards */
 
 .card-custom {
-    transform: scale(0.8) translateX(-15px); /* Użyj transformacji do przesunięcia w lewo */
+    transform: scale(0.8) translateX(-15px); 
     transform-origin: center;
     width: 300px;
     margin-top: -15px;
 }
 
 .card-notify {
-    border-color: #007bff; /* Niebieskie obramowanie */
+    border-color: #007bff;
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5); /* Niebieski cień */
 }
 
 .card-message {
-    border-color: #28a745; /* Zielone obramowanie */
+    border-color: #28a745; 
     box-shadow: 0 4px 8px rgba(40, 167, 69, 0.5); /* Zielony cień */
 }
 
 .card-invoice {
-    border-color: #dc3545; /* Czerwone obramowanie */
+    border-color: #dc3545; 
     box-shadow: 0 4px 8px rgba(220, 53, 69, 0.5); /* Czerwony cień */
 }
 
-/* Dodatkowe style mogą być potrzebne dla kontenerów */
+
 .container-fluid {
-    padding: 0 5px; /* Odstęp po bokach dla lepszego wyglądu */
+    padding: 0 5px; 
 }
 
 .icon {
-    color: inherit; /* Ikony przyjmują kolor tekstu z .nav-link */
+    color: inherit; 
     font-size: 1.25rem; /* rozmiar ikon */
-    border: 2px solid black; /* Czarna obramówka */
-    border-radius: 50%; /* Pełne zaokrąglenie dla kształtu koła */
-    padding: 10px; /* Dostosuj w zależności od wielkości ikony */
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień */
-    background-color: white; /* Białe tło ikon, aby były bardziej widoczne */
+    border: 2px solid black;
+    border-radius: 50%; 
+    padding: 10px; 
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); 
+    background-color: white; 
 }
 
 .header {
@@ -127,25 +127,25 @@ body, html {
 
         .header h1::before {
             left: 0;
-            transform: translateX(-10%); /* Przesunięcie całkowicie na zewnątrz tekstu */
+            transform: translateX(-10%);
         }
 
         .header h1::after {
             right: 0;
-            transform: translateX(10%); /* Przesunięcie całkowicie na zewnątrz tekstu */
+            transform: translateX(10%); 
         }
 
 /* LOGO */
 .logo {
-    width: 100%; /* Zapewnia, że logo zajmuje całą szerokość sidebaru */
+    width: 100%; 
     font-family: "Bebas Neue", sans-serif !important;
     font-size: 2.5rem;
-    display: flex; /* Używa flexboxa do centrowania treści */
-    justify-content: center; /* Centruje logo w poziomie */
-    align-items: center; /* Centruje logo w pionie */
-    padding: 20px 0 10px 20px; /* Dodaje padding na górze, dole i zwiększa lewy padding */
-    margin-top: -50px; /* Przesuwa logo wyżej o 20px */
-    margin-left: -18px; /* Przesuwa logo w lewo o 10px */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px 0 10px 20px; 
+    margin-top: -50px; 
+    margin-left: -18px;
 }
 
 .header h1 {
@@ -155,7 +155,7 @@ body, html {
 /* NAPIS MENU W SIDEBAR */
 .menu-header {
     font-family: "Teko", sans-serif !important;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #d3d3d3;
     text-transform: uppercase;
     padding: 50px 20px;
@@ -208,7 +208,7 @@ body, html {
     .search-box input {
         border: none;
         background-color: transparent;
-        margin-right: 0.5rem; /* Odstęp od ikony lupy */
+        margin-right: 0.5rem; 
         color: #495057; 
         width: 100%; 
     }
@@ -248,11 +248,11 @@ body, html {
 
 .sidebar .sidebar-item {
     color: #BFB78F;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-bottom: 1px solid #d3d3d3;
     font-family: "Teko", sans-serif !important;
     font-weight: 500;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
 }
 
 .sidebar-icon {
@@ -290,7 +290,9 @@ body, html {
     border-radius: 5px;
     display: block; /* to daje aby zająć całą szerokość */
     text-align: center; 
-    font-size: 0.85rem;
+    font-family: "Teko", sans-serif !important;
+    font-weight: 300;
+    font-size: 1.15rem;
 }
 
 /* treść główna, aby nie nachodziła na sidebar */
@@ -339,26 +341,26 @@ body, html {
 /* style dla kalendarza w App.jsx */
 
 .rbc-btn-group {
-    font-size: 12px; /* zmniejsz rozmiar czcionki przycisków */
+    font-size: 12px; 
 }
 
 .rbc-toolbar-label {
-    font-size: 14px; /* zmniejsz rozmiar czcionki etykiety (np. miesiąc i rok) */
+    font-size: 14px; 
 }
 
 .rbc-header {
-    padding: 4px 10px; /* zmniejsz padding nagłówków dni */
-    font-size: 14px; /* zmniejsz rozmiar czcionki */
+    padding: 4px 10px; 
+    font-size: 14px; 
 }
 
 .rbc-row-segment .rbc-event-content {
-    font-size: 12px; /* zmniejsz rozmiar czcionki wydarzeń */
+    font-size: 12px; 
 }
 
 .rbc-toolbar {
     display: flex;
-    justify-content: space-between; /* Rozmieść elementy równomiernie */
-    align-items: center; /* Wyrównaj elementy pionowo */
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 /* style dla magazynu */
@@ -381,7 +383,7 @@ body, html {
     animation: gradient-animation 3s linear infinite;
     padding: 2px;
     border-radius: 8px;
-    border: 3px solid #e76f51; /* Kolor obramowania szynki z wykresu */
+    border: 3px solid #e76f51; 
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
@@ -440,7 +442,7 @@ body, html {
 
 #search-bar {
     width: 600px;
-    height: 20px; /* Zmniejszona wysokość */
+    height: 20px; 
     margin-left: 20px;
 }
 
@@ -465,18 +467,18 @@ body, html {
 }
 
 .declarations-header {
-    margin-left: 30px; /* Przesunięcie napisu w prawo */
+    margin-left: 30px;
 }
 
 .declarations-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px; /* Zmniejszenie odstępów między kafelkami */
+    gap: 4px;
 }
 
 .declarations-item {
-    flex: 1 1 calc(25% - 8px); /* Zmniejszenie szerokości kafelków */
-    margin: 0; /* Usunięcie dodatkowych marginesów */
+    flex: 1 1 calc(25% - 8px);
+    margin: 0;
 }
 
 .declarations-title {
@@ -493,11 +495,11 @@ body, html {
 
 .zestawienia-container {
     padding: 1px 0;
-    margin-top: -20px; /* Podniesienie zawartości strony */
+    margin-top: -20px;
 }
 
 .zestawienia-header {
-    margin-left: 60px; /* Przesunięcie napisu w prawo */
+    margin-left: 60px;
 }
 
 .zestawienia-item {
@@ -518,17 +520,17 @@ body, html {
     }
 
 .zestawienia-chart-container {
-    width: 100%; /* Zmniejszenie szerokości wykresu rocznego */
-    height: 200px; /* Zwiększenie wysokości wykresu rocznego */
+    width: 100%; 
+    height: 200px; 
     margin: 0 auto;
-    padding-right: 10px; /* Dodanie paddingu po prawej stronie */
+    padding-right: 10px;
 }
 
 .zestawienia-pie-chart {
     width: 100%;
-    height: 250px; /* Poprawienie wysokości kafelków */
+    height: 250px; 
     margin: 0 auto;
-    padding-right: 40px; /* Dodanie paddingu po prawej stronie */
+    padding-right: 40px;
 }
 
 .legend {
@@ -545,7 +547,7 @@ body, html {
     }
 
 .recharts-label {
-    font-size: 0.5rem; /* Zmniejszenie rozmiaru etykiet wykresów */
+    font-size: 0.5rem;
 }
 
 /* style dla Grafik */
@@ -557,8 +559,8 @@ body, html {
     color: #000;
     text-align: left;
     margin-bottom: 20px;
-    margin-left: 220px; /* Przesunięcie, aby nie nachodziło na sidebar */
-    display: block; /* Przywraca widoczność napisu */
+    margin-left: 220px;
+    display: block;
 }
 
 .gradient-card {
@@ -568,7 +570,7 @@ body, html {
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-    transform: scale(0.9); /* Zmniejszenie skali kart */
+    transform: scale(0.9);
     margin-bottom: 10px;
     border-image-slice: 1;
     border-width: 3px;
@@ -576,9 +578,9 @@ body, html {
 
 .calendar-container-grafik {
     margin-top: 30px;
-    transform: scale(0.85); /* Zmniejszenie skali kalendarza o 1/3 */
-    transform-origin: bottom right; /* Ustawienie punktu zaczepienia skalowania */
-    width: 90%; /* Dostosowanie szerokości, aby skalowanie nie zmniejszało całkowitej szerokości */
+    transform: scale(0.85);
+    transform-origin: bottom right;
+    width: 90%;
 }
 
 /* style dla dokumenty */
@@ -587,13 +589,13 @@ body, html {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-left: 300px; /* Upewnij się, że treść nie nachodzi na sidebar */
+    margin-left: 300px;
 }
 
 .dokumenty-header {
     margin-bottom: 16px;
     position: relative;
-    left: 25px; /* Przesunięcie, aby nie nachodziło na sidebar */
+    left: 25px;
 }
 
 .dokumenty-search-container {
@@ -627,10 +629,10 @@ body, html {
 
 .dokumenty-left-panel {
     position: relative;
-    left: 20px; /* Przesunięcie, aby nie nachodziło na sidebar */
-    width: 80%; /* Zmniejszenie szerokości */
-    border: 1px solid #ccc; /* Obramowanie */
-    padding: 10px; /* Wewnętrzne odstępy */
+    left: 20px; 
+    width: 80%; 
+    border: 1px solid #ccc;
+    padding: 10px;
 }
 
 .dokumenty-left-panel-list {
@@ -645,9 +647,9 @@ body, html {
 
 .dokumenty-right-panel {
     margin-top: 16px;
-    padding-left: 50px; /* Dostosowanie przesunięcia w prawo */
+    padding-left: 50px
 }
 
 .dokumenty-przepisy-container {
-    margin-left: 100px; /* Przesunięcie wewnętrznych elementów w prawo */
+    margin-left: 100px;
 }

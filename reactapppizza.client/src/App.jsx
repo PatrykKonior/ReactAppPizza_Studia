@@ -76,8 +76,8 @@ function App() {
                 color: '#BFB78F',  // Kolor tekstu tytułu
                 align: 'start',  // Wyrównanie do lewej strony
                 font: {
-                    size: 16,  // Rozmiar czcionki
-                    weight: 'bold'  // Pogrubienie czcionki
+                    size: 16,
+                    weight: 'bold'
                 },
                 padding: {
                     top: 10,

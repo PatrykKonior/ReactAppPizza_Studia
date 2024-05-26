@@ -1,6 +1,5 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-// Import zdjec
 import spinaciImg from './../image/spinaci.jpg';
 import funghiImg from './../image/funghi.jpg';
 import salaminoImg from './../image/salamino.jpg';

@@ -50,7 +50,7 @@ export function Layout() {
                 </Navbar>
                 <div className="d-flex">
                     <div className="sidebar">
-                        <Navbar.Brand href="#home" className="logo">
+                        <Navbar.Brand href="/" className="logo">
                             <header className="header">
                                 <h1>Pizza 365</h1>
                             </header>

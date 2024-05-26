@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding-left: 50px; /* Przesuniêcie w prawo */
+    padding-left: 50px;
 }
 
 .sprzedaz-grid {
@@ -19,12 +19,12 @@
     overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
-    padding-left: 50px; /* Przesuniêcie w prawo */
+    padding-left: 50px; 
 }
 
 
 .sprzedaz-item {
-    flex: 1 1 50%; /* Ustawienie elementów na po³owê szerokoœci */
+    flex: 1 1 50%; 
     box-sizing: border-box;
     padding: 12px;
 }
@@ -61,18 +61,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(50vh - 50px); /* Zmniejszenie wysokoœci kafelka z podsumowaniem sprzeda¿y */
+    height: calc(50vh - 50px); 
     overflow: hidden;
     padding: 5px;
 }
 
 .sales-form-button {
-    background-color: #264653 !important; /* T³o w kolorze jak w magazynie */
+    background-color: #264653 !important;
     color: #fff !important;
     text-transform: none;
     height: 40px;
-    width: 32%; /* Ustawienie szerokoœci przycisku */
-    transition: background-color 0.3s, transform 0.3s; /* Efekt po najechaniu */
+    width: 32%; 
+    transition: background-color 0.3s, transform 0.3s; 
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -80,13 +80,13 @@
 }
 
     .sales-form-button:hover {
-        background-color: #2a9d8f !important; /* Jaœniejszy ciemnoszary przy najechaniu */
-        transform: scale(1.05); /* Powiêkszenie przy najechaniu */
+        background-color: #2a9d8f !important; 
+        transform: scale(1.05); 
     }
 
 .sales-table-card, .sales-summary-card {
     height: calc(50vh - 50px); /* Ustalanie wysokoœci kart na 1/2 wysokoœci okna minus dodatkowa wysokoœæ */
-    width: calc(100% - 24px); /* Ustawienie szerokoœci na pe³n¹ szerokoœæ kontenera */
-    margin: 0 auto; /* Wyœrodkowanie kart */
+    width: calc(100% - 24px); 
+    margin: 0 auto; 
     overflow: hidden;
 }

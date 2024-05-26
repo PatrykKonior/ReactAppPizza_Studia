@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './App.css';
-//import {
-//    createBrowserRouter,
-//    RouterProvider,
-//} from "react-router-dom";
 import "./index.css";
 import { Towar } from './towar/TowarPage.jsx';
 import { Layout } from './layout/Layout.jsx';
@@ -22,7 +18,6 @@ import { Grafik } from './grafik/GrafikPage.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        {/*<RouterProvider router={router} />*/}
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Layout />}>

@@ -17,7 +17,6 @@ const Grafik = () => {
         { name: "Sylwia", role: "Barman", color: "#BDA523" },
     ];
 
-    // Daty od 24 maja 2024 do 28 maja 2024
     const days = ['2024-05-24', '2024-05-25', '2024-05-26', '2024-05-27', '2024-05-28'];
 
     const events = workers.flatMap(worker =>

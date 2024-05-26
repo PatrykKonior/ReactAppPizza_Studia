@@ -10,10 +10,10 @@ const Item = styled(Paper)(({ theme }) => ({
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     transition: 'transform 0.2s, box-shadow 0.2s',
-    transform: 'scale(0.96)', // zmniejszenie skali
-    marginLeft: '25px', // dodanie marginesu z lewej strony
+    transform: 'scale(0.96)', 
+    marginLeft: '25px', 
     '&:hover': {
-        transform: 'scale(1)', // skalowanie na hover
+        transform: 'scale(1)', 
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
     },
 }));
@@ -25,7 +25,6 @@ const Deklaracje = () => {
                 Deklaracje Pracownicze i Polityki
             </Typography>
             <Grid container spacing={3}>
-                {/* Deklaracje Pracownicze */}
                 <Grid item xs={6} sm={4} md={3}>
                     <Item>
                         <Typography variant="h5" gutterBottom>Deklaracje urlopowe</Typography>
