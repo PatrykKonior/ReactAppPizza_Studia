@@ -1,4 +1,6 @@
 ﻿/* stylizacja kart */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 
 body, html {
     background-color: #d0d9d42f !important; /* Jasnoniebieskie tło */
@@ -114,7 +116,7 @@ body, html {
         .header h1::before,
         .header h1::after {
             content: "";
-            height: 2px;
+            height: 3px;
             width: 55px;
             background-color: #c7a42f;
             position: absolute;
@@ -136,11 +138,13 @@ body, html {
 /* LOGO */
 .logo {
     width: 100%; /* Zapewnia, że logo zajmuje całą szerokość sidebaru */
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: 2.5rem;
     display: flex; /* Używa flexboxa do centrowania treści */
     justify-content: center; /* Centruje logo w poziomie */
     align-items: center; /* Centruje logo w pionie */
     padding: 20px 0 10px 20px; /* Dodaje padding na górze, dole i zwiększa lewy padding */
-    margin-top: -70px; /* Przesuwa logo wyżej o 20px */
+    margin-top: -50px; /* Przesuwa logo wyżej o 20px */
     margin-left: -18px; /* Przesuwa logo w lewo o 10px */
 }
 
@@ -150,12 +154,13 @@ body, html {
 
 /* NAPIS MENU W SIDEBAR */
 .menu-header {
-    font-size: 1.0rem; /* Dostosuj rozmiar czcionki */
-    color: #d3d3d3; /* Kolor tekstu */
-    text-transform: uppercase; /* Wielkie litery */
-    padding: 50px 20px; /* Odstępy */
+    font-family: "Teko", sans-serif !important;
+    font-size: 1.6rem;
+    color: #d3d3d3;
+    text-transform: uppercase;
+    padding: 50px 20px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #8e8e86; /* Linia oddzielająca */
+    border-bottom: 2px solid #8e8e86;
 }
 
 .navbar-custom .navbar-brand,
@@ -173,18 +178,20 @@ body, html {
 .nav-icons {
     display: flex;
     align-items: center; /* Wyśrodkowanie ikon względem pionu */
+    transform: translateX(-70px);
 }
 
     .nav-icons .nav-link {
         padding: 0.5rem 1rem; /* przestrzeń wokół ikon */
-        margin: 0 10px; /* Odstępy między ikonami */
-        color: #6c757d; 
+        margin: 0 5px; /* Odstępy między ikonami */
+        color: #6c757d;
     }
 
         .nav-icons .nav-link:hover {
             background-color: #e9ecef; 
             border-radius: 10px; 
         }
+
 
 .search-box {
     display: flex;
@@ -195,6 +202,7 @@ body, html {
     border: 2px solid black; /* Czarna obramówka */
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cień od dołu */
     margin-right: -10px; /* Nachodzenie na prawą stronę */
+    transform: translateX(20px);
 }
 
     .search-box input {
@@ -242,6 +250,9 @@ body, html {
     color: #BFB78F;
     padding: 10px 15px;
     border-bottom: 1px solid #d3d3d3;
+    font-family: "Teko", sans-serif !important;
+    font-weight: 500;
+    font-size: 1.05rem;
 }
 
 .sidebar-icon {
@@ -483,7 +494,6 @@ body, html {
 .zestawienia-container {
     padding: 1px 0;
     margin-top: -20px; /* Podniesienie zawartości strony */
-}
 }
 
 .zestawienia-header {

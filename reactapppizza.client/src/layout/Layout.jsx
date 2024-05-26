@@ -7,6 +7,7 @@ import {
     faChartLine, faBox, faUsers, faClipboardList,
     faClipboardCheck, faFileInvoice, faBoxOpen, faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
+import '../App.css';
 
 export function Layout() {
     const location = useLocation();
@@ -14,7 +15,8 @@ export function Layout() {
     const titleStyle = {
         fontSize: '35px',
         fontFamily: 'Montserrat, sans-serif',
-        margin: '20px 0'
+        margin: '20px 0',
+         marginLeft: '50px'
     };
 
     return (
@@ -53,16 +55,16 @@ export function Layout() {
                                 <h1>Pizza 365</h1>
                             </header>
                         </Navbar.Brand>
-                        <div className="menu-header">MENU</div>
+                        <div className="menu-header" style={{ fontFamily: 'Roboto, sans-serif' }}>MENU</div>
                         <Nav defaultActiveKey="/" className="flex-column">
                             <Nav.Link as={Link} to="/" className="sidebar-item">
-                                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" /> STRONA GLOWNA
+                                <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" /> STRONA GŁÓWNA
                             </Nav.Link>
                             <Nav.Link as={Link} to="/towar" className="sidebar-item">
                                 <FontAwesomeIcon icon={faBoxOpen} className="sidebar-icon" /> TOWARY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/sprzedaz" className="sidebar-item">
-                                <FontAwesomeIcon icon={faShoppingCart} className="sidebar-icon" /> SPRZEDAZ
+                                <FontAwesomeIcon icon={faShoppingCart} className="sidebar-icon" /> SPRZEDAŻ
                             </Nav.Link>
                             <Nav.Link as={Link} to="/magazyn" className="sidebar-item">
                                 <FontAwesomeIcon icon={faClipboardCheck} className="sidebar-icon" /> MAGAZYN
