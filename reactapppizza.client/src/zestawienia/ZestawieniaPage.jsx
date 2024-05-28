@@ -105,7 +105,7 @@ const Zestawienia = () => {
             <Grid container spacing={2}> 
                 <Grid item xs={12}>
                     <Item className="zestawienia-item">
-                        <Typography variant="h5" gutterBottom>Dochody w Podziale na Rok</Typography>
+                        <Typography variant="h5" gutterBottom>Dochody w podziale na rok</Typography>
                         <div className="zestawienia-chart-container">
                             <ResponsiveContainer>
                                 <LineChart data={dataYear}>
