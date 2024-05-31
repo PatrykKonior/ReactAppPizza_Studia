@@ -1,11 +1,8 @@
 ﻿import React from 'react';
-import { Card, Col, Row, Container } from 'react-bootstrap';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import plLocale from '@fullcalendar/core/locales/pl';
+import { Container, Row } from 'react-bootstrap';
 import { Typography } from '@mui/material';
+import WorkerList from './components/WorkerList';
+import Calendar from './components/Calendar';
 import '../App.css';
 
 const Grafik = () => {
@@ -33,43 +30,10 @@ const Grafik = () => {
             <Row className="mb-1 justify-content-start">
                 <Typography id="grafik-title" className="grafik-title">Aktualny grafik</Typography>
             </Row>
-            <Row className="mb-1 justify-content-end">
-                {workers.map((worker, index) => (
-                    <Col key={index} xs={6} sm={4} md={2}>
-                        <Card className={`gradient-card mb-1`} style={{ borderImageSource: `linear-gradient(to right, ${worker.color}, #808080)` }}>
-                            <Card.Header style={{ backgroundColor: worker.color, color: '#ffffff' }}>{worker.name}</Card.Header>
-                            <Card.Body>
-                                <Card.Title>{worker.role}</Card.Title>
-                                <Card.Text>
-                                    Godziny pracy: 10:00 - 21:00
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+            <WorkerList workers={workers} />
             <Row>
                 <div className="calendar-container-grafik">
-                    <FullCalendar
-                        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                        initialView="timeGridWeek"
-                        headerToolbar={{
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                        }}
-                        allDaySlot={false}
-                        slotMinTime="06:00:00"
-                        slotMaxTime="24:00:00"
-                        slotLabelFormat={{
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        }}
-                        events={events}
-                        height="400px"
-                        locale={plLocale}  // Ustawienie języka na polski
-                    />
+                    <Calendar events={events} />
                 </div>
             </Row>
         </Container>
