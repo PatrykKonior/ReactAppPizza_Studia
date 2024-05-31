@@ -460,6 +460,10 @@ body, html {
     height: 40px;
 }
 
+.transform-up {
+    transform: translateY(-50px);
+}
+
 /* style dla deklaracji */
 
 .declarations-container {

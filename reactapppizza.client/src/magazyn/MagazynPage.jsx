@@ -1,15 +1,13 @@
 ﻿import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, TextField, Button, Card, CardContent, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import WarningIcon from '@mui/icons-material/Warning';
-import PrintIcon from '@mui/icons-material/Print';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import DescriptionIcon from '@mui/icons-material/Description';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
+import { Typography, Box, Button } from '@mui/material';
+import SearchBar from './components/SearchBar';
+import SkladnikiTable from './components/SkladnikiTable';
+import Orders from './components/Orders';
+import Chart from './components/Chart';
+import Actions from './components/Actions';
 import '../App.css';
 
-function Magazyn() {
+const Magazyn = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const skladniki = [
         { id: 1, nazwa: 'Mąka', ilosc: '50 kg', lowStock: false },
@@ -34,98 +32,14 @@ function Magazyn() {
         <div id="content-container">
             <div id="left-container">
                 <Typography id="title">Aktualny stan magazynu</Typography>
-                <BarChart width={320} height={220} data={dataBar} style={{ marginLeft: '-10px' }}>
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="value">
-                        {dataBar.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Bar>
-                </BarChart>
-                <Card variant="outlined" className="gradient-card gradient-green">
-                    <CardContent className="card-inner">
-                        <Typography variant="h6" component="div">
-                            Zamówienie #001
-                        </Typography>
-                        <Typography color="text.secondary">
-                            10 kg mąki - Zrealizowane
-                        </Typography>
-                    </CardContent>
-                </Card>
-                <Card variant="outlined" className="gradient-card gradient-yellow">
-                    <CardContent className="card-inner">
-                        <Typography variant="h6" component="div">
-                            Zamówienie #002
-                        </Typography>
-                        <Typography color="text.secondary">
-                            20 kg sera - W trakcie realizacji
-                        </Typography>
-                    </CardContent>
-                </Card>
+                <Chart dataBar={dataBar} COLORS={COLORS} />
+                <Orders />
             </div>
             <div id="right-container">
-                <div id="header-container" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-                    <TextField
-                        label="Szukaj składnika"
-                        variant="outlined"
-                        value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
-                        id="search-bar"
-                        style={{ width: '400px', height: '40px' }}
-                    />
-                    <div id="icon-container">
-                        <IconButton><PrintIcon /></IconButton>
-                        <IconButton><FileDownloadIcon /></IconButton>
-                        <IconButton><DescriptionIcon /></IconButton>
-                    </div>
-                </div>
-                <TableContainer component={Paper} style={{ marginBottom: '20px', marginTop: '20px' }}>
-                    <Table sx={{ minWidth: 650, maxHeight: 400 }} aria-label="prosta tabela">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Nazwa składnika</TableCell>
-                                <TableCell align="right">Ilość na magazynie</TableCell>
-                                <TableCell align="right">Akcje</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {skladniki.filter(item => item.nazwa.toLowerCase().includes(searchTerm.toLowerCase())).map((row, index) => (
-                                <TableRow
-                                    key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    style={{ backgroundColor: row.lowStock ? '#ffcccc' : '' }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {index + 1}
-                                    </TableCell>
-                                    <TableCell>{row.nazwa}</TableCell>
-                                    <TableCell align="right">{row.ilosc}</TableCell>
-                                    <TableCell align="right">
-                                        <IconButton aria-label="edit">
-                                            <EditIcon />
-                                        </IconButton>
-                                        <IconButton aria-label="delete">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                        {row.lowStock && (
-                                            <IconButton aria-label="low stock">
-                                                <WarningIcon color="error" />
-                                            </IconButton>
-                                        )}
-                                        {row.lowStock && <span style={{ color: 'red', marginLeft: '5px' }}>Niski stan!</span>}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <div style={{ textAlign: 'right' }}>
-
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <Actions />
+                <SkladnikiTable skladniki={skladniki} searchTerm={searchTerm} />
+                <div style={{ textAlign: 'right' }} className="transform-up">
                     <Button
                         variant="contained"
                         style={{
