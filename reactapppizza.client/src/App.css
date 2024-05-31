@@ -590,6 +590,7 @@ body, html {
     flex-direction: column;
     padding: 20px;
     margin-left: 300px;
+    transform: translateY(-40px);
 }
 
 .dokumenty-header {
