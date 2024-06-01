@@ -41,9 +41,24 @@ const AddTable = () => {
         if (!formData.name) newErrors.name = 'Nazwa jest wymagana';
         if (!formData.category) newErrors.category = 'Kategoria jest wymagana';
         if (!formData.pkwiu) newErrors.pkwiu = 'PKWIU jest wymagany';
-        if (!formData.vatPurchase) newErrors.vatPurchase = 'VAT zakupu jest wymagany';
-        if (!formData.vatSale) newErrors.vatSale = 'VAT sprzedaży jest wymagany';
-        if (!formData.defaultPrice) newErrors.defaultPrice = 'Cena domyślna jest wymagana';
+
+        if (!formData.vatPurchase) {
+            newErrors.vatPurchase = 'VAT zakupu jest wymagany';
+        } else if (isNaN(formData.vatPurchase) || Number(formData.vatPurchase) <= 0) {
+            newErrors.vatPurchase = 'VAT zakupu musi być dodatnią liczbą';
+        }
+
+        if (!formData.vatSale) {
+            newErrors.vatSale = 'VAT sprzedaży jest wymagany';
+        } else if (isNaN(formData.vatSale) || Number(formData.vatSale) <= 0) {
+            newErrors.vatSale = 'VAT sprzedaży musi być dodatnią liczbą';
+        }
+
+        if (!formData.defaultPrice) {
+            newErrors.defaultPrice = 'Cena domyślna jest wymagana';
+        } else if (isNaN(formData.defaultPrice) || Number(formData.defaultPrice) <= 0) {
+            newErrors.defaultPrice = 'Cena domyślna musi być dodatnią liczbą';
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;

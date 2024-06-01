@@ -15,10 +15,21 @@ const AddedTowar = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        if (name === 'remarks' && value.length > 25) {
+            setErrors({
+                ...errors,
+                remarks: 'Uwagi nie mogą przekraczać 25 znaków'
+            });
+        } else {
+            setErrors({
+                ...errors,
+                remarks: ''
+            });
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
     };
 
     const validateForm = () => {
@@ -43,6 +54,10 @@ const AddedTowar = () => {
             } else if (date < today) {
                 newErrors.expirationDate = 'Data ważności musi być przyszła';
             }
+        }
+
+        if (formData.remarks.length > 40) {
+            newErrors.remarks = 'Uwagi nie mogą przekraczać 40 znaków';
         }
 
         setErrors(newErrors);
@@ -167,7 +182,11 @@ const AddedTowar = () => {
                                                 name="remarks"
                                                 value={formData.remarks}
                                                 onChange={handleInputChange}
+                                                isInvalid={!!errors.remarks}
                                             />
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.remarks}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
                                 </Row>
