@@ -24,7 +24,7 @@ export function Layout() {
             <Container fluid>
                 <Navbar className="navbar-custom" expand="lg" sticky="top">
                     <Container fluid>
-                        {location.pathname === '/' && (
+                        {location.pathname === '/system' && (
                             <Navbar.Brand className="me-auto" style={titleStyle}>
                                 Dzien dobry!
                             </Navbar.Brand>
@@ -50,14 +50,14 @@ export function Layout() {
                 </Navbar>
                 <div className="d-flex">
                     <div className="sidebar">
-                        <Navbar.Brand href="/" className="logo">
+                        <Navbar.Brand href="/system" className="logo">
                             <header className="header">
                                 <h1>Pizza 365</h1>
                             </header>
                         </Navbar.Brand>
                         <div className="menu-header" style={{ fontFamily: 'Roboto, sans-serif' }}>MENU</div>
                         <Nav defaultActiveKey="/" className="flex-column">
-                            <Nav.Link as={Link} to="/" className="sidebar-item">
+                            <Nav.Link as={Link} to="/system" className="sidebar-item">
                                 <FontAwesomeIcon icon={faChartLine} className="sidebar-icon" /> STRONA GŁÓWNA
                             </Nav.Link>
                             <Nav.Link as={Link} to="/towar" className="sidebar-item">
@@ -84,7 +84,7 @@ export function Layout() {
                             <div className="sidebar-footer">
                                 <div className="user-badge">
                                     Aktualna godzina: <strong>21:37</strong>
-                                </div>
+                                </div> 
                                 <div className="user-badge">
                                     Zalogowano jako: <strong>Patryk Konior</strong>
                                 </div>

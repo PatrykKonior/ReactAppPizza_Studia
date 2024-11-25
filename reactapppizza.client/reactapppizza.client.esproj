@@ -11,9 +11,15 @@
   <ItemGroup>
     <None Remove="src\Nowy folder1\**" />
     <None Remove="src\Nowy folder2\**" />
-    <None Remove="src\Nowy folder\**" />
     <TypeScriptConfiguration Remove="src\Nowy folder1\**" />
     <TypeScriptConfiguration Remove="src\Nowy folder2\**" />
-    <TypeScriptConfiguration Remove="src\Nowy folder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Client\assets\" />
+    <Folder Include="src\Client\components\ClientLayout\" />
+    <Folder Include="src\Client\components\Contact\components\" />
+    <Folder Include="src\Client\components\Home\components\" />
+    <Folder Include="src\Client\components\Login\components\" />
+    <Folder Include="src\Client\components\Menu\components\" />
   </ItemGroup>
 </Project>
