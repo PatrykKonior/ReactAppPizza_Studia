@@ -1,8 +1,17 @@
 // Kontakt.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 
 const Kontakt = () => {
+    useEffect(() => {
+        // Dodanie klasy dla stron klienta
+        document.body.classList.add('client-mode');
+        return () => {
+            // Usuniêcie klasy, gdy komponent zostanie odmontowany
+            document.body.classList.remove('client-mode');
+        };
+    }, []);
+
     return (
         <Box component="form" sx={{ maxWidth: 600, mx: 'auto' }}>
             <Typography variant="h4" sx={{ mb: 3 }}>Skontaktuj siê z nami</Typography>

@@ -1,0 +1,98 @@
+/* Stylizacja Home Page */
+/* Hero Section */
+.hero-section {
+    background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-text {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.hero-button {
+    margin-top: 20px;
+    background-color: #d32f2f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+/* About Section */
+.about-section {
+    padding: 50px 20px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #d32f2f;
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 50px 20px;
+    background-color: white;
+}
+
+.menu-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.menu-card-img {
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 50px 20px;
+    background-color: #d0d9d4;
+    text-align: center;
+}
+
+.testimonial-card {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.customer-name {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 50px 20px;
+    background-color: #d32f2f;
+    color: white;
+    text-align: center;
+}
+
+.cta-text {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.cta-button {
+    background-color: #ff5722;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
