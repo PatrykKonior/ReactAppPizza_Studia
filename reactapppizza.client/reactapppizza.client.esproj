@@ -21,5 +21,6 @@
     <Folder Include="src\Client\components\Home\components\" />
     <Folder Include="src\Client\components\Login\components\" />
     <Folder Include="src\Client\components\Menu\components\" />
+    <Folder Include="src\Client\components\ShoppingCard\components\" />
   </ItemGroup>
 </Project>

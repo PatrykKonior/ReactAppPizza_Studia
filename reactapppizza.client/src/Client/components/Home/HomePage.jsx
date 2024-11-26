@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+Ôªøimport React, { useEffect } from 'react';
 import { Typography, Box, Grid, Button, Card, CardMedia, CardContent } from '@mui/material';
 import { gsap } from 'gsap';
 import '../../ClientApp.css'
@@ -21,7 +21,7 @@ const Home = () => {
         // Dodanie klasy dla stron klienta
         document.body.classList.add('client-mode');
         return () => {
-            // UsuniÍcie klasy, gdy komponent zostanie odmontowany
+            // Usuniƒôcie klasy, gdy komponent zostanie odmontowany
             document.body.classList.remove('client-mode');
         };
     }, []);
@@ -34,10 +34,10 @@ const Home = () => {
                     Witamy w Pizza 365
                 </Typography>
                 <Typography variant="h5" className="hero-text">
-                    Najlepsze pizze w mieúcie, przygotowane z mi≥oúciπ i pasjπ!
+                    Najlepsze pizze w mie≈õcie, przygotowane z mi≈Ço≈õciƒÖ i pasjƒÖ!
                 </Typography>
                 <Button variant="contained" color="primary" className="hero-button">
-                    ZamÛw teraz
+                    Zam√≥w teraz
                 </Button>
             </Box>
 
@@ -47,9 +47,9 @@ const Home = () => {
                     O nas
                 </Typography>
                 <Typography>
-                    Pizza 365 to miejsce, gdzie pasja do gotowania spotyka siÍ z najwyøszπ jakoúciπ sk≥adnikÛw.
-                    Codziennie przygotowujemy úwieøe ciasto, uøywajπc tradycyjnych w≥oskich receptur.
-                    Naszym celem jest dostarczanie wyjπtkowych doúwiadczeÒ kulinarnych dla kaødego klienta.
+                    Pizza 365 to miejsce, gdzie pasja do gotowania spotyka siƒô z najwy≈ºszƒÖ jako≈õciƒÖ sk≈Çadnik√≥w.
+                    Codziennie przygotowujemy ≈õwie≈ºe ciasto, u≈ºywajƒÖc tradycyjnych w≈Çoskich receptur.
+                    Naszym celem jest dostarczanie wyjƒÖtkowych do≈õwiadcze≈Ñ kulinarnych dla ka≈ºdego klienta.
                 </Typography>
             </Box>
 
@@ -70,7 +70,7 @@ const Home = () => {
                                 />
                                 <CardContent>
                                     <Typography variant="h6">{pizza}</Typography>
-                                    <Typography>Wyjπtkowy smak i úwieøe sk≥adniki.</Typography>
+                                    <Typography>WyjƒÖtkowy smak i ≈õwie≈ºe sk≈Çadniki.</Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
@@ -81,10 +81,10 @@ const Home = () => {
             {/* Customer Testimonials Section */}
             <Box className="testimonials-section">
                 <Typography variant="h4" className="section-title">
-                    Opinie naszych klientÛw
+                    Opinie naszych klient√≥w
                 </Typography>
                 <Grid container spacing={3}>
-                    {["Fantastyczne jedzenie!", "Najlepsza pizza w Krakowie!", "Obs≥uga na medal!"].map((opinia, idx) => (
+                    {["Fantastyczne jedzenie!", "Najlepsza pizza w Krakowie!", "Obs≈Çuga na medal!"].map((opinia, idx) => (
                         <Grid item xs={12} sm={4} key={idx}>
                             <Card className="testimonial-card">
                                 <Typography variant="body1">"{opinia}"</Typography>
@@ -100,7 +100,7 @@ const Home = () => {
             {/* Call to Action Section */}
             <Box className="cta-section">
                 <Typography variant="h4" className="cta-text">
-                    Gotowy na kulinarnπ podrÛø?
+                    Gotowy na kulinarnƒÖ podr√≥≈º?
                 </Typography>
                 <Button variant="contained" color="secondary" className="cta-button">
                     Zobacz nasze menu

@@ -1,4 +1,5 @@
 /* Stylizacja Home Page */
+
 /* Hero Section */
 .hero-section {
     background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover;
@@ -7,92 +8,187 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #BFB78F; /* Spójny kolor tekstu */
     text-align: center;
+    border-bottom: 2px solid #8e8e86; /* Dodanie delikatnej obramówki */
 }
 
 .hero-text {
     margin: 10px 0;
     font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .hero-button {
     margin-top: 20px;
-    background-color: #d32f2f;
+    background-color: #c7a42f; /* Kolor dopasowany do sekcji pracowniczej */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 1.2rem;
     text-transform: uppercase;
+    border: 2px solid black; /* Czarna obramówka */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Delikatny cieñ */
+    transition: background-color 0.3s ease;
 }
+
+    .hero-button:hover {
+        background-color: #BFB78F; /* L¿ejszy odcieñ przy najechaniu */
+        color: black; /* Zmiana koloru tekstu */
+    }
 
 /* About Section */
 .about-section {
     padding: 50px 20px;
-    background-color: #f5f5f5;
+    background-color: #011a20; /* Ciemniejsze t³o */
     text-align: center;
+    color: #d3d3d3; /* Jasnoszary tekst */
+    border-top: 2px solid #8e8e86; /* Obramowanie nawi¹zuj¹ce do pracowniczej */
 }
 
 .section-title {
     margin-bottom: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #d32f2f;
+    color: #c7a42f; /* Z³oty kolor dla nag³ówka */
 }
 
 /* Menu Section */
 .menu-section {
     padding: 50px 20px;
-    background-color: white;
+    background-color: #f5f5f5; /* Neutralne jasne t³o */
 }
 
 .menu-card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Mocniejszy cieñ */
     border-radius: 8px;
     overflow: hidden;
+    border: 2px solid #8e8e86; /* Delikatne obramowanie */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+    .menu-card:hover {
+        transform: scale(1.05); /* Efekt powiêkszenia */
+        box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.7); /* Wiêkszy cieñ */
+    }
 
 .menu-card-img {
     height: 150px;
     object-fit: cover;
+    border-bottom: 2px solid #8e8e86; /* Obramowanie na dole */
 }
 
 /* Testimonials Section */
 .testimonials-section {
     padding: 50px 20px;
-    background-color: #d0d9d4;
+    background-color: #d0d9d4; /* Neutralny kolor t³a */
     text-align: center;
+    border-top: 2px solid #8e8e86; /* Obramowanie sekcji */
 }
 
 .testimonial-card {
     padding: 20px;
-    background-color: white;
+    background-color: #BFB78F; /* Dopasowany kolor t³a karty */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Mocniejszy cieñ */
+    color: black;
+    transition: transform 0.3s ease;
 }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px); /* Efekt podniesienia */
+        box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.7);
+    }
 
 .customer-name {
     margin-top: 10px;
     font-style: italic;
-    color: #666;
+    color: #2c3e50; /* G³êboki odcieñ szaroœci */
 }
 
 /* CTA Section */
 .cta-section {
     padding: 50px 20px;
-    background-color: #d32f2f;
+    background-color: #2c3e50; /* Ciemny kolor t³a */
     color: white;
     text-align: center;
+    border-top: 2px solid #8e8e86; /* Obramowanie sekcji */
 }
 
 .cta-text {
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c7a42f; /* Dopasowany z³oty kolor */
 }
 
 .cta-button {
-    background-color: #ff5722;
-    color: white;
+    background-color: #c7a42f; /* Z³oty kolor */
+    color: black;
     padding: 10px 20px;
     font-size: 1.2rem;
+    border: 2px solid #8e8e86; /* Obramowanie */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+    .cta-button:hover {
+        background-color: #BFB78F; /* L¿ejszy z³oty odcieñ */
+        color: white; /* Zmiana koloru tekstu */
+    }
+
+/* Header */
+.logo {
+    width: 100%;
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: flex-start; /* Logo wyrównane do lewej */
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+}
+
+.header {
+    align-self: stretch;
+    position: relative;
+    margin-left: 10px;
+    margin-top: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+    .header h1 {
+        color: #BFB78F;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        position: relative;
+        padding: 0 60px;
+        padding-top: 10px;
+    }
+
+        .header h1::before,
+        .header h1::after {
+            content: "";
+            height: 3px;
+            width: 55px;
+            background-color: #c7a42f;
+            position: absolute;
+            top: 65%;
+            transform: translateY(-50%);
+        }
+
+        .header h1::before {
+            left: 0;
+            transform: translateX(-10%);
+        }
+
+        .header h1::after {
+            right: 0;
+            transform: translateX(10%);
+        }

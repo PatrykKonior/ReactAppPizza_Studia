@@ -19,6 +19,7 @@ import Menu from './Client/components/Menu/MenuPage.jsx';
 import Kontakt from './Client/components/Contact/ContactPage.jsx';
 import Login from './Client/components/Login/LoginComponent.jsx';
 import PizzaLayout from './Client/components/ClientLayout/ClientLayout.jsx';
+import CartPage from './Client/components/ShoppingCard/CartPage.jsx';
 
 
 // Funkcja do sprawdzania, czy u¿ytkownik powinien zobaczyæ stronê klienta
@@ -34,6 +35,7 @@ function ClientRoutes() {
                     <Route path="menu" element={<Menu />} />
                     <Route path="kontakt" element={<Kontakt />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="koszyk" element={<CartPage />} />
                 </Route>
             </Routes>
         );
