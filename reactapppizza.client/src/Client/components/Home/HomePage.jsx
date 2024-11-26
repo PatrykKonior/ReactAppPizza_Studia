@@ -1,20 +1,42 @@
-﻿import React, { useEffect } from 'react';
-import { Typography, Box, Grid, Button, Card, CardMedia, CardContent } from '@mui/material';
+﻿import React, { useEffect, useState } from 'react';
+import { Typography, Box, Grid, Button, Card, CardMedia, CardContent, Dialog, DialogContent, DialogTitle, DialogActions } from '@mui/material';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../../ClientApp.css'
+import PizzaVideo from '../../assets/videos/AdobeStock_650450996_Video_HD_Preview.mov'
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+    const [openPopup, setOpenPopup] = useState(false);
+
     useEffect(() => {
+        // GSAP Animation for hero text
         gsap.fromTo(
-            '.hero-text',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 1 }
+            '.hero-text-container',
+            { y: '100%' },
+            { y: '-90%', duration: 1.5, ease: 'power2.out', delay: 0.5 }
         );
-        gsap.fromTo(
-            '.featured-menu',
-            { opacity: 0, x: -20 },
-            { opacity: 1, x: 0, duration: 1, delay: 0.5 }
-        );
+
+        // GSAP Animation for scrolling
+        gsap.utils.toArray('.scroll-section').forEach((section) => {
+            gsap.fromTo(
+                section,
+                { opacity: 0, y: 100 }, // Startowa pozycja: przesunięcie w dół
+                {
+                    opacity: 1,
+                    y: 0, // Docelowa pozycja: brak przesunięcia
+                    duration: 0.3, // Czas animacji: krótszy dla szybszego efektu
+                    ease: 'power2.out', // Płynniejsze wyjście
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 90%', // Animacja zaczyna się wcześniej
+                        end: 'top 60%', // Animacja kończy się wcześniej
+                        scrub: true, // Synchronizacja ze scrollowaniem
+                    },
+                }
+            );
+        });
     }, []);
 
     useEffect(() => {
@@ -26,23 +48,110 @@ const Home = () => {
         };
     }, []);
 
+    const handlePopupOpen = () => setOpenPopup(true);
+    const handlePopupClose = () => setOpenPopup(false);
+
     return (
         <Box className="home-container">
             {/* Hero Section */}
-            <Box className="hero-section">
-                <Typography variant="h2" className="hero-text">
-                    Witamy w Pizza 365
-                </Typography>
-                <Typography variant="h5" className="hero-text">
-                    Najlepsze pizze w mieście, przygotowane z miłością i pasją!
-                </Typography>
-                <Button variant="contained" color="primary" className="hero-button">
-                    Zamów teraz
-                </Button>
+            <Box className="home-container">
+                {/* Sekcja Hero z wideo */}
+                <Box
+                    className="hero-section"
+                    sx={{
+                        width: '100%',
+                        height: '630px',
+                        maxHeight: '630px',
+                        overflow: 'hidden',
+                        position: 'relative',
+                    }}
+                >
+                    <video
+                        className="hero-video"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                        }}
+                    >
+                        <source src={PizzaVideo} type="video/mp4" />
+                        Twoja przeglądarka nie obsługuje tagu wideo.
+                    </video>
+                    <Box
+                        className="hero-text-container"
+                        sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            width: '100%',
+                            textAlign: 'center',
+                            background: 'rgba(191, 183, 143, 0.5)', // Tło z 50% przezroczystością
+                            padding: '20px 0',
+                        }}
+                    >
+                        <Typography
+                            variant="h2"
+                            className="hero-text"
+                            sx={{
+                                color: '#011a20',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            Witamy w Pizza 365
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className="hero-button"
+                            onClick={handlePopupOpen}
+                            sx={{
+                                marginBottom: '10px',
+                                zIndex: 2,
+                                backgroundColor: 'black', // Czarny przycisk
+                                '&:hover': {
+                                    backgroundColor: '#BFB78F', // Kolor hover
+                                },
+                            }}
+                        >
+                            Zamów teraz
+                        </Button>
+                        <Typography
+                            variant="h5"
+                            className="hero-text"
+                            sx={{
+                                color: '#011a20',
+                            }}
+                        >
+                            Najlepsze pizze w mieście, przygotowane z miłością i pasją!
+                        </Typography>
+                    </Box>
+                </Box>
+
+                {/* Popup z numerami telefonów */}
+                <Dialog open={openPopup} onClose={handlePopupClose}>
+                    <DialogTitle>Kontakt</DialogTitle>
+                    <DialogContent>
+                        <Typography variant="h6">Katowice</Typography>
+                        <Typography>Telefon: +48 32 123 4567</Typography>
+                        <Typography variant="h6" sx={{ mt: 2 }}>Sosnowiec</Typography>
+                        <Typography>Telefon: +48 32 765 4321</Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handlePopupClose} color="primary">
+                            Zamknij
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Box>
 
             {/* About Us Section */}
-            <Box className="about-section">
+            <Box className="about-section scroll-section">
                 <Typography variant="h4" className="section-title">
                     O nas
                 </Typography>
@@ -54,7 +163,7 @@ const Home = () => {
             </Box>
 
             {/* Featured Menu Section */}
-            <Box className="menu-section">
+            <Box className="menu-section scroll-section">
                 <Typography variant="h4" className="section-title">
                     Nasze polecane pizze
                 </Typography>
@@ -79,7 +188,7 @@ const Home = () => {
             </Box>
 
             {/* Customer Testimonials Section */}
-            <Box className="testimonials-section">
+            <Box className="testimonials-section scroll-section">
                 <Typography variant="h4" className="section-title">
                     Opinie naszych klientów
                 </Typography>
