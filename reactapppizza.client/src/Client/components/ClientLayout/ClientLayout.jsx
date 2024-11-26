@@ -2,6 +2,7 @@
 import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
 import { Outlet, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import Footer from './ClientFooter.jsx';
 
 const Layout = () => {
     return (
@@ -95,21 +96,8 @@ const Layout = () => {
             <Container sx={{ mt: 4 }}>
                 <Outlet />
             </Container>
-            <Box component="footer" sx={{ mt: 5, p: 3, background: '#f7f7f7', display: 'flex', justifyContent: 'space-between' }}>
-                <Box>
-                    <Typography variant="subtitle1">Pizza 365</Typography>
-                    <Typography>Adres: ul. Pizzerii 365, Kraków</Typography>
-                </Box>
-                <Box>
-                    <iframe
-                        title="Pizza 365 Map"
-                        src="https://maps.google.com/maps?q=krakow&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                        width="300"
-                        height="200"
-                        style={{ border: 'none' }}
-                    ></iframe>
-                </Box>
-            </Box>
+            {/* Footer */}
+            <Footer />
         </Box>
     );
 };
