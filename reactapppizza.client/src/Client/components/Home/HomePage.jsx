@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../../ClientApp.css'
 import PizzaVideo from '../../assets/videos/AdobeStock_650450996_Video_HD_Preview.mov'
+import PizzaPhoto from '../../assets/photos/SUPER_PIZZA.jpg'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,16 +23,16 @@ const Home = () => {
         gsap.utils.toArray('.scroll-section').forEach((section) => {
             gsap.fromTo(
                 section,
-                { opacity: 0, y: 100 }, // Startowa pozycja: przesunięcie w dół
+                { opacity: 1, y: 140 }, // Startowa pozycja: przesunięcie w dół
                 {
                     opacity: 1,
                     y: 0, // Docelowa pozycja: brak przesunięcia
-                    duration: 0.3, // Czas animacji: krótszy dla szybszego efektu
+                    duration: 5.0, // Czas animacji: krótszy dla szybszego efektu
                     ease: 'power2.out', // Płynniejsze wyjście
                     scrollTrigger: {
                         trigger: section,
-                        start: 'top 90%', // Animacja zaczyna się wcześniej
-                        end: 'top 60%', // Animacja kończy się wcześniej
+                        start: 'top 120%', // Animacja zaczyna się wcześniej
+                        end: 'top 70%', // Animacja kończy się wcześniej
                         scrub: true, // Synchronizacja ze scrollowaniem
                     },
                 }
@@ -119,7 +120,7 @@ const Home = () => {
                                 },
                             }}
                         >
-                            Zamów teraz
+                            Zadzwoń do nas!
                         </Button>
                         <Typography
                             variant="h5"
@@ -134,16 +135,78 @@ const Home = () => {
                 </Box>
 
                 {/* Popup z numerami telefonów */}
-                <Dialog open={openPopup} onClose={handlePopupClose}>
-                    <DialogTitle>Kontakt</DialogTitle>
+                <Dialog open={openPopup} onClose={handlePopupClose}
+                    sx={{
+                        '& .MuiDialog-paper': {
+                            minWidth: '400px', // Zwiększenie minimalnej szerokości okna
+                            padding: '20px', // Dodatkowe odstępy wewnętrzne
+                        },
+                    }}
+                >
+                    <DialogTitle
+                        sx={{
+                            fontWeight: 'bold',
+                            fontSize: '1.5rem',
+                            textAlign: 'center',
+                        }}
+                    >
+                        Kontakt
+                    </DialogTitle>
                     <DialogContent>
-                        <Typography variant="h6">Katowice</Typography>
-                        <Typography>Telefon: +48 32 123 4567</Typography>
-                        <Typography variant="h6" sx={{ mt: 2 }}>Sosnowiec</Typography>
-                        <Typography>Telefon: +48 32 765 4321</Typography>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: 'bold', // Pogrubienie
+                                fontSize: '1.2rem', // Większy rozmiar
+                                textAlign: 'center',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            Katowice
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                fontSize: '1rem',
+                                textAlign: 'center',
+                                animation: 'pulse 1.5s infinite',
+                            }}
+                        >
+                            Telefon: +48 32 123 4567
+                        </Typography>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: 'bold', 
+                                fontSize: '1.2rem', 
+                                textAlign: 'center',
+                                marginTop: '20px',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            Sosnowiec
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                fontSize: '1rem',
+                                textAlign: 'center',
+                                animation: 'pulse 1.5s infinite', 
+                            }}
+                        >
+                            Telefon: +48 32 765 4321
+                        </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handlePopupClose} color="primary">
+                        <Button onClick={handlePopupClose} variant="contained"
+                            color="primary"
+                            sx={{
+                                backgroundColor: 'black', // Czarny przycisk
+                                '&:hover': {
+                                    backgroundColor: '#BFB78F', // Hover
+                                },
+                                margin: 'auto', // Wyśrodkowanie przycisku
+                            }}>
                             Zamknij
                         </Button>
                     </DialogActions>
@@ -151,15 +214,78 @@ const Home = () => {
             </Box>
 
             {/* About Us Section */}
-            <Box className="about-section scroll-section">
-                <Typography variant="h4" className="section-title">
-                    O nas
-                </Typography>
-                <Typography>
-                    Pizza 365 to miejsce, gdzie pasja do gotowania spotyka się z najwyższą jakością składników.
-                    Codziennie przygotowujemy świeże ciasto, używając tradycyjnych włoskich receptur.
-                    Naszym celem jest dostarczanie wyjątkowych doświadczeń kulinarnych dla każdego klienta.
-                </Typography>
+            <Box
+                className="about-section scroll-section"
+                sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' }, // Układ kolumnowy dla mobilnych, wierszowy dla większych ekranów
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginTop: '50px', // Większy odstęp od sekcji hero
+                    padding: '60px 30px',
+                    backgroundColor: '#011a20',
+                    borderTop: '2px solid #8e8e86',
+                }}
+            >
+                {/* Lewa część - Opis */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        color: '#d3d3d3',
+                        paddingRight: { md: '30px' }, // Odstęp od prawej strony
+                        textAlign: 'left',
+                    }}
+                >
+                    <Typography
+                        variant="h4"
+                        className="section-title"
+                        sx={{
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            color: '#c7a42f',
+                            marginBottom: '20px',
+                        }}
+                    >
+                        O nas
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: '1.2rem',
+                            lineHeight: '1.8',
+                            fontFamily: 'Georgia, serif',
+                            textAlign: 'justify',
+                        }}
+                    >
+                        Pizza 365 to miejsce, gdzie pasja do gotowania spotyka się z najwyższą jakością składników.
+                        Codziennie przygotowujemy świeże ciasto, używając tradycyjnych włoskich receptur.
+                        Naszym celem jest dostarczanie wyjątkowych doświadczeń kulinarnych dla każdego klienta.
+                        Jesteśmy otwarci codziennie od 10:00 do 22:00.
+                    </Typography>
+                </Box>
+
+                {/* Prawa część - Zdjęcie pizzy */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        backgroundColor: '#BFB78F', // Tło dla prawej części
+                        padding: '20px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '10px',
+                        boxShadow: '2px 4px 8px rgba(0, 0, 0, 0.5)',
+                    }}
+                >
+                    <img
+                        src={PizzaPhoto}
+                        alt="Pizza"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            borderRadius: '8px',
+                        }}
+                    />
+                </Box>
             </Box>
 
             {/* Featured Menu Section */}

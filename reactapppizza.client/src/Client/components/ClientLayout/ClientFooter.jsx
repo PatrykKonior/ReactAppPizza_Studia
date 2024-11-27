@@ -4,7 +4,6 @@ import { Box, Typography, Link, Divider } from '@mui/material';
 const Footer = () => {
     return (
         <Box component="footer" sx={{ mt: 5, p: 4, background: '#011a20', color: '#d3d3d3' }}>
-            {/* Główna sekcja prostokątów */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3 }}>
                 {/* Lewy prostokąt */}
                 <Box sx={{ flex: 1, textAlign: 'center', border: '2px solid #8e8e86', borderRadius: 5, p: 1 }}>

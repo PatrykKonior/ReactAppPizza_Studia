@@ -15,7 +15,6 @@
     <TypeScriptConfiguration Remove="src\Nowy folder2\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\Client\assets\" />
     <Folder Include="src\Client\components\Contact\components\" />
     <Folder Include="src\Client\components\Home\components\" />
     <Folder Include="src\Client\components\Login\components\" />
