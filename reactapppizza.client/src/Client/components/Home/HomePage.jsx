@@ -9,12 +9,16 @@ import PizzaWege from '../../assets/photos/WEGE_PIZZA.jpg'
 import PizzaPepperoni from '../../assets/photos/PEPPERONI_PIZZA.jpg'
 import PizzaMarg from '../../assets/photos/MARG_PIZZA.jpg'
 import PizzaHawajska from '../../assets/photos/HAWAJSKA_PIZZA.jpg'
+import { Link } from 'react-router-dom';
 
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
     const [openPopup, setOpenPopup] = useState(false);
+
+    const handlePopupOpen = () => setOpenPopup(true);
+    const handlePopupClose = () => setOpenPopup(false);
 
     const pizzaImages = {
         Margherita: PizzaMarg,
@@ -72,10 +76,7 @@ const Home = () => {
             document.body.classList.remove('client-mode');
         };
     }, []);
-
-    const handlePopupOpen = () => setOpenPopup(true);
-    const handlePopupClose = () => setOpenPopup(false);
-
+   
     return (
         <Box className="home-container">
             {/* Hero Section */}
@@ -116,7 +117,7 @@ const Home = () => {
                             bottom: 0,
                             width: '100%',
                             textAlign: 'center',
-                            background: 'rgba(191, 183, 143, 0.5)', // Tło z 50% przezroczystością
+                            background: 'rgba(191, 183, 143, 0.7)', // Tło z 40% przezroczystością
                             padding: '20px 0',
                         }}
                     >
@@ -140,7 +141,7 @@ const Home = () => {
                                 zIndex: 2,
                                 backgroundColor: 'black', // Czarny przycisk
                                 '&:hover': {
-                                    backgroundColor: '#BFB78F', // Kolor hover
+                                    backgroundColor: '#8f97bf', // Kolor hover
                                 },
                             }}
                         >
@@ -478,7 +479,7 @@ const Home = () => {
                                         {opiniaObj.klient
                                             .split(' ')
                                             .map((word) => word[0])
-                                            .join('')} {/* Inicjały */}
+                                            .join('')}
                                     </Box>
                                     <Typography variant="subtitle2" className="customer-name" sx={{ fontWeight: 'bold' }}>
                                         {opiniaObj.klient}
@@ -493,11 +494,46 @@ const Home = () => {
             </Box>
 
             {/* Call to Action Section */}
-            <Box className="cta-section">
-                <Typography variant="h4" className="cta-text">
+            <Box
+                className="cta-section"
+                sx={{
+                    marginTop: '50px', // Odstęp od góry
+                    padding: '60px 30px', // Wewnętrzne odstępy
+                    backgroundColor: '#BFB78F', // Tło sekcji
+                    textAlign: 'center', // Wyśrodkowanie tekstu
+                    color: '#011a20', // Kolor tekstu
+                }}
+            >
+                <Typography
+                    variant="h4"
+                    className="cta-text"
+                    sx={{
+                        fontWeight: 'bold',
+                        textTransform: 'uppercase',
+                        color: '#011a20', // Kolor tekstu
+                        marginBottom: '20px',
+                    }}
+                >
                     Gotowy na kulinarną podróż?
                 </Typography>
-                <Button variant="contained" color="secondary" className="cta-button">
+                <Button
+                    variant="contained"
+                    className="cta-button"
+                    sx={{
+                        backgroundColor: 'black', // Czarny kolor przycisku
+                        color: 'white',
+                        padding: '10px 20px',
+                        fontSize: '1.2rem',
+                        textTransform: 'uppercase',
+                        borderRadius: '5px',
+                        '&:hover': {
+                            backgroundColor: '#8f97bf', // Kolor przycisku po najechaniu
+                            color: 'black',
+                        },
+                    }}
+                    component={Link}
+                    to="/menu" // Przeniesienie do sekcji menu
+                >
                     Zobacz nasze menu
                 </Button>
             </Box>
