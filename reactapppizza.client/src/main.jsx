@@ -20,6 +20,7 @@ import Kontakt from './Client/components/Contact/ContactPage.jsx';
 import Login from './Client/components/Login/LoginComponent.jsx';
 import PizzaLayout from './Client/components/ClientLayout/ClientLayout.jsx';
 import CartPage from './Client/components/ShoppingCard/CartPage.jsx';
+import { CartProvider } from './Client/components/ShoppingCard/CartContext'; // Import CartProvider
 
 
 // Funkcja do sprawdzania, czy u¿ytkownik powinien zobaczyæ stronê klienta
@@ -29,6 +30,7 @@ function ClientRoutes() {
     // Warunki dla strony klienta
     if (path === '/' || path.startsWith('/menu') || path.startsWith('/kontakt') || path.startsWith('/login')) {
         return (
+            <CartProvider>
             <Routes>
                 <Route path="/" element={<PizzaLayout />}>
                     <Route index element={<Home />} />
@@ -37,7 +39,8 @@ function ClientRoutes() {
                     <Route path="login" element={<Login />} />
                     <Route path="koszyk" element={<CartPage />} />
                 </Route>
-            </Routes>
+                </Routes>
+            </CartProvider>
         );
     }
 

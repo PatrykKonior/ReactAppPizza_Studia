@@ -1,10 +1,15 @@
 ﻿import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Container, Badge } from '@mui/material';
 import { Outlet, Link } from 'react-router-dom';
-import { gsap } from 'gsap';
 import Footer from './ClientFooter.jsx';
+import { useCart } from '../ShoppingCard/CartContext.jsx';
 
 const Layout = () => {
+    const { cart } = useCart();
+
+    // Oblicz sumę produktów w koszyku
+    const totalItems = Object.values(cart).reduce((acc, item) => acc + item.quantity, 0);
+
     return (
         <Box>
             <AppBar position="sticky" sx={{ background: '#011a20' }}>
@@ -24,13 +29,9 @@ const Layout = () => {
                             to="/menu"
                             sx={{
                                 width: 120,
-                                '&:active': {
-                                    backgroundColor: '#BFB78F', // Kolor podświetlenia
-                                    color: 'white', // Kolor tekstu podczas naciśnięcia
-                                },
                                 '&:hover': {
-                                    backgroundColor: '#c7a42f',
-                                    color: 'white',
+                                    backgroundColor: '#c7a42f', // Kolor podświetlenia
+                                    color: 'white', // Kolor tekstu podczas hover
                                 },
                             }}
                         >
@@ -42,13 +43,9 @@ const Layout = () => {
                             to="/kontakt"
                             sx={{
                                 width: 120,
-                                '&:active': {
-                                    backgroundColor: '#BFB78F',
-                                    color: 'white',
-                                },
                                 '&:hover': {
-                                    backgroundColor: '#c7a42f',
-                                    color: 'white',
+                                    backgroundColor: '#c7a42f', // Kolor podświetlenia
+                                    color: 'white', // Kolor tekstu podczas hover
                                 },
                             }}
                         >
@@ -60,13 +57,9 @@ const Layout = () => {
                             to="/login"
                             sx={{
                                 width: 120,
-                                '&:active': {
-                                    backgroundColor: '#BFB78F',
-                                    color: 'white',
-                                },
                                 '&:hover': {
-                                    backgroundColor: '#c7a42f',
-                                    color: 'white',
+                                    backgroundColor: '#c7a42f', // Kolor podświetlenia
+                                    color: 'white', // Kolor tekstu podczas hover
                                 },
                             }}
                         >
@@ -78,17 +71,18 @@ const Layout = () => {
                             to="/koszyk"
                             sx={{
                                 width: 120,
-                                fontSize: '1.1rem',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: 1,
                                 '&:hover': {
-                                    backgroundColor: '#c7a42f',
-                                    color: 'white',
+                                    backgroundColor: '#c7a42f', // Kolor podświetlenia
+                                    color: 'white', // Kolor tekstu podczas hover
                                 },
                             }}
                         >
-                            🛒 Koszyk
+                            <Badge badgeContent={totalItems} color="secondary">
+                                🛒 Koszyk
+                            </Badge>
                         </Button>
                     </Box>
                 </Toolbar>
