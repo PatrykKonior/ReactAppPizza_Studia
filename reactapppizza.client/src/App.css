@@ -305,12 +305,11 @@ body, html {
 .main-content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Zapewnia, że treść rozciągnie się do dostępnej przestrzeni */
-    margin-left: 275px;
+    flex-grow: 1; /* Rozciągnij do dostępnej przestrzeni */
     padding: 1rem;
-    overflow-y: hidden; /* Blokuje pionowe przewijanie wewnątrz tego elementu */
-    max-height: 100vh; /* Ogranicza maksymalną wysokość do widoku ekranu */
-    margin-top: -50px; /* Przesunięcie całości w górę */
+    overflow-y: hidden;
+    max-height: 100vh;
+    margin-left: 0; /* Usunięcie przesunięcia */
 }
 
 .carousel-img {

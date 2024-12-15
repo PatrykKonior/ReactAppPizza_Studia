@@ -1,29 +1,26 @@
 ﻿import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Box, Container } from '@mui/material';
 import HeadLine from './TowarComponents/HeadLine';
-import AddTable from './TowarComponents/AddTable';
-import AddedTowar from './TowarComponents/AddedTowar';
 import ItemList from './TowarComponents/ItemList';
-import '../App.css';
 
 function Towar() {
     return (
-        <div className="main-content">
-            <Container fluid className="d-flex flex-column">
+        <Box
+            sx={{
+                width: '100%',
+                padding: '1rem',
+                margin: '0 auto',
+                boxSizing: 'border-box',
+                marginRight: '280px',
+            }}
+        >
+            <Container maxWidth="xl" disableGutters>
                 <HeadLine />
-                <Row className="row-container flex-grow-1">
-                    <Col className="col-container">
-                        <AddTable />
-                    </Col>
-                    <Col className="col-container">
-                        <AddedTowar />
-                    </Col>
-                </Row>
-                <div className="item-list-container">
+                <Box sx={{ mt: 3 }}>
                     <ItemList />
-                </div>
+                </Box>
             </Container>
-        </div>
+        </Box>
     );
 }
 
