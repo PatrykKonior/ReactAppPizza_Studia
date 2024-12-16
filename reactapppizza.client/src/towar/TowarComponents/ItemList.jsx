@@ -57,6 +57,7 @@ const ItemList = () => {
 
     // Edycja istniejącego towaru
     const handleEdit = async (updatedItem) => {
+        console.log('Wysyłanie danych do aktualizacji:', updatedItem);
         try {
             await fetch(`http://localhost:5178/api/Towary/${updatedItem.TowarID}`, {
                 method: 'PUT',
@@ -71,12 +72,17 @@ const ItemList = () => {
 
     // Usunięcie towaru
     const handleDelete = async () => {
+        if (!currentItem?.TowarID) {
+            console.error('Niepoprawne ID towaru');
+            return;
+        }
+        console.log('Usuwanie towaru o ID:', currentItem.TowarID);
         try {
-            await fetch(`http://localhost:5178/api/Towary/${currentItem.TowarID}`, {
-                method: 'DELETE',
-            });
-            fetchItems();
-            setOpenDelete(false);
+                await fetch(`http://localhost:5178/api/Towary/${currentItem.TowarID}`, {
+                    method: 'DELETE',
+                });
+                fetchItems();
+                setOpenDelete(false);
         } catch (error) {
             console.error('Błąd podczas usuwania towaru:', error);
         }
@@ -105,7 +111,18 @@ const ItemList = () => {
                     onChange={handleFilterChange}
                     sx={{ width: '80%' }}
                 />
-                <Button variant="contained" color="primary" onClick={() => setOpenAdd(true)}>
+                <Button
+                    variant="contained"
+                    sx={{
+                        backgroundColor: '#011a20',
+                        color: '#fff',
+                        '&:hover': {
+                            backgroundColor: '#c7a42f',
+                            color: '#011a20',
+                        },
+                    }}
+                    onClick={() => setOpenAdd(true)}
+                >
                     Dodaj Towar
                 </Button>
             </Box>
@@ -115,27 +132,31 @@ const ItemList = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ fontWeight: 'bold' }}>Nazwa</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold' }}>Opis</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold' }}>Cena Zakupu</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold' }}>Cena Sprzedaży</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold' }}>Data Dodania</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Nazwa</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Opis</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Cena Zakupu</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Cena Sprzedaży</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Data Dodania</TableCell>
                             <TableCell align="center" sx={{ fontWeight: 'bold' }}>Akcje</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {filteredItems.map((item) => (
-                            <TableRow key={item.towarID}>
-                                <TableCell>{item.nazwa}</TableCell>
-                                <TableCell>{item.opis}</TableCell>
-                                <TableCell>{item.cenaZakupu} zł</TableCell>
-                                <TableCell>{item.cenaSprzedaży} zł</TableCell>
-                                <TableCell>{item.dataDodania}</TableCell>
+                            <TableRow key={item.TowarID}>
+                                <TableCell align="center">{item.nazwa}</TableCell>
+                                <TableCell align="center">{item.opis}</TableCell>
+                                <TableCell align="center">{item.cenaZakupu} zł</TableCell>
+                                <TableCell align="center">{item.cenaSprzedaży} zł</TableCell>
+                                <TableCell align="center">{item.dataDodania.split('T')[0]}</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => { setCurrentItem(item); setOpenEdit(true); }}>
                                         <Edit />
                                     </IconButton>
-                                    <IconButton color="error" onClick={() => { setCurrentItem(item); setOpenDelete(true); }}>
+                                    <IconButton color="error" onClick={() => {
+                                        console.log('Ustawiony currentItem:', item); // Logowanie obiektu
+                                        setCurrentItem(item);
+                                        setOpenDelete(true);
+                                    }}>
                                         <Delete />
                                     </IconButton>
                                 </TableCell>

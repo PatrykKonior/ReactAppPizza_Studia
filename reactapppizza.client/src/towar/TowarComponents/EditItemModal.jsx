@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
     Dialog, DialogActions, DialogContent, DialogTitle,
     TextField, Button, Box
@@ -9,27 +9,29 @@ const EditItemModal = ({ open, onClose, item, onUpdate }) => {
         nazwa: '',
         opis: '',
         cenaZakupu: '',
-        cenaSprzedazy: '',
+        cenaSprzedaży: '',
         dataDodania: '',
     });
 
     useEffect(() => {
         if (item) {
+            console.log('Ustawianie edytowanego elementu:', item); // Logowanie danych wejściowych
             setFormData(item); // Ustaw stan tylko, gdy `item` nie jest null
         }
     }, [item]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleUpdate = () => {
+        console.log('Aktualizowanie towaru:', formData); // Logowanie danych przed wysłaniem
         onUpdate(formData);
         onClose();
     };
 
-    if (!item) return null; // Je�li `item` jest null, nie renderuj niczego
+    if (!item) return null; // Jeśli `item` jest null, nie renderuj niczego
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -39,7 +41,7 @@ const EditItemModal = ({ open, onClose, item, onUpdate }) => {
                     <TextField label="Nazwa" name="nazwa" value={formData.nazwa} onChange={handleChange} />
                     <TextField label="Opis" name="opis" value={formData.opis} onChange={handleChange} />
                     <TextField label="Cena Zakupu" name="cenaZakupu" value={formData.cenaZakupu} onChange={handleChange} />
-                    <TextField label="Cena Sprzeda�y" name="cenaSprzedazy" value={formData.cenaSprzedazy} onChange={handleChange} />
+                    <TextField label="Cena Sprzedaży" name="cenaSprzedaży" value={formData.cenaSprzedaży} onChange={handleChange} />
                     <TextField
                         label="Data Dodania"
                         name="dataDodania"
@@ -52,7 +54,20 @@ const EditItemModal = ({ open, onClose, item, onUpdate }) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="error">Anuluj</Button>
-                <Button onClick={handleUpdate} color="primary" variant="contained">Zapisz</Button>
+                <Button
+                    onClick={handleUpdate}
+                    sx={{
+                        backgroundColor: '#011a20',
+                        color: '#fff',
+                        '&:hover': {
+                            backgroundColor: '#c7a42f',
+                            color: '#011a20',
+                        },
+                    }}
+                    variant="contained"
+                >
+                    Zapisz
+                </Button>
             </DialogActions>
         </Dialog>
     );

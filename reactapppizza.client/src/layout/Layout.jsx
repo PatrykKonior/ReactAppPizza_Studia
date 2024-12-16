@@ -64,19 +64,19 @@ export function Layout() {
                                 <FontAwesomeIcon icon={faBoxOpen} className="sidebar-icon" /> TOWARY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/sprzedaz" className="sidebar-item">
-                                <FontAwesomeIcon icon={faShoppingCart} className="sidebar-icon" /> SPRZEDAŻ
+                                <FontAwesomeIcon icon={faShoppingCart} className="sidebar-icon" /> ZAMÓWIENIA
                             </Nav.Link>
                             <Nav.Link as={Link} to="/magazyn" className="sidebar-item">
                                 <FontAwesomeIcon icon={faClipboardCheck} className="sidebar-icon" /> MAGAZYN
                             </Nav.Link>
                             <Nav.Link as={Link} to="/grafik" className="sidebar-item">
-                                <FontAwesomeIcon icon={faUsers} className="sidebar-icon" /> GRAFIK
+                                <FontAwesomeIcon icon={faUsers} className="sidebar-icon" /> PRACOWNICY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/dokumenty" className="sidebar-item sidebar-item-declarations">
-                                <FontAwesomeIcon icon={faBox} className="sidebar-icon" /> DOKUMENTY
+                                <FontAwesomeIcon icon={faBox} className="sidebar-icon" /> FAKTURY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/pracownik" className="sidebar-item">
-                                <FontAwesomeIcon icon={faFileInvoice} className="sidebar-icon" /> DEKLARACJE
+                                <FontAwesomeIcon icon={faFileInvoice} className="sidebar-icon" /> DOKUMENTY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/zestawienia" className="sidebar-item">
                                 <FontAwesomeIcon icon={faClipboardList} className="sidebar-icon" /> ZESTAWIENIA
