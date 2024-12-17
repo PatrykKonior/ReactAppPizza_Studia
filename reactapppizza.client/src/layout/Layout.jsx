@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSearch, faBell, faUserCircle, faCog,
     faChartLine, faBox, faUsers, faClipboardList,
-    faClipboardCheck, faFileInvoice, faBoxOpen, faShoppingCart
+    faClipboardCheck, faFileInvoice, faBoxOpen, faShoppingCart, faUserSecret, faFont
 } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
 
@@ -72,6 +72,9 @@ export function Layout() {
                             <Nav.Link as={Link} to="/grafik" className="sidebar-item">
                                 <FontAwesomeIcon icon={faUsers} className="sidebar-icon" /> PRACOWNICY
                             </Nav.Link>
+                            <Nav.Link as={Link} to="/user" className="sidebar-item">
+                                <FontAwesomeIcon icon={faUserSecret} className="sidebar-icon" /> UŻYTKOWNICY
+                            </Nav.Link>
                             <Nav.Link as={Link} to="/dokumenty" className="sidebar-item sidebar-item-declarations">
                                 <FontAwesomeIcon icon={faBox} className="sidebar-icon" /> FAKTURY
                             </Nav.Link>
@@ -80,6 +83,9 @@ export function Layout() {
                             </Nav.Link>
                             <Nav.Link as={Link} to="/zestawienia" className="sidebar-item">
                                 <FontAwesomeIcon icon={faClipboardList} className="sidebar-icon" /> ZESTAWIENIA
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/teksty" className="sidebar-item">
+                                <FontAwesomeIcon icon={faFont} className="sidebar-icon" /> ZMIEŃ TEKSTY
                             </Nav.Link>
                             <div className="sidebar-footer">
                                 <div className="user-badge">

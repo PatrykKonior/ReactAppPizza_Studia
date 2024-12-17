@@ -14,6 +14,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Magazyn } from './magazyn/MagazynPage.jsx';
 import { Grafik } from './grafik/GrafikPage.jsx';
+import { User } from './uzytkownicy/UzytkownicyPage.jsx';
+import { Teksty } from './teskty/TekstyPage.jsx';
 import Home from './Client/components/Home/HomePage.jsx';
 import Menu from './Client/components/Menu/MenuPage.jsx';
 import Kontakt from './Client/components/Contact/ContactPage.jsx';
@@ -70,6 +72,12 @@ function ClientRoutes() {
             </Route>
             <Route path="/magazyn" element={<SystemLayout />}>
                 <Route index element={<Magazyn />} />
+            </Route>
+            <Route path="/user" element={<SystemLayout />}>
+                <Route index element={<User />} />
+            </Route>
+            <Route path="/teskty" element={<SystemLayout />}>
+                <Route index element={<Teksty />} />
             </Route>
         </Routes>
     );

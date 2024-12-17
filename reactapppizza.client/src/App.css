@@ -145,7 +145,7 @@ body, html {
     align-items: center; 
     padding: 20px 0 10px 20px; 
     margin-top: -50px; 
-    margin-left: -18px;
+    margin-left: -1px;
 }
 
 .header h1 {
@@ -159,7 +159,7 @@ body, html {
     color: #d3d3d3;
     text-transform: uppercase;
     padding: 50px 20px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 2px solid #8e8e86;
 }
 
@@ -237,7 +237,7 @@ body, html {
     left: 0;
     overflow-y: auto;
     background-color: #011a20;
-    padding-top: 80px; /* odstęp na górze */
+    padding-top: 20px; /* odstęp na górze */
     border-right: 2px solid #8e8e86;
 }
 
@@ -267,7 +267,7 @@ body, html {
 
 
 .sidebar-item-declarations {
-    margin-top: 20px; 
+    margin-top: 3px; 
 }
 
 .sidebar-footer {
@@ -278,7 +278,6 @@ body, html {
     text-align: center;
     color: #6c757d;
     font-size: 0.85rem;
-    border-top: 1px solid #d3d3d3;
     padding-bottom: 10px; /* dodatkowa przestrzeń na dole */
 }
 
@@ -309,7 +308,7 @@ body, html {
     padding: 1rem;
     overflow-y: hidden;
     max-height: 100vh;
-    margin-left: 0; /* Usunięcie przesunięcia */
+    margin-left: 250px; /* Usunięcie przesunięcia */
 }
 
 .carousel-img {
