@@ -1,9 +1,9 @@
 ﻿import React from 'react';
 import { Box, Container } from '@mui/material';
 import HeadLine from './components/HeadLine';
-import MagazynList from './components/MagazynList';
+import DostawcyList from './components/DostawcyList';
 
-const Magazyn = () => {
+const Dostawcy = () => {
     return (
         <Box
             sx={{
@@ -11,17 +11,17 @@ const Magazyn = () => {
                 padding: '1rem',
                 margin: '0 auto',
                 boxSizing: 'border-box',
-                marginRight: '420px',
+                marginRight: '210px',
             }}
         >
             <Container maxWidth="xl" disableGutters>
                 <HeadLine />
                 <Box sx={{ mt: 3 }}>
-                    <MagazynList />
+                    <DostawcyList />
                 </Box>
             </Container>
         </Box>
     );
-}
+};
 
-export { Magazyn };
+export { Dostawcy };

@@ -15,7 +15,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Magazyn } from './magazyn/MagazynPage.jsx';
 import { Grafik } from './grafik/GrafikPage.jsx';
 import { User } from './uzytkownicy/UzytkownicyPage.jsx';
-import { Teksty } from './teskty/TekstyPage.jsx';
+import { Dostawcy } from './dostawcy/DostawcyPage.jsx'; 
+import { Teksty } from './teksty/TekstyPage.jsx';
 import Home from './Client/components/Home/HomePage.jsx';
 import Menu from './Client/components/Menu/MenuPage.jsx';
 import Kontakt from './Client/components/Contact/ContactPage.jsx';
@@ -76,8 +77,11 @@ function ClientRoutes() {
             <Route path="/user" element={<SystemLayout />}>
                 <Route index element={<User />} />
             </Route>
-            <Route path="/teskty" element={<SystemLayout />}>
+            <Route path="/teksty" element={<SystemLayout />}>
                 <Route index element={<Teksty />} />
+            </Route>
+            <Route path="/dostawcy" element={<SystemLayout />}>
+                <Route index element={<Dostawcy />} />
             </Route>
         </Routes>
     );

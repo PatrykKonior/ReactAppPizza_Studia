@@ -102,7 +102,6 @@ const Grafik = () => {
                 />
                 <Button
                     variant="contained"
-                    startIcon={<AddCircleOutline />}
                     onClick={() => setOpenAdd(true)}
                     sx={{
                         backgroundColor: '#011a20',

@@ -102,7 +102,6 @@ const User = () => {
                 />
                 <Button
                     variant="contained"
-                    startIcon={<AddCircleOutline />}
                     onClick={() => setOpenAdd(true)}
                     sx={{
                         backgroundColor: '#011a20',
@@ -110,7 +109,7 @@ const User = () => {
                         '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' },
                     }}
                 >
-                    Dodaj Pracownika
+                    Dodaj Użytkownika
                 </Button>
             </Box>
 
@@ -119,8 +118,11 @@ const User = () => {
                     <TableHead>
                         <TableRow>
                             {['Imię', 'Nazwisko', 'Login', 'HasłoHash', 'Email', 'PoziomDostępu', 'DataRejestracji'].map((col) => (
-                                <TableCell key={col} align="center" sx={{ fontWeight: 'bold' }}>{col}</TableCell>
+                                <TableCell key={col} align="center" sx={{ fontWeight: 'bold' }}>
+                                    {col}
+                                </TableCell>
                             ))}
+                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Akcje</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

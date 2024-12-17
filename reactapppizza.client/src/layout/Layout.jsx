@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSearch, faBell, faUserCircle, faCog,
     faChartLine, faBox, faUsers, faClipboardList,
-    faClipboardCheck, faFileInvoice, faBoxOpen, faShoppingCart, faUserSecret, faFont
+    faClipboardCheck, faFileInvoice, faBoxOpen, faShoppingCart, faUserSecret, faFont, faTruckField
 } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
 
@@ -68,6 +68,9 @@ export function Layout() {
                             </Nav.Link>
                             <Nav.Link as={Link} to="/magazyn" className="sidebar-item">
                                 <FontAwesomeIcon icon={faClipboardCheck} className="sidebar-icon" /> MAGAZYN
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/dostawcy" className="sidebar-item">
+                                <FontAwesomeIcon icon={faTruckField} className="sidebar-icon" /> DOSTAWCY
                             </Nav.Link>
                             <Nav.Link as={Link} to="/grafik" className="sidebar-item">
                                 <FontAwesomeIcon icon={faUsers} className="sidebar-icon" /> PRACOWNICY
