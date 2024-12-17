@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,12 +11,33 @@ import '../App.css';
 
 export function Layout() {
     const location = useLocation();
+    const [currentTime, setCurrentTime] = useState('');
+
+    // Funkcja do aktualizacji czasu
+    useEffect(() => {
+        const updateTime = () => {
+            const formatter = new Intl.DateTimeFormat('pl-PL', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Europe/Warsaw',
+            });
+            setCurrentTime(formatter.format(new Date()));
+        };
+
+        // Ustawienie interwału do aktualizacji czasu co 1 sekundę
+        updateTime(); // Wywołanie funkcji natychmiast po renderze
+        const interval = setInterval(updateTime, 1000);
+
+        // Czyszczenie interwału po odmontowaniu komponentu
+        return () => clearInterval(interval);
+    }, []);
 
     const titleStyle = {
         fontSize: '35px',
         fontFamily: 'Montserrat, sans-serif',
         margin: '20px 0',
-         marginLeft: '50px'
+        marginLeft: '50px',
     };
 
     return (
@@ -92,8 +113,8 @@ export function Layout() {
                             </Nav.Link>
                             <div className="sidebar-footer">
                                 <div className="user-badge">
-                                    Aktualna godzina: <strong>21:37</strong>
-                                </div> 
+                                    Aktualna godzina: <strong>{currentTime}</strong>
+                                </div>
                                 <div className="user-badge">
                                     Zalogowano jako: <strong>Patryk Konior</strong>
                                 </div>

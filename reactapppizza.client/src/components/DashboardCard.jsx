@@ -10,11 +10,11 @@ const DashboardCard = () => {
     const handleCardClick = (route, event) => {
         const card = event.currentTarget;
         gsap.to(card, {
-            scale: 0.90, // Delikatne pomniejszenie
+            scale: 0.90, 
             duration: 0.2,
             ease: 'power2.out',
             onComplete: () => {
-                gsap.to(card, { scale: 1, duration: 0.1 }); // Powrót do pierwotnego rozmiaru
+                gsap.to(card, { scale: 0.97, duration: 0.1 }); // Powrót do pierwotnego rozmiaru
                 navigate(route);
             },
         });

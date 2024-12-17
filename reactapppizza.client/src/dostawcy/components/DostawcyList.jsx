@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead,
     TableRow, Paper, IconButton, TextField, Typography, Box, Button
@@ -9,21 +9,40 @@ import EditDostawcyModal from './EditDostawcyModal';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
 const DostawcyList = () => {
+    const [dostawcy, setDostawcy] = useState([]);
     const [filter, setFilter] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [currentDostawca, setCurrentDostawca] = useState(null);
 
+    // Pobieranie danych dostawców z backendu
+    const fetchDostawcy = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch('http://localhost:5178/api/Dostawcy');
+            if (!response.ok) throw new Error('Nie udało się pobrać danych dostawców');
+            const data = await response.json();
+            setDostawcy(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchDostawcy();
+    }, []);
+
     const handleFilterChange = (e) => setFilter(e.target.value);
 
-    const dostawcyData = [
-        { DostawcaID: 1, Nazwa: 'Dostawca A', KontaktEmail: 'a@firma.com', KontaktTelefon: '123456789', Adres: 'ul. 1', Miasto: 'Kraków', KodPocztowy: '30-001', Kraj: 'Polska' },
-        { DostawcaID: 2, Nazwa: 'Dostawca B', KontaktEmail: 'b@firma.com', KontaktTelefon: '987654321', Adres: 'ul. 2', Miasto: 'Warszawa', KodPocztowy: '00-001', Kraj: 'Polska' },
-    ];
-
-    const filteredDostawcy = dostawcyData.filter((item) =>
-        item.Nazwa.toLowerCase().includes(filter.toLowerCase())
+    // Użycie camelCase w filtrowaniu
+    const filteredDostawcy = dostawcy.filter((item) =>
+        item.nazwa && item.nazwa.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -31,6 +50,8 @@ const DostawcyList = () => {
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
                 Lista Dostawców
             </Typography>
+
+            {/* Filtr wyszukiwania */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
                 <TextField
                     variant="outlined"
@@ -47,47 +68,58 @@ const DostawcyList = () => {
                         color: '#fff',
                         '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' },
                     }}
+                    startIcon={<AddCircleOutline />}
                 >
                     Dodaj Dostawcę
                 </Button>
             </Box>
 
-            <TableContainer component={Paper} elevation={3}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            {['DostawcaID', 'Nazwa', 'KontaktEmail', 'KontaktTelefon', 'Adres', 'Miasto', 'KodPocztowy', 'Kraj'].map((col) => (
-                                <TableCell key={col} align="center" sx={{ fontWeight: 'bold' }}>
-                                    {col}
-                                </TableCell>
-                            ))}
-                            <TableCell align="center" sx={{ fontWeight: 'bold' }}>Akcje</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filteredDostawcy.map((dostawca) => (
-                            <TableRow key={dostawca.DostawcaID}>
-                                <TableCell align="center">{dostawca.DostawcaID}</TableCell>
-                                <TableCell align="center">{dostawca.Nazwa}</TableCell>
-                                <TableCell align="center">{dostawca.KontaktEmail}</TableCell>
-                                <TableCell align="center">{dostawca.KontaktTelefon}</TableCell>
-                                <TableCell align="center">{dostawca.Adres}</TableCell>
-                                <TableCell align="center">{dostawca.Miasto}</TableCell>
-                                <TableCell align="center">{dostawca.KodPocztowy}</TableCell>
-                                <TableCell align="center">{dostawca.Kraj}</TableCell>
-                                <TableCell align="center">
-                                    <IconButton color="primary" onClick={() => { setCurrentDostawca(dostawca); setOpenEdit(true); }}>
-                                        <Edit />
-                                    </IconButton>
-                                    <IconButton color="error" onClick={() => { setCurrentDostawca(dostawca); setOpenDelete(true); }}>
-                                        <Delete />
-                                    </IconButton>
-                                </TableCell>
+            {/* Obsługa błędów i ładowania */}
+            {loading && <Typography>Ładowanie danych...</Typography>}
+            {error && <Typography color="error">{error}</Typography>}
+
+            {/* Tabela dostawców */}
+            {!loading && !error && (
+                <TableContainer component={Paper} elevation={3}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>ID</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Nazwa</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Email</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Telefon</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Adres</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Miasto</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Kod Pocztowy</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Kraj</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>Akcje</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {filteredDostawcy.map((dostawca) => (
+                                <TableRow key={dostawca.dostawcaID}>
+                                    <TableCell align="center">{dostawca.dostawcaID}</TableCell>
+                                    <TableCell align="center">{dostawca.nazwa}</TableCell>
+                                    <TableCell align="center">{dostawca.kontaktEmail}</TableCell>
+                                    <TableCell align="center">{dostawca.kontaktTelefon}</TableCell>
+                                    <TableCell align="center">{dostawca.adres}</TableCell>
+                                    <TableCell align="center">{dostawca.miasto}</TableCell>
+                                    <TableCell align="center">{dostawca.kodPocztowy}</TableCell>
+                                    <TableCell align="center">{dostawca.kraj}</TableCell>
+                                    <TableCell align="center">
+                                        <IconButton color="primary" onClick={() => { setCurrentDostawca(dostawca); setOpenEdit(true); }}>
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="error" onClick={() => { setCurrentDostawca(dostawca); setOpenDelete(true); }}>
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )}
 
             {/* Modale */}
             <AddDostawcyModal open={openAdd} onClose={() => setOpenAdd(false)} />
