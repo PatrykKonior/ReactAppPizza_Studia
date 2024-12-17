@@ -3,13 +3,13 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const AddDostawcyModal = ({ open, onClose, onAdd }) => {
     const [newDostawca, setNewDostawca] = useState({
-        Nazwa: '',
-        KontaktEmail: '',
-        KontaktTelefon: '',
-        Adres: '',
-        Miasto: '',
-        KodPocztowy: '',
-        Kraj: '',
+        nazwa: '',
+        kontaktEmail: '',
+        kontaktTelefon: '',
+        adres: '',
+        miasto: '',
+        kodPocztowy: '',
+        kraj: '',
     });
 
     const handleChange = (e) => {
@@ -27,13 +27,13 @@ const AddDostawcyModal = ({ open, onClose, onAdd }) => {
             <DialogTitle>Dodaj Nowego Dostawcę</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Nazwa" name="Nazwa" onChange={handleChange} />
-                    <TextField label="Kontakt Email" name="KontaktEmail" onChange={handleChange} />
-                    <TextField label="Kontakt Telefon" name="KontaktTelefon" onChange={handleChange} />
-                    <TextField label="Adres" name="Adres" onChange={handleChange} />
-                    <TextField label="Miasto" name="Miasto" onChange={handleChange} />
-                    <TextField label="Kod Pocztowy" name="KodPocztowy" onChange={handleChange} />
-                    <TextField label="Kraj" name="Kraj" onChange={handleChange} />
+                    <TextField label="Nazwa" name="nazwa" onChange={handleChange} />
+                    <TextField label="Kontakt Email" name="kontaktEmail" onChange={handleChange} />
+                    <TextField label="Kontakt Telefon" name="kontaktTelefon" onChange={handleChange} />
+                    <TextField label="Adres" name="adres" onChange={handleChange} />
+                    <TextField label="Miasto" name="miasto" onChange={handleChange} />
+                    <TextField label="Kod Pocztowy" name="kodPocztowy" onChange={handleChange} />
+                    <TextField label="Kraj" name="kraj" onChange={handleChange} />
                 </Box>
             </DialogContent>
             <DialogActions>

@@ -19,11 +19,13 @@ const DostawcyList = () => {
     const [openDelete, setOpenDelete] = useState(false);
     const [currentDostawca, setCurrentDostawca] = useState(null);
 
-    // Pobieranie danych dostawców z backendu
+    const API_URL = 'http://localhost:5178/api/Dostawcy';
+
+    // Pobieranie danych dostawców
     const fetchDostawcy = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5178/api/Dostawcy');
+            const response = await fetch(API_URL);
             if (!response.ok) throw new Error('Nie udało się pobrać danych dostawców');
             const data = await response.json();
             setDostawcy(data);
@@ -38,9 +40,49 @@ const DostawcyList = () => {
         fetchDostawcy();
     }, []);
 
+    // Dodawanie nowego dostawcy
+    const handleAdd = async (newDostawca) => {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newDostawca),
+            });
+            fetchDostawcy(); // Odświeżenie listy
+        } catch (err) {
+            console.error('Błąd dodawania:', err);
+        }
+    };
+
+    // Aktualizacja dostawcy
+    const handleUpdate = async (updatedDostawca) => {
+        try {
+            await fetch(`${API_URL}/${updatedDostawca.dostawcaID}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedDostawca),
+            });
+            fetchDostawcy(); // Odświeżenie listy
+        } catch (err) {
+            console.error('Błąd edycji:', err);
+        }
+    };
+
+    // Usuwanie dostawcy
+    const handleDelete = async () => {
+        try {
+            await fetch(`${API_URL}/${currentDostawca.dostawcaID}`, {
+                method: 'DELETE',
+            });
+            fetchDostawcy(); // Odświeżenie listy
+            setOpenDelete(false);
+        } catch (err) {
+            console.error('Błąd usuwania:', err);
+        }
+    };
+
     const handleFilterChange = (e) => setFilter(e.target.value);
 
-    // Użycie camelCase w filtrowaniu
     const filteredDostawcy = dostawcy.filter((item) =>
         item.nazwa && item.nazwa.toLowerCase().includes(filter.toLowerCase())
     );
@@ -122,9 +164,9 @@ const DostawcyList = () => {
             )}
 
             {/* Modale */}
-            <AddDostawcyModal open={openAdd} onClose={() => setOpenAdd(false)} />
-            <EditDostawcyModal open={openEdit} onClose={() => setOpenEdit(false)} dostawca={currentDostawca} />
-            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} />
+            <AddDostawcyModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
+            <EditDostawcyModal open={openEdit} onClose={() => setOpenEdit(false)} dostawca={currentDostawca} onUpdate={handleUpdate} />
+            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} onDelete={handleDelete} />
         </Box>
     );
 };

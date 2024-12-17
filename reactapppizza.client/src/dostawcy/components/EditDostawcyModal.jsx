@@ -3,13 +3,13 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditDostawcyModal = ({ open, onClose, dostawca, onUpdate }) => {
     const [formData, setFormData] = useState({
-        Nazwa: '',
-        KontaktEmail: '',
-        KontaktTelefon: '',
-        Adres: '',
-        Miasto: '',
-        KodPocztowy: '',
-        Kraj: '',
+        nazwa: '',
+        kontaktEmail: '',
+        kontaktTelefon: '',
+        adres: '',
+        miasto: '',
+        kodPocztowy: '',
+        kraj: '',
     });
 
     useEffect(() => {
@@ -35,48 +35,13 @@ const EditDostawcyModal = ({ open, onClose, dostawca, onUpdate }) => {
             <DialogTitle>Edytuj Dostawcę</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField
-                        label="Nazwa"
-                        name="Nazwa"
-                        value={formData.Nazwa}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Kontakt Email"
-                        name="KontaktEmail"
-                        value={formData.KontaktEmail}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Kontakt Telefon"
-                        name="KontaktTelefon"
-                        value={formData.KontaktTelefon}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Adres"
-                        name="Adres"
-                        value={formData.Adres}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Miasto"
-                        name="Miasto"
-                        value={formData.Miasto}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Kod Pocztowy"
-                        name="KodPocztowy"
-                        value={formData.KodPocztowy}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Kraj"
-                        name="Kraj"
-                        value={formData.Kraj}
-                        onChange={handleChange}
-                    />
+                    <TextField label="Nazwa" name="nazwa" value={formData.nazwa} onChange={handleChange} />
+                    <TextField label="Kontakt Email" name="kontaktEmail" value={formData.kontaktEmail} onChange={handleChange} />
+                    <TextField label="Kontakt Telefon" name="kontaktTelefon" value={formData.kontaktTelefon} onChange={handleChange} />
+                    <TextField label="Adres" name="adres" value={formData.adres} onChange={handleChange} />
+                    <TextField label="Miasto" name="miasto" value={formData.miasto} onChange={handleChange} />
+                    <TextField label="Kod Pocztowy" name="kodPocztowy" value={formData.kodPocztowy} onChange={handleChange} />
+                    <TextField label="Kraj" name="kraj" value={formData.kraj} onChange={handleChange} />
                 </Box>
             </DialogContent>
             <DialogActions>
