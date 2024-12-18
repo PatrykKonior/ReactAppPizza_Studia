@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead,
     TableRow, Paper, IconButton, TextField, Typography, Box, Button
@@ -8,27 +8,72 @@ import AddPrzepisModal from './AddPrzepisModal';
 import EditPrzepisModal from './EditPrzepisModal';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
+const API_URL = 'http://localhost:5178/api/PrzepisyKulinarne';
+
 const PrzepisList = () => {
+    const [przepisy, setPrzepisy] = useState([]);
     const [filter, setFilter] = useState('');
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [currentPrzepis, setCurrentPrzepis] = useState(null);
 
-    const handleFilterChange = (e) => setFilter(e.target.value);
+    const fetchPrzepisy = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            setPrzepisy(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania przepisów:', error);
+        }
+    };
 
-    const przepisyData = [
-        {
-            PrzepisID: 1,
-            NazwaPrzepisu: 'Spaghetti Bolognese',
-            Składniki: 'Makaron, mięso mielone, pomidory, cebula, czosnek',
-            InstrukcjaPrzygotowania: 'Ugotuj makaron, podsmaż mięso z cebulą i dodaj pomidory.',
-            CzasPrzygotowania: 45,
-        },
-    ];
+    useEffect(() => {
+        fetchPrzepisy();
+    }, []);
 
-    const filteredPrzepisy = przepisyData.filter((item) =>
-        item.NazwaPrzepisu.toLowerCase().includes(filter.toLowerCase())
+    const handleAdd = async (newPrzepis) => {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newPrzepis),
+            });
+            fetchPrzepisy();
+            setOpenAdd(false);
+        } catch (error) {
+            console.error('Błąd podczas dodawania przepisu:', error);
+        }
+    };
+
+    const handleEdit = async (updatedPrzepis) => {
+        try {
+            await fetch(`${API_URL}/${updatedPrzepis.przepisID}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedPrzepis),
+            });
+            fetchPrzepisy();
+            setOpenEdit(false);
+        } catch (error) {
+            console.error('Błąd podczas edytowania przepisu:', error);
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            await fetch(`${API_URL}/${currentPrzepis.przepisID}`, {
+                method: 'DELETE',
+            });
+            fetchPrzepisy();
+            setOpenDelete(false);
+        } catch (error) {
+            console.error('Błąd podczas usuwania przepisu:', error);
+        }
+    };
+
+    const filteredPrzepisy = przepisy.filter(przepis =>
+        przepis.nazwaPrzepisu.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -41,7 +86,7 @@ const PrzepisList = () => {
                     variant="outlined"
                     label="Szukaj przepisu..."
                     value={filter}
-                    onChange={handleFilterChange}
+                    onChange={(e) => setFilter(e.target.value)}
                     sx={{ width: '80%' }}
                 />
                 <Button
@@ -62,7 +107,7 @@ const PrzepisList = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            {['PrzepisID', 'Nazwa Przepisu', 'Składniki', 'Instrukcja Przygotowania', 'Czas Przygotowania'].map((col) => (
+                            {['Nazwa Przepisu', 'Składniki', 'Instrukcja Przygotowania', 'Czas Przygotowania'].map((col) => (
                                 <TableCell key={col} align="center" sx={{ fontWeight: 'bold' }}>
                                     {col}
                                 </TableCell>
@@ -72,12 +117,11 @@ const PrzepisList = () => {
                     </TableHead>
                     <TableBody>
                         {filteredPrzepisy.map((przepis) => (
-                            <TableRow key={przepis.PrzepisID}>
-                                <TableCell align="center">{przepis.PrzepisID}</TableCell>
-                                <TableCell align="center">{przepis.NazwaPrzepisu}</TableCell>
-                                <TableCell align="center">{przepis.Składniki}</TableCell>
-                                <TableCell align="center">{przepis.InstrukcjaPrzygotowania}</TableCell>
-                                <TableCell align="center">{przepis.CzasPrzygotowania} min</TableCell>
+                            <TableRow key={przepis.przepisID}>
+                                <TableCell align="center">{przepis.nazwaPrzepisu}</TableCell>
+                                <TableCell align="center">{przepis.składniki}</TableCell>
+                                <TableCell align="center">{przepis.instrukcjaPrzygotowania}</TableCell>
+                                <TableCell align="center">{przepis.czasPrzygotowania} min</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => { setCurrentPrzepis(przepis); setOpenEdit(true); }}>
                                         <Edit />
@@ -93,9 +137,9 @@ const PrzepisList = () => {
             </TableContainer>
 
             {/* Modale */}
-            <AddPrzepisModal open={openAdd} onClose={() => setOpenAdd(false)} />
-            <EditPrzepisModal open={openEdit} onClose={() => setOpenEdit(false)} przepis={currentPrzepis} />
-            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} />
+            <AddPrzepisModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
+            <EditPrzepisModal open={openEdit} onClose={() => setOpenEdit(false)} przepis={currentPrzepis} onUpdate={handleEdit} />
+            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} onDelete={handleDelete} />
         </Box>
     );
 };

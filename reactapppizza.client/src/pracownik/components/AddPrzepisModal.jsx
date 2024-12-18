@@ -3,10 +3,10 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const AddPrzepisModal = ({ open, onClose, onAdd }) => {
     const [newPrzepis, setNewPrzepis] = useState({
-        NazwaPrzepisu: '',
-        Składniki: '',
-        InstrukcjaPrzygotowania: '',
-        CzasPrzygotowania: '',
+        nazwaPrzepisu: '',
+        składniki: '',
+        instrukcjaPrzygotowania: '',
+        czasPrzygotowania: '',
     });
 
     const handleChange = (e) => {
@@ -15,7 +15,12 @@ const AddPrzepisModal = ({ open, onClose, onAdd }) => {
     };
 
     const handleAdd = () => {
+        if (!newPrzepis.nazwaPrzepisu || !newPrzepis.składniki || !newPrzepis.instrukcjaPrzygotowania) {
+            alert("Wszystkie pola muszą być wypełnione!");
+            return;
+        }
         onAdd(newPrzepis);
+        setNewPrzepis({ nazwaPrzepisu: '', składniki: '', instrukcjaPrzygotowania: '', czasPrzygotowania: '' });
         onClose();
     };
 
@@ -24,10 +29,22 @@ const AddPrzepisModal = ({ open, onClose, onAdd }) => {
             <DialogTitle>Dodaj Nowy Przepis</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Nazwa Przepisu" name="NazwaPrzepisu" onChange={handleChange} />
-                    <TextField label="Składniki" name="Składniki" onChange={handleChange} multiline rows={3} />
-                    <TextField label="Instrukcja Przygotowania" name="InstrukcjaPrzygotowania" onChange={handleChange} multiline rows={4} />
-                    <TextField label="Czas Przygotowania (min)" name="CzasPrzygotowania" type="number" onChange={handleChange} />
+                    <TextField label="Nazwa Przepisu" name="nazwaPrzepisu" onChange={handleChange} value={newPrzepis.nazwaPrzepisu} />
+                    <TextField label="Składniki" name="składniki" onChange={handleChange} value={newPrzepis.składniki} multiline rows={3} />
+                    <TextField
+                        label="Instrukcja Przygotowania"
+                        name="instrukcjaPrzygotowania"
+                        onChange={handleChange}
+                        value={newPrzepis.instrukcjaPrzygotowania}
+                        multiline rows={4}
+                    />
+                    <TextField
+                        label="Czas Przygotowania (minuty)"
+                        name="czasPrzygotowania"
+                        type="number"
+                        onChange={handleChange}
+                        value={newPrzepis.czasPrzygotowania}
+                    />
                 </Box>
             </DialogContent>
             <DialogActions>

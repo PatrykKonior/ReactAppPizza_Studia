@@ -8,7 +8,7 @@ const Deklaracje = () => {
     return (
         <Box
             sx={{
-                width: '90%',
+                width: '98%',
                 padding: '1rem',
                 margin: '0 auto',
                 boxSizing: 'border-box',

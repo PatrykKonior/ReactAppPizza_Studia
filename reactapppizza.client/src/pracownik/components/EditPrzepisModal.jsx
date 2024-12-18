@@ -3,32 +3,29 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditPrzepisModal = ({ open, onClose, przepis, onUpdate }) => {
     const [formData, setFormData] = useState({
-        NazwaPrzepisu: '',
-        Składniki: '',
-        InstrukcjaPrzygotowania: '',
-        CzasPrzygotowania: '',
+        nazwaPrzepisu: '',
+        składniki: '',
+        instrukcjaPrzygotowania: '',
+        czasPrzygotowania: '',
     });
 
-    // Załadowanie danych istniejącego przepisu do formularza
     useEffect(() => {
         if (przepis) {
             setFormData(przepis);
         }
     }, [przepis]);
 
-    // Obsługa zmian w formularzu
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Obsługa aktualizacji przepisu
     const handleUpdate = () => {
         onUpdate(formData);
         onClose();
     };
 
-    if (!przepis) return null; // Jeśli nie ma przepisu, nie renderuj modala
+    if (!przepis) return null;
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -37,32 +34,30 @@ const EditPrzepisModal = ({ open, onClose, przepis, onUpdate }) => {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <TextField
                         label="Nazwa Przepisu"
-                        name="NazwaPrzepisu"
-                        value={formData.NazwaPrzepisu}
+                        name="nazwaPrzepisu"
                         onChange={handleChange}
+                        value={formData.nazwaPrzepisu}
                     />
                     <TextField
                         label="Składniki"
-                        name="Składniki"
-                        value={formData.Składniki}
+                        name="składniki"
                         onChange={handleChange}
-                        multiline
-                        rows={3}
+                        value={formData.składniki}
+                        multiline rows={3}
                     />
                     <TextField
                         label="Instrukcja Przygotowania"
-                        name="InstrukcjaPrzygotowania"
-                        value={formData.InstrukcjaPrzygotowania}
+                        name="instrukcjaPrzygotowania"
                         onChange={handleChange}
-                        multiline
-                        rows={4}
+                        value={formData.instrukcjaPrzygotowania}
+                        multiline rows={4}
                     />
                     <TextField
-                        label="Czas Przygotowania (min)"
-                        name="CzasPrzygotowania"
+                        label="Czas Przygotowania (minuty)"
+                        name="czasPrzygotowania"
                         type="number"
-                        value={formData.CzasPrzygotowania}
                         onChange={handleChange}
+                        value={formData.czasPrzygotowania}
                     />
                 </Box>
             </DialogContent>
