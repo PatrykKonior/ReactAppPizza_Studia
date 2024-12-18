@@ -11,7 +11,7 @@ const Sprzedaz = () => {
                 padding: '1rem',
                 margin: '0 auto',
                 boxSizing: 'border-box',
-                marginRight: '350px',
+                marginRight: '380px',
             }}
         >
             <Container maxWidth="xl" disableGutters>
