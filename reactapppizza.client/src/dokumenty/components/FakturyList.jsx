@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead,
     TableRow, Paper, IconButton, TextField, Typography, Box, Button
@@ -8,35 +8,76 @@ import AddFakturaModal from './AddFakturaModal';
 import EditFakturaModal from './EditFakturaModal';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
+const API_URL = 'http://localhost:5178/api/Faktury';
+
 const FakturyList = () => {
+    const [fakturyData, setFakturyData] = useState([]);
     const [filter, setFilter] = useState('');
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [currentFaktura, setCurrentFaktura] = useState(null);
 
-    const handleFilterChange = (e) => setFilter(e.target.value);
+    // Fetch faktury data
+    const fetchFaktury = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            setFakturyData(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania faktur:', error);
+        }
+    };
 
-    const fakturyData = [
-        {
-            FakturaID: 1,
-            ZamowienieID: 101,
-            DataZamowienia: '2024-06-01',
-            Status: 'W trakcie',
-            Imie: 'Jan',
-            Nazwisko: 'Kowalski',
-            WystawionaNa: 'Firma X',
-            OpisDotyczy: 'Zakup towaru',
-            KwotaNetto: 1200.50,
-            VAT: 23.00,
-            KwotaBrutto: 1476.61,
-        },
-        // Przykładowe dane
-    ];
+    useEffect(() => {
+        fetchFaktury();
+    }, []);
+
+    // Add Faktura
+    const handleAdd = async (newFaktura) => {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newFaktura),
+            });
+            fetchFaktury();
+            setOpenAdd(false);
+        } catch (error) {
+            console.error('Błąd podczas dodawania faktury:', error);
+        }
+    };
+
+    // Edit Faktura
+    const handleEdit = async (updatedFaktura) => {
+        try {
+            await fetch(`${API_URL}/${updatedFaktura.fakturaID}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedFaktura),
+            });
+            fetchFaktury();
+            setOpenEdit(false);
+        } catch (error) {
+            console.error('Błąd podczas edycji faktury:', error);
+        }
+    };
+
+    // Delete Faktura
+    const handleDelete = async () => {
+        try {
+            await fetch(`${API_URL}/${currentFaktura.fakturaID}`, {
+                method: 'DELETE',
+            });
+            fetchFaktury();
+            setOpenDelete(false);
+        } catch (error) {
+            console.error('Błąd podczas usuwania faktury:', error);
+        }
+    };
 
     const filteredFaktury = fakturyData.filter((item) =>
-        item.Imie.toLowerCase().includes(filter.toLowerCase()) ||
-        item.Nazwisko.toLowerCase().includes(filter.toLowerCase())
+        item.wystawionaNa.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -49,7 +90,7 @@ const FakturyList = () => {
                     variant="outlined"
                     label="Szukaj faktury..."
                     value={filter}
-                    onChange={handleFilterChange}
+                    onChange={(e) => setFilter(e.target.value)}
                     sx={{ width: '80%' }}
                 />
                 <Button
@@ -70,10 +111,7 @@ const FakturyList = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            {[
-                                'FakturaID', 'ZamowienieID', 'Data Zamówienia', 'Status', 'Imię', 'Nazwisko',
-                                'WystawionaNa', 'OpisDotyczy', 'KwotaNetto', 'VAT', 'KwotaBrutto'
-                            ].map((col) => (
+                            {['FakturaID', 'ZamówienieID', 'Data Wystawienia', 'Wystawiona Na', 'Opis Dotyczy', 'Kwota Netto', 'VAT', 'Kwota Brutto'].map((col) => (
                                 <TableCell key={col} align="center" sx={{ fontWeight: 'bold' }}>
                                     {col}
                                 </TableCell>
@@ -83,18 +121,17 @@ const FakturyList = () => {
                     </TableHead>
                     <TableBody>
                         {filteredFaktury.map((faktura) => (
-                            <TableRow key={faktura.FakturaID}>
-                                <TableCell align="center">{faktura.FakturaID}</TableCell>
-                                <TableCell align="center">{faktura.ZamowienieID}</TableCell>
-                                <TableCell align="center">{faktura.DataZamowienia}</TableCell>
-                                <TableCell align="center">{faktura.Status}</TableCell>
-                                <TableCell align="center">{faktura.Imie}</TableCell>
-                                <TableCell align="center">{faktura.Nazwisko}</TableCell>
-                                <TableCell align="center">{faktura.WystawionaNa}</TableCell>
-                                <TableCell align="center">{faktura.OpisDotyczy}</TableCell>
-                                <TableCell align="center">{faktura.KwotaNetto} zł</TableCell>
-                                <TableCell align="center">{faktura.VAT} %</TableCell>
-                                <TableCell align="center">{faktura.KwotaBrutto} zł</TableCell>
+                            <TableRow key={faktura.fakturaID}>
+                                <TableCell align="center">{faktura.fakturaID}</TableCell>
+                                <TableCell align="center">{faktura.zamówienieID}</TableCell>
+                                <TableCell align="center">
+                                    {new Date(faktura.dataWystawienia).toLocaleDateString('pl-PL')}
+                                </TableCell>
+                                <TableCell align="center">{faktura.wystawionaNa}</TableCell>
+                                <TableCell align="center">{faktura.opisDotyczy}</TableCell>
+                                <TableCell align="center">{faktura.kwotaNetto} zł</TableCell>
+                                <TableCell align="center">{faktura.vat} %</TableCell>
+                                <TableCell align="center">{faktura.kwotaBrutto} zł</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => { setCurrentFaktura(faktura); setOpenEdit(true); }}>
                                         <Edit />
@@ -110,9 +147,21 @@ const FakturyList = () => {
             </TableContainer>
 
             {/* Modale */}
-            <AddFakturaModal open={openAdd} onClose={() => setOpenAdd(false)} />
-            <EditFakturaModal open={openEdit} onClose={() => setOpenEdit(false)} faktura={currentFaktura} />
-            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} />
+            <AddFakturaModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
+            <EditFakturaModal
+                open={openEdit}
+                onClose={() => {
+                    setOpenEdit(false);
+                    setCurrentFaktura(null);
+                }}
+                faktura={currentFaktura}
+                onUpdate={handleEdit}
+            />
+            <DeleteConfirmModal
+                open={openDelete}
+                onClose={() => setOpenDelete(false)}
+                onDelete={handleDelete}
+            />
         </Box>
     );
 };

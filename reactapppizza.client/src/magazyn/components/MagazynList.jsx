@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead,
     TableRow, Paper, IconButton, TextField, Typography, Box, Button
@@ -8,22 +8,76 @@ import AddMagazynModal from './AddMagazynModal';
 import EditMagazynModal from './EditMagazynModal';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
+const API_URL = 'http://localhost:5178/api/Magazyn';
+
 const MagazynList = () => {
+    const [magazynData, setMagazynData] = useState([]);
     const [filter, setFilter] = useState('');
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [currentMagazyn, setCurrentMagazyn] = useState(null);
 
-    const handleFilterChange = (e) => setFilter(e.target.value);
+    // Pobieranie danych
+    const fetchMagazyn = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            setMagazynData(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania magazynu:', error);
+        }
+    };
 
-    const magazynData = [
-        { MagazynID: 1, TowarID: 101, Nazwa: 'Towar A', Opis: 'Opis A', Ilosc: 50, Lokalizacja: 'A1' },
-        { MagazynID: 2, TowarID: 102, Nazwa: 'Towar B', Opis: 'Opis B', Ilosc: 20, Lokalizacja: 'B2' },
-    ];
+    useEffect(() => {
+        fetchMagazyn();
+    }, []);
+
+    // Dodawanie magazynu
+    const handleAdd = async (newMagazyn) => {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newMagazyn),
+            });
+            fetchMagazyn();
+            setOpenAdd(false);
+        } catch (error) {
+            console.error('Błąd podczas dodawania magazynu:', error);
+        }
+    };
+
+    // Edytowanie magazynu
+    const handleEdit = async (updatedMagazyn) => {
+        try {
+            await fetch(`${API_URL}/${updatedMagazyn.magazynID}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedMagazyn),
+            });
+            fetchMagazyn();
+            setOpenEdit(false);
+        } catch (error) {
+            console.error('Błąd podczas edytowania magazynu:', error);
+        }
+    };
+
+    // Usuwanie magazynu
+    const handleDelete = async () => {
+        try {
+            await fetch(`${API_URL}/${currentMagazyn.magazynID}`, {
+                method: 'DELETE',
+            });
+            fetchMagazyn();
+            setOpenDelete(false);
+        } catch (error) {
+            console.error('Błąd podczas usuwania magazynu:', error);
+        }
+    };
 
     const filteredMagazyn = magazynData.filter((item) =>
-        item.Nazwa.toLowerCase().includes(filter.toLowerCase())
+        item.nazwaTowaru.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -36,11 +90,12 @@ const MagazynList = () => {
                     variant="outlined"
                     label="Szukaj towaru..."
                     value={filter}
-                    onChange={handleFilterChange}
+                    onChange={(e) => setFilter(e.target.value)}
                     sx={{ width: '75%' }}
                 />
                 <Button
                     variant="contained"
+                    startIcon={<AddCircleOutline />}
                     onClick={() => setOpenAdd(true)}
                     sx={{
                         backgroundColor: '#011a20',
@@ -61,8 +116,8 @@ const MagazynList = () => {
                         <TableRow>
                             <TableCell align="center">Magazyn ID</TableCell>
                             <TableCell align="center">Towar ID</TableCell>
-                            <TableCell align="center">Nazwa</TableCell>
-                            <TableCell align="center">Opis</TableCell>
+                            <TableCell align="center">Nazwa Towaru</TableCell>
+                            <TableCell align="center">Opis Towaru</TableCell>
                             <TableCell align="center">Ilość</TableCell>
                             <TableCell align="center">Lokalizacja</TableCell>
                             <TableCell align="center">Akcje</TableCell>
@@ -70,13 +125,13 @@ const MagazynList = () => {
                     </TableHead>
                     <TableBody>
                         {filteredMagazyn.map((item) => (
-                            <TableRow key={item.MagazynID}>
-                                <TableCell align="center">{item.MagazynID}</TableCell>
-                                <TableCell align="center">{item.TowarID}</TableCell>
-                                <TableCell align="center">{item.Nazwa}</TableCell>
-                                <TableCell align="center">{item.Opis}</TableCell>
-                                <TableCell align="center">{item.Ilosc}</TableCell>
-                                <TableCell align="center">{item.Lokalizacja}</TableCell>
+                            <TableRow key={item.magazynID}>
+                                <TableCell align="center">{item.magazynID}</TableCell>
+                                <TableCell align="center">{item.towarID}</TableCell>
+                                <TableCell align="center">{item.nazwaTowaru}</TableCell>
+                                <TableCell align="center">{item.opisTowaru}</TableCell>
+                                <TableCell align="center">{item.ilość}</TableCell>
+                                <TableCell align="center">{item.lokalizacja}</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => {
                                         setCurrentMagazyn(item);
@@ -84,7 +139,10 @@ const MagazynList = () => {
                                     }}>
                                         <Edit />
                                     </IconButton>
-                                    <IconButton color="error" onClick={() => setOpenDelete(true)}>
+                                    <IconButton color="error" onClick={() => {
+                                        setCurrentMagazyn(item);
+                                        setOpenDelete(true);
+                                    }}>
                                         <Delete />
                                     </IconButton>
                                 </TableCell>
@@ -95,7 +153,7 @@ const MagazynList = () => {
             </TableContainer>
 
             {/* Modale */}
-            <AddMagazynModal open={openAdd} onClose={() => setOpenAdd(false)} />
+            <AddMagazynModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
             <EditMagazynModal
                 open={openEdit}
                 onClose={() => {
@@ -103,8 +161,13 @@ const MagazynList = () => {
                     setCurrentMagazyn(null);
                 }}
                 magazyn={currentMagazyn}
+                onUpdate={handleEdit}
             />
-            <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} />
+            <DeleteConfirmModal
+                open={openDelete}
+                onClose={() => setOpenDelete(false)}
+                onDelete={handleDelete}
+            />
         </Box>
     );
 };

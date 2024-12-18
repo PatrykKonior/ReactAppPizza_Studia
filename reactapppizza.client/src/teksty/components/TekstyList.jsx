@@ -1,90 +1,247 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
-    Box, Card, CardContent, Typography, Button, IconButton, Grid, Paper
+    Box, Card, CardContent, Typography, Grid, TextField, IconButton, Button
 } from '@mui/material';
-import { Edit, Delete, AddCircleOutline } from '@mui/icons-material';
-import AddTekstModal from './AddTekstModal';
-import EditTekstModal from './EditTekstModal';
-import DeleteConfirmTekstModal from './DeleteConfirmTekstModal';
+import { Edit, Save, Cancel } from '@mui/icons-material';
+
+const API_TEKSTY_URL = 'http://localhost:5178/api/Teksty';
+const API_OPINIE_URL = 'http://localhost:5178/api/Opinie';
 
 const TekstyList = () => {
-    const [openAdd, setOpenAdd] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
-    const [openDelete, setOpenDelete] = useState(false);
-    const [currentTekst, setCurrentTekst] = useState(null);
+    const [teksty, setTeksty] = useState([]);
+    const [opinie, setOpinie] = useState([]);
+    const [editingTekstId, setEditingTekstId] = useState(null);
+    const [editingOpiniaId, setEditingOpiniaId] = useState(null);
 
-    const tekstyData = [
-        { id: 1, title: 'Hero Section', content: 'Witamy w Pizza 365 - Najlepsze pizze w mieście!' },
-        { id: 2, title: 'About Section', content: 'Pizza 365 to miejsce, gdzie pasja do gotowania spotyka się z jakością.' },
-        { id: 3, title: 'CTA Section', content: 'Gotowy na kulinarną podróż? Zobacz nasze menu!' },
-    ];
+    useEffect(() => {
+        fetchTeksty();
+        fetchOpinie();
+    }, []);
 
-    const [teksty, setTeksty] = useState(tekstyData);
-
-    const handleAdd = (newTekst) => {
-        setTeksty([...teksty, { id: teksty.length + 1, ...newTekst }]);
-        setOpenAdd(false);
+    // Pobierz teksty
+    const fetchTeksty = async () => {
+        try {
+            const response = await fetch(API_TEKSTY_URL);
+            const data = await response.json();
+            setTeksty(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania tekstów:', error);
+        }
     };
 
-    const handleEdit = (updatedTekst) => {
-        setTeksty(teksty.map((t) => (t.id === updatedTekst.id ? updatedTekst : t)));
-        setOpenEdit(false);
+    // Pobierz opinie
+    const fetchOpinie = async () => {
+        try {
+            const response = await fetch(API_OPINIE_URL);
+            const data = await response.json();
+            setOpinie(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania opinii:', error);
+        }
     };
 
-    const handleDelete = () => {
-        setTeksty(teksty.filter((t) => t.id !== currentTekst.id));
-        setOpenDelete(false);
+    // Aktualizacja tekstów
+    const handleUpdateTekst = async (id, updatedTekst) => {
+        try {
+            const response = await fetch(`${API_TEKSTY_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedTekst),
+            });
+            if (response.ok) {
+                fetchTeksty();
+                setEditingTekstId(null);
+            }
+        } catch (error) {
+            console.error('Błąd podczas aktualizacji tekstu:', error);
+        }
     };
+
+    // Aktualizacja opinii
+    const handleUpdateOpinia = async (id, updatedOpinia) => {
+        try {
+            const response = await fetch(`${API_OPINIE_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedOpinia),
+            });
+            if (response.ok) {
+                fetchOpinie();
+                setEditingOpiniaId(null);
+            }
+        } catch (error) {
+            console.error('Błąd podczas aktualizacji opinii:', error);
+        }
+    };
+
+    // Anulowanie edycji
+    const handleCancelTekstEdit = () => setEditingTekstId(null);
+    const handleCancelOpiniaEdit = () => setEditingOpiniaId(null);
 
     return (
-        <Box>
-            {/* Przycisk dodawania */}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-                <Button
-                    variant="contained"
-                    startIcon={<AddCircleOutline />}
-                    onClick={() => setOpenAdd(true)}
-                    sx={{
-                        backgroundColor: '#1976d2',
-                        color: '#fff',
-                        '&:hover': { backgroundColor: '#1565c0' },
-                    }}
-                >
-                    Dodaj Sekcję Tekstu
-                </Button>
-            </Box>
+        <Grid container spacing={3}>
+            {/* Teksty */}
+            <Grid item xs={12} md={6}>
+                <Box>
+                    <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
+                        Teksty
+                    </Typography>
 
-            {/* Lista tekstów */}
-            <Grid container spacing={3}>
-                {teksty.map((tekst) => (
-                    <Grid item xs={12} sm={6} key={tekst.id}>
-                        <Card elevation={3} sx={{ borderRadius: '10px', backgroundColor: '#fff' }}>
+                    {teksty.map((tekst) => (
+                        <Card key={tekst.id} elevation={3} sx={{ mb: 2, padding: 2, minHeight: '200px' }}>
                             <CardContent>
-                                <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#333' }}>
-                                    {tekst.title}
-                                </Typography>
-                                <Typography variant="body2" sx={{ marginY: 2, color: '#555' }}>
-                                    {tekst.content}
-                                </Typography>
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-                                    <IconButton color="primary" onClick={() => { setCurrentTekst(tekst); setOpenEdit(true); }}>
-                                        <Edit />
-                                    </IconButton>
-                                    <IconButton color="error" onClick={() => { setCurrentTekst(tekst); setOpenDelete(true); }}>
-                                        <Delete />
-                                    </IconButton>
-                                </Box>
+                                {editingTekstId === tekst.id ? (
+                                    <>
+                                        <TextField
+                                            fullWidth
+                                            label="Tytuł"
+                                            value={tekst.title}
+                                            onChange={(e) => {
+                                                const updatedTekst = { ...tekst, title: e.target.value };
+                                                setTeksty((prev) =>
+                                                    prev.map((t) =>
+                                                        t.id === tekst.id ? updatedTekst : t
+                                                    )
+                                                );
+                                            }}
+                                            sx={{ mb: 2 }}
+                                        />
+                                        <TextField
+                                            fullWidth
+                                            label="Treść"
+                                            value={tekst.content}
+                                            onChange={(e) => {
+                                                const updatedTekst = { ...tekst, content: e.target.value };
+                                                setTeksty((prev) =>
+                                                    prev.map((t) =>
+                                                        t.id === tekst.id ? updatedTekst : t
+                                                    )
+                                                );
+                                            }}
+                                            multiline
+                                            rows={4}
+                                        />
+                                        <Box sx={{ mt: 2, display: 'flex', gap: 36 }}>
+                                            <Button
+                                                variant="contained"
+                                                startIcon={<Save />}
+                                                onClick={() => handleUpdateTekst(tekst.id, tekst)}
+                                            >
+                                                Zapisz
+                                            </Button>
+                                            <Button
+                                                variant="outlined"
+                                                startIcon={<Cancel />}
+                                                onClick={handleCancelTekstEdit}
+                                            >
+                                                Anuluj
+                                            </Button>
+                                        </Box>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Typography variant="h6">{tekst.title}</Typography>
+                                        <Typography variant="body1" sx={{ mt: 1 }}>
+                                            {tekst.content}
+                                        </Typography>
+                                        <Box sx={{ mt: 2 }}>
+                                            <IconButton
+                                                color="primary"
+                                                onClick={() => setEditingTekstId(tekst.id)}
+                                            >
+                                                <Edit />
+                                            </IconButton>
+                                        </Box>
+                                    </>
+                                )}
                             </CardContent>
                         </Card>
-                    </Grid>
-                ))}
+                    ))}
+                </Box>
             </Grid>
 
-            {/* Modale */}
-            <AddTekstModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
-            <EditTekstModal open={openEdit} onClose={() => setOpenEdit(false)} tekst={currentTekst} onUpdate={handleEdit} />
-            <DeleteConfirmTekstModal open={openDelete} onClose={() => setOpenDelete(false)} onDelete={handleDelete} />
-        </Box>
+            {/* Opinie */}
+            <Grid item xs={12} md={6}>
+                <Box>
+                    <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
+                        Opinie
+                    </Typography>
+
+                    {opinie.map((opinia) => (
+                        <Card key={opinia.id} elevation={3} sx={{ mb: 2, padding: 2, minHeight: '200px' }}>
+                            <CardContent>
+                                {editingOpiniaId === opinia.id ? (
+                                    <>
+                                        <TextField
+                                            fullWidth
+                                            label="Opinia"
+                                            value={opinia.opinia}
+                                            onChange={(e) => {
+                                                const updatedOpinia = { ...opinia, opinia: e.target.value };
+                                                setOpinie((prev) =>
+                                                    prev.map((o) =>
+                                                        o.id === opinia.id ? updatedOpinia : o
+                                                    )
+                                                );
+                                            }}
+                                            multiline
+                                            rows={4}
+                                            sx={{ mb: 2 }}
+                                        />
+                                        <TextField
+                                            fullWidth
+                                            label="Klient"
+                                            value={opinia.klient}
+                                            onChange={(e) => {
+                                                const updatedOpinia = { ...opinia, klient: e.target.value };
+                                                setOpinie((prev) =>
+                                                    prev.map((o) =>
+                                                        o.id === opinia.id ? updatedOpinia : o
+                                                    )
+                                                );
+                                            }}
+                                        />
+                                        <Box sx={{ mt: 2, display: 'flex', gap: 36 }}>
+                                            <Button
+                                                variant="contained"
+                                                startIcon={<Save />}
+                                                onClick={() => handleUpdateOpinia(opinia.id, opinia)}
+                                            >
+                                                Zapisz
+                                            </Button>
+                                            <Button
+                                                variant="outlined"
+                                                startIcon={<Cancel />}
+                                                onClick={handleCancelOpiniaEdit}
+                                            >
+                                                Anuluj
+                                            </Button>
+                                        </Box>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Typography variant="body1" sx={{ mb: 1 }}>
+                                            {opinia.opinia}
+                                        </Typography>
+                                        <Typography variant="subtitle2" color="textSecondary">
+                                            - {opinia.klient}
+                                        </Typography>
+                                        <Box sx={{ mt: 2 }}>
+                                            <IconButton
+                                                color="primary"
+                                                onClick={() => setEditingOpiniaId(opinia.id)}
+                                            >
+                                                <Edit />
+                                            </IconButton>
+                                        </Box>
+                                    </>
+                                )}
+                            </CardContent>
+                        </Card>
+                    ))}
+                </Box>
+            </Grid>
+        </Grid>
     );
 };
 

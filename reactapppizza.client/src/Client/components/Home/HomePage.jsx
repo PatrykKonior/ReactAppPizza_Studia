@@ -16,6 +16,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
     const [openPopup, setOpenPopup] = useState(false);
+    const [texts, setTexts] = useState([]);
+    const [opinions, setOpinions] = useState([]);
+
+    const API_TEKSTY_URL = 'http://localhost:5178/api/Teksty';
+    const API_OPINIE_URL = 'http://localhost:5178/api/Opinie';
+
+    const fetchTeksty = async () => {
+        try {
+            const response = await fetch(API_TEKSTY_URL);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log("Pobrane teksty:", data);
+            setTexts(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania tekstów:', error);
+        }
+    };
+
+    const fetchOpinie = async () => {
+        try {
+            const response = await fetch(API_OPINIE_URL);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log("Pobrane opinie:", data);
+            setOpinions(data);
+        } catch (error) {
+            console.error('Błąd podczas pobierania opinii:', error);
+        }
+    };
 
     const handlePopupOpen = () => setOpenPopup(true);
     const handlePopupClose = () => setOpenPopup(false);
@@ -28,6 +61,9 @@ const Home = () => {
     };
 
     useEffect(() => {
+        console.log("Pobieranie danych...");
+        fetchTeksty();
+        fetchOpinie();
         // GSAP Animation for hero text
         gsap.fromTo(
             '.hero-text-container',
@@ -129,7 +165,7 @@ const Home = () => {
                                 marginBottom: '10px',
                             }}
                         >
-                            Witamy w Pizza 365
+                            {texts.find((text) => text.section === 'Hero')?.content || 'Ładowanie...'}
                         </Typography>
                         <Button
                             variant="contained"
@@ -154,7 +190,7 @@ const Home = () => {
                                 color: '#011a20',
                             }}
                         >
-                            Najlepsze pizze w mieście, przygotowane z miłością i pasją!
+                            {texts.find((text) => text.section === 'HeroSubheading')?.content || 'Ładowanie...'}
                         </Typography>
                     </Box>
                 </Box>
@@ -281,10 +317,7 @@ const Home = () => {
                             textAlign: 'justify',
                         }}
                     >
-                        Pizza 365 to miejsce, gdzie pasja do gotowania spotyka się z najwyższą jakością składników.
-                        Codziennie przygotowujemy świeże ciasto, używając tradycyjnych włoskich receptur.
-                        Naszym celem jest dostarczanie wyjątkowych doświadczeń kulinarnych dla każdego klienta.
-                        Jesteśmy otwarci codziennie od 10:00 do 22:00.
+                        {texts.find((text) => text.section === 'About')?.content || 'Ładowanie...'}
                     </Typography>
                 </Box>
 

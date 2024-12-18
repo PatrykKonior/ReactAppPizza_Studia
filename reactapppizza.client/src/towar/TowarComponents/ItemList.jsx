@@ -122,6 +122,7 @@ const ItemList = () => {
                         },
                     }}
                     onClick={() => setOpenAdd(true)}
+                    startIcon={<AddCircleOutline />}
                 >
                     Dodaj Towar
                 </Button>

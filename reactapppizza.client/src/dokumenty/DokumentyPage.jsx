@@ -7,11 +7,11 @@ function Dokumenty() {
     return (
         <Box
             sx={{
-                width: '110%',
+                width: '100%',
                 padding: '1rem',
                 margin: '0 auto',
                 boxSizing: 'border-box',
-                marginRight: '-90px',
+                marginRight: '60px',
             }}
         >
             <Container maxWidth="xl" disableGutters>

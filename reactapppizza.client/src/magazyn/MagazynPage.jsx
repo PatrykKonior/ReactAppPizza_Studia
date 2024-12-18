@@ -11,7 +11,7 @@ const Magazyn = () => {
                 padding: '1rem',
                 margin: '0 auto',
                 boxSizing: 'border-box',
-                marginRight: '420px',
+                marginRight: '280px',
             }}
         >
             <Container maxWidth="xl" disableGutters>

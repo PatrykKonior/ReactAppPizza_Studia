@@ -3,16 +3,18 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditMagazynModal = ({ open, onClose, magazyn, onUpdate }) => {
     const [formData, setFormData] = useState({
-        TowarID: '',
-        Nazwa: '',
-        Opis: '',
-        Ilosc: '',
-        Lokalizacja: '',
+        magazynID: '',
+        towarID: '',
+        ilość: '',
+        lokalizacja: '',
     });
 
     useEffect(() => {
         if (magazyn) {
-            setFormData(magazyn);
+            setFormData({
+                ...magazyn,
+                towary: null, // Dodaj pole towary jako null, aby spełniało wymagania backendu
+            });
         }
     }, [magazyn]);
 
@@ -22,66 +24,48 @@ const EditMagazynModal = ({ open, onClose, magazyn, onUpdate }) => {
     };
 
     const handleUpdate = () => {
-        onUpdate(formData);
+        const payload = {
+            ...formData,
+            ilość: parseInt(formData.ilość, 10),
+            towary: null, // Towary musi być null
+        };
+
+        onUpdate(payload);
         onClose();
     };
 
-    if (!magazyn) return null; // Nie renderuj nic, jeśli brak danych magazynu
-
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-            <DialogTitle>Edytuj Magazyn</DialogTitle>
+            <DialogTitle>Edytuj Produkt w Magazynie</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <TextField
                         label="Towar ID"
-                        name="TowarID"
-                        value={formData.TowarID}
+                        name="towarID"
+                        value={formData.towarID}
                         onChange={handleChange}
-                    />
-                    <TextField
-                        label="Nazwa"
-                        name="Nazwa"
-                        value={formData.Nazwa}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="Opis"
-                        name="Opis"
-                        value={formData.Opis}
-                        onChange={handleChange}
+                        required
                     />
                     <TextField
                         label="Ilość"
-                        name="Ilosc"
+                        name="ilość"
                         type="number"
-                        value={formData.Ilosc}
+                        value={formData.ilość}
                         onChange={handleChange}
+                        required
                     />
                     <TextField
                         label="Lokalizacja"
-                        name="Lokalizacja"
-                        value={formData.Lokalizacja}
+                        name="lokalizacja"
+                        value={formData.lokalizacja}
                         onChange={handleChange}
+                        required
                     />
                 </Box>
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="error">Anuluj</Button>
-                <Button
-                    onClick={handleUpdate}
-                    variant="contained"
-                    sx={{
-                        backgroundColor: '#011a20',
-                        color: '#fff',
-                        '&:hover': {
-                            backgroundColor: '#c7a42f',
-                            color: '#011a20',
-                        },
-                    }}
-                >
-                    Zapisz
-                </Button>
+                <Button onClick={handleUpdate} variant="contained">Zapisz</Button>
             </DialogActions>
         </Dialog>
     );

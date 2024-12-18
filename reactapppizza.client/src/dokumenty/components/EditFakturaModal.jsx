@@ -3,15 +3,17 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditFakturaModal = ({ open, onClose, faktura, onUpdate }) => {
     const [formData, setFormData] = useState({
-        ZamowienieID: '',
-        WystawionaNa: '',
-        OpisDotyczy: '',
-        KwotaNetto: '',
-        VAT: '',
-        KwotaBrutto: '',
-        DataWystawienia: '',
+        fakturaID: '',
+        zamówienieID: '',
+        dataWystawienia: '',
+        wystawionaNa: '',
+        opisDotyczy: '',
+        kwotaNetto: '',
+        vat: '',
+        kwotaBrutto: '',
     });
 
+    // Load initial data when faktura is passed
     useEffect(() => {
         if (faktura) {
             setFormData(faktura);
@@ -28,7 +30,7 @@ const EditFakturaModal = ({ open, onClose, faktura, onUpdate }) => {
         onClose();
     };
 
-    if (!faktura) return null; // Jeśli brak danych, nie renderuj
+    if (!faktura) return null; // Do not render if there's no faktura data
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -36,50 +38,58 @@ const EditFakturaModal = ({ open, onClose, faktura, onUpdate }) => {
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <TextField
+                        label="Faktura ID"
+                        name="fakturaID"
+                        value={formData.fakturaID}
+                        onChange={handleChange}
+                        disabled
+                    />
+                    <TextField
                         label="Zamówienie ID"
-                        name="ZamowienieID"
-                        value={formData.ZamowienieID}
+                        name="zamówienieID"
+                        type="number"
+                        value={formData.zamówienieID}
                         onChange={handleChange}
                     />
                     <TextField
                         label="Data Wystawienia"
-                        name="DataWystawienia"
+                        name="dataWystawienia"
                         type="date"
-                        value={formData.DataWystawienia}
+                        value={formData.dataWystawienia}
                         onChange={handleChange}
                         InputLabelProps={{ shrink: true }}
                     />
                     <TextField
                         label="Wystawiona Na"
-                        name="WystawionaNa"
-                        value={formData.WystawionaNa}
+                        name="wystawionaNa"
+                        value={formData.wystawionaNa}
                         onChange={handleChange}
                     />
                     <TextField
                         label="Opis Dotyczy"
-                        name="OpisDotyczy"
-                        value={formData.OpisDotyczy}
+                        name="opisDotyczy"
+                        value={formData.opisDotyczy}
                         onChange={handleChange}
                     />
                     <TextField
                         label="Kwota Netto"
-                        name="KwotaNetto"
+                        name="kwotaNetto"
                         type="number"
-                        value={formData.KwotaNetto}
+                        value={formData.kwotaNetto}
                         onChange={handleChange}
                     />
                     <TextField
                         label="VAT (%)"
-                        name="VAT"
+                        name="vat"
                         type="number"
-                        value={formData.VAT}
+                        value={formData.vat}
                         onChange={handleChange}
                     />
                     <TextField
                         label="Kwota Brutto"
-                        name="KwotaBrutto"
+                        name="kwotaBrutto"
                         type="number"
-                        value={formData.KwotaBrutto}
+                        value={formData.kwotaBrutto}
                         onChange={handleChange}
                     />
                 </Box>
@@ -89,11 +99,7 @@ const EditFakturaModal = ({ open, onClose, faktura, onUpdate }) => {
                 <Button
                     onClick={handleUpdate}
                     variant="contained"
-                    sx={{
-                        backgroundColor: '#011a20',
-                        color: '#fff',
-                        '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' },
-                    }}
+                    sx={{ backgroundColor: '#011a20', color: '#fff', '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' } }}
                 >
                     Zapisz
                 </Button>

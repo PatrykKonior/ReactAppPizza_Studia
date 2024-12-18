@@ -3,13 +3,13 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const AddFakturaModal = ({ open, onClose, onAdd }) => {
     const [newFaktura, setNewFaktura] = useState({
-        ZamowienieID: '',
-        WystawionaNa: '',
-        OpisDotyczy: '',
-        KwotaNetto: '',
-        VAT: '',
-        KwotaBrutto: '',
-        DataWystawienia: '',
+        zamówienieID: '',
+        dataWystawienia: '',
+        wystawionaNa: '',
+        opisDotyczy: '',
+        kwotaNetto: '',
+        vat: '',
+        kwotaBrutto: '',
     });
 
     const handleChange = (e) => {
@@ -24,16 +24,16 @@ const AddFakturaModal = ({ open, onClose, onAdd }) => {
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-            <DialogTitle>Dodaj Nową Fakturę</DialogTitle>
+            <DialogTitle>Dodaj Fakturę</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Zamówienie ID" name="ZamowienieID" onChange={handleChange} />
-                    <TextField label="Data Wystawienia" name="DataWystawienia" type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
-                    <TextField label="Wystawiona Na" name="WystawionaNa" onChange={handleChange} />
-                    <TextField label="Opis Dotyczy" name="OpisDotyczy" onChange={handleChange} />
-                    <TextField label="Kwota Netto" name="KwotaNetto" type="number" onChange={handleChange} />
-                    <TextField label="VAT (%)" name="VAT" type="number" onChange={handleChange} />
-                    <TextField label="Kwota Brutto" name="KwotaBrutto" type="number" onChange={handleChange} />
+                    <TextField label="Zamówienie ID" name="zamówienieID" type="number" onChange={handleChange} />
+                    <TextField label="Data Wystawienia" name="dataWystawienia" type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
+                    <TextField label="Wystawiona Na" name="wystawionaNa" onChange={handleChange} />
+                    <TextField label="Opis Dotyczy" name="opisDotyczy" onChange={handleChange} />
+                    <TextField label="Kwota Netto" name="kwotaNetto" type="number" onChange={handleChange} />
+                    <TextField label="VAT (%)" name="vat" type="number" onChange={handleChange} />
+                    <TextField label="Kwota Brutto" name="kwotaBrutto" type="number" onChange={handleChange} />
                 </Box>
             </DialogContent>
             <DialogActions>
@@ -41,11 +41,7 @@ const AddFakturaModal = ({ open, onClose, onAdd }) => {
                 <Button
                     onClick={handleAdd}
                     variant="contained"
-                    sx={{
-                        backgroundColor: '#011a20',
-                        color: '#fff',
-                        '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' },
-                    }}
+                    sx={{ backgroundColor: '#011a20', color: '#fff', '&:hover': { backgroundColor: '#c7a42f', color: '#011a20' } }}
                 >
                     Dodaj
                 </Button>
