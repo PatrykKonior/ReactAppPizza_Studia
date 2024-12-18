@@ -190,7 +190,7 @@ const Home = () => {
                                 color: '#011a20',
                             }}
                         >
-                            {texts.find((text) => text.section === 'HeroSubheading')?.content || 'Ładowanie...'}
+                            {texts.find((text) => text.title === 'Hero Section - Subheading')?.content || 'Ładowanie...'}
                         </Typography>
                     </Box>
                 </Box>
@@ -359,7 +359,7 @@ const Home = () => {
                         textAlign: 'left', // Wyśrodkowanie tekstu
                     }}
                 >
-                    Nasze polecane pizze
+                    {texts.find((text) => text.section === 'FeaturedMenu')?.content || 'Ładowanie...'}
                 </Typography>
 
                 <Box
@@ -462,21 +462,8 @@ const Home = () => {
                 </Typography>
 
                 <Grid container spacing={3}>
-                    {[
-                        {
-                            opinia: "Najlepsza pizza w Katowicach! Wyjątkowy smak i świeże składniki. Polecam każdemu!",
-                            klient: "Anna Nowak",
-                        },
-                        {
-                            opinia: "Obsługa na najwyższym poziomie. Pizza była ciepła, a dowóz szybki. Sosnowiec ma najlepszą pizzę w mieście!",
-                            klient: "Jan Kowalski",
-                        },
-                        {
-                            opinia: "Uwielbiam to miejsce! Idealna pizza na każdą okazję, a lokal w Katowicach jest świetny.",
-                            klient: "Katarzyna Wiśniewska",
-                        },
-                    ].map((opiniaObj, idx) => (
-                        <Grid item xs={12} sm={4} key={idx}>
+                    {opinions.map((opiniaObj) => (
+                        <Grid item xs={12} sm={4} key={opiniaObj.id}>
                             <Card
                                 className="testimonial-card"
                                 sx={{
@@ -524,6 +511,7 @@ const Home = () => {
                         </Grid>
                     ))}
                 </Grid>
+
             </Box>
 
             {/* Call to Action Section */}
@@ -547,7 +535,7 @@ const Home = () => {
                         marginBottom: '20px',
                     }}
                 >
-                    Gotowy na kulinarną podróż?
+                    {texts.find((text) => text.section === 'CTA')?.content || 'Ładowanie...'}
                 </Typography>
                 <Button
                     variant="contained"
