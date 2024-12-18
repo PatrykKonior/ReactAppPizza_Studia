@@ -3,13 +3,13 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const AddEmployeeModal = ({ open, onClose, onAdd }) => {
     const [newEmployee, setNewEmployee] = useState({
-        Imię: '',
-        Nazwisko: '',
-        Stanowisko: '',
-        Telefon: '',
-        Email: '',
-        DataZatrudnienia: '',
-        Wynagrodzenie: '',
+        imię: '',
+        nazwisko: '',
+        stanowisko: '',
+        telefon: '',
+        email: '',
+        dataZatrudnienia: '',
+        wynagrodzenie: '',
     });
 
     const handleChange = (e) => {
@@ -18,8 +18,20 @@ const AddEmployeeModal = ({ open, onClose, onAdd }) => {
     };
 
     const handleAdd = () => {
+        if (!newEmployee.imię || !newEmployee.nazwisko) {
+            alert("Proszę wypełnić wymagane pola: Imię i Nazwisko.");
+            return;
+        }
         onAdd(newEmployee);
-        onClose();
+        setNewEmployee({
+            imię: '',
+            nazwisko: '',
+            stanowisko: '',
+            telefon: '',
+            email: '',
+            dataZatrudnienia: '',
+            wynagrodzenie: '',
+        });
     };
 
     return (
@@ -27,19 +39,20 @@ const AddEmployeeModal = ({ open, onClose, onAdd }) => {
             <DialogTitle>Dodaj Nowego Pracownika</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Imię" name="Imię" onChange={handleChange} />
-                    <TextField label="Nazwisko" name="Nazwisko" onChange={handleChange} />
-                    <TextField label="Stanowisko" name="Stanowisko" onChange={handleChange} />
-                    <TextField label="Telefon" name="Telefon" onChange={handleChange} />
-                    <TextField label="Email" name="Email" onChange={handleChange} />
+                    <TextField label="Imię" name="imię" value={newEmployee.imię} onChange={handleChange} required />
+                    <TextField label="Nazwisko" name="nazwisko" value={newEmployee.nazwisko} onChange={handleChange} required />
+                    <TextField label="Stanowisko" name="stanowisko" value={newEmployee.stanowisko} onChange={handleChange} />
+                    <TextField label="Telefon" name="telefon" value={newEmployee.telefon} onChange={handleChange} />
+                    <TextField label="Email" name="email" value={newEmployee.email} onChange={handleChange} />
                     <TextField
                         label="Data Zatrudnienia"
-                        name="DataZatrudnienia"
+                        name="dataZatrudnienia"
                         type="date"
                         InputLabelProps={{ shrink: true }}
+                        value={newEmployee.dataZatrudnienia}
                         onChange={handleChange}
                     />
-                    <TextField label="Wynagrodzenie" name="Wynagrodzenie" onChange={handleChange} />
+                    <TextField label="Wynagrodzenie" name="wynagrodzenie" type="number" value={newEmployee.wynagrodzenie} onChange={handleChange} />
                 </Box>
             </DialogContent>
             <DialogActions>

@@ -3,17 +3,20 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditEmployeeModal = ({ open, onClose, employee, onUpdate }) => {
     const [formData, setFormData] = useState({
-        Imię: '',
-        Nazwisko: '',
-        Stanowisko: '',
-        Telefon: '',
-        Email: '',
-        DataZatrudnienia: '',
-        Wynagrodzenie: '',
+        pracownikID: '',
+        imię: '',
+        nazwisko: '',
+        stanowisko: '',
+        telefon: '',
+        email: '',
+        dataZatrudnienia: '',
+        wynagrodzenie: '',
     });
 
     useEffect(() => {
-        if (employee) setFormData(employee);
+        if (employee) {
+            setFormData(employee);
+        }
     }, [employee]);
 
     const handleChange = (e) => {
@@ -22,8 +25,11 @@ const EditEmployeeModal = ({ open, onClose, employee, onUpdate }) => {
     };
 
     const handleUpdate = () => {
+        if (!formData.imię || !formData.nazwisko) {
+            alert("Proszę wypełnić wymagane pola: Imię i Nazwisko.");
+            return;
+        }
         onUpdate(formData);
-        onClose();
     };
 
     if (!employee) return null;
@@ -33,20 +39,20 @@ const EditEmployeeModal = ({ open, onClose, employee, onUpdate }) => {
             <DialogTitle>Edytuj Pracownika</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Imię" name="Imię" value={formData.Imię} onChange={handleChange} />
-                    <TextField label="Nazwisko" name="Nazwisko" value={formData.Nazwisko} onChange={handleChange} />
-                    <TextField label="Stanowisko" name="Stanowisko" value={formData.Stanowisko} onChange={handleChange} />
-                    <TextField label="Telefon" name="Telefon" value={formData.Telefon} onChange={handleChange} />
-                    <TextField label="Email" name="Email" value={formData.Email} onChange={handleChange} />
+                    <TextField label="Imię" name="imię" value={formData.imię} onChange={handleChange} required />
+                    <TextField label="Nazwisko" name="nazwisko" value={formData.nazwisko} onChange={handleChange} required />
+                    <TextField label="Stanowisko" name="stanowisko" value={formData.stanowisko} onChange={handleChange} />
+                    <TextField label="Telefon" name="telefon" value={formData.telefon} onChange={handleChange} />
+                    <TextField label="Email" name="email" value={formData.email} onChange={handleChange} />
                     <TextField
                         label="Data Zatrudnienia"
-                        name="DataZatrudnienia"
+                        name="dataZatrudnienia"
                         type="date"
                         InputLabelProps={{ shrink: true }}
-                        value={formData.DataZatrudnienia}
+                        value={formData.dataZatrudnienia}
                         onChange={handleChange}
                     />
-                    <TextField label="Wynagrodzenie" name="Wynagrodzenie" value={formData.Wynagrodzenie} onChange={handleChange} />
+                    <TextField label="Wynagrodzenie" name="wynagrodzenie" type="number" value={formData.wynagrodzenie} onChange={handleChange} />
                 </Box>
             </DialogContent>
             <DialogActions>

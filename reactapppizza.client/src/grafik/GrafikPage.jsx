@@ -50,7 +50,7 @@ const Grafik = () => {
     // Edytowanie pracownika
     const handleEdit = async (updatedEmployee) => {
         try {
-            await fetch(`${API_URL}/${updatedEmployee.PracownikID}`, {
+            await fetch(`${API_URL}/${updatedEmployee.pracownikID}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedEmployee),
@@ -65,7 +65,7 @@ const Grafik = () => {
     // Usuwanie pracownika
     const handleDelete = async () => {
         try {
-            await fetch(`${API_URL}/${currentEmployee.PracownikID}`, {
+            await fetch(`${API_URL}/${currentEmployee.pracownikID}`, {
                 method: 'DELETE',
             });
             fetchEmployees();
@@ -77,7 +77,7 @@ const Grafik = () => {
 
     // Filtracja pracowników
     const filteredEmployees = employees.filter(emp =>
-        `${emp.Imię} ${emp.Nazwisko}`.toLowerCase().includes(filter.toLowerCase())
+        `${emp.imię} ${emp.nazwisko}`.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -130,7 +130,7 @@ const Grafik = () => {
                                 <TableCell align="center">{emp.stanowisko}</TableCell>
                                 <TableCell align="center">{emp.telefon}</TableCell>
                                 <TableCell align="center">{emp.email}</TableCell>
-                                <TableCell align="center">{emp.dataZatrudnienia}</TableCell>
+                                <TableCell align="center">{emp.dataZatrudnienia.split('T')[0]}</TableCell>
                                 <TableCell align="center">{emp.wynagrodzenie} zł</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => { setCurrentEmployee(emp); setOpenEdit(true); }}>
