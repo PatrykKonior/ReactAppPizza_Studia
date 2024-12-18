@@ -31,8 +31,8 @@ const Login = () => {
             });
 
             if (response.ok) {
-                // Przeniesienie na stronę /system po zalogowaniu
-                navigate('/system');
+                console.log('Navigating to /system');
+                window.location.href = '/system';
             } else if (response.status === 401) {
                 setError('Niepoprawny login lub hasło.');
             } else {

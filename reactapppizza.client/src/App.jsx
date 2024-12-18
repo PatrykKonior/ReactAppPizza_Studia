@@ -1,4 +1,5 @@
 ﻿import './App.css';
+import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +11,7 @@ import EventCalendar from './components/EventCalendar';
 import RevenueChart from './components/RevenueChart';
 import { momentLocalizer } from 'react-big-calendar';
 const localizer = momentLocalizer(moment);
+import { useLocation } from 'react-router-dom';
 
 // Wydarzenia do dodania (kalendarz)
 const events = [
