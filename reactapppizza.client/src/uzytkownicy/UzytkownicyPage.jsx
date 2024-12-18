@@ -17,22 +17,22 @@ const User = () => {
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
 
-    // Pobieranie listy pracowników
-    const fetchEmployees = async () => {
+    // Pobieranie listy użytkowników
+    const fetchUsers = async () => {
         try {
             const response = await fetch(API_URL);
             const data = await response.json();
             setUsers(data);
         } catch (error) {
-            console.error('Błąd podczas pobierania pracowników:', error);
+            console.error('Błąd podczas pobierania użytkowników:', error);
         }
     };
 
     useEffect(() => {
-        fetchEmployees();
+        fetchUsers();
     }, []);
 
-    // Dodawanie nowego pracownika
+    // Dodawanie nowego użytkownika
     const handleAdd = async (newUser) => {
         try {
             await fetch(API_URL, {
@@ -40,44 +40,44 @@ const User = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newUser),
             });
-            fetchEmployees();
+            fetchUsers();
             setOpenAdd(false);
         } catch (error) {
-            console.error('Błąd podczas dodawania pracownika:', error);
+            console.error('Błąd podczas dodawania użytkownika:', error);
         }
     };
 
-    // Edytowanie pracownika
+    // Edytowanie użytkownika
     const handleEdit = async (updatedUser) => {
         try {
-            await fetch(`${API_URL}/${updatedUser.UżytkownikID}`, {
+            await fetch(`${API_URL}/${updatedUser.użytkownikID}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedUser),
             });
-            fetchEmployees();
+            fetchUsers();
             setOpenEdit(false);
         } catch (error) {
-            console.error('Błąd podczas aktualizacji pracownika:', error);
+            console.error('Błąd podczas edytowania użytkownika:', error);
         }
     };
 
-    // Usuwanie pracownika
+    // Usuwanie użytkownika
     const handleDelete = async () => {
         try {
-            await fetch(`${API_URL}/${currentUser.UżytkownikID}`, {
+            await fetch(`${API_URL}/${currentUser.użytkownikID}`, {
                 method: 'DELETE',
             });
-            fetchEmployees();
+            fetchUsers();
             setOpenDelete(false);
         } catch (error) {
-            console.error('Błąd podczas usuwania pracownika:', error);
+            console.error('Błąd podczas usuwania użytkownika:', error);
         }
     };
 
-    // Filtracja pracowników
-    const filteredUsers = users.filter(emp =>
-        `${emp.Imię} ${emp.Nazwisko}`.toLowerCase().includes(filter.toLowerCase())
+    // Filtracja użytkowników
+    const filteredUsers = users.filter(user =>
+        `${user.imię} ${user.nazwisko}`.toLowerCase().includes(filter.toLowerCase())
     );
 
     return (
@@ -127,14 +127,14 @@ const User = () => {
                     </TableHead>
                     <TableBody>
                         {filteredUsers.map((user) => (
-                            <TableRow key={user.UżytkownikID}>
-                                <TableCell align="center">{user.Imię}</TableCell>
-                                <TableCell align="center">{user.Nazwisko}</TableCell>
-                                <TableCell align="center">{user.Login}</TableCell>
-                                <TableCell align="center">{user.HasłoHash}</TableCell>
-                                <TableCell align="center">{user.Email}</TableCell>
-                                <TableCell align="center">{user.PoziomDostępu}</TableCell>
-                                <TableCell align="center">{user.DataRejestracji}</TableCell>
+                            <TableRow key={user.użytkownikID}>
+                                <TableCell align="center">{user.imię}</TableCell>
+                                <TableCell align="center">{user.nazwisko}</TableCell>
+                                <TableCell align="center">{user.login}</TableCell>
+                                <TableCell align="center">{user.hasłoHash}</TableCell>
+                                <TableCell align="center">{user.email}</TableCell>
+                                <TableCell align="center">{user.poziomDostępu}</TableCell>
+                                <TableCell align="center">{user.dataRejestracji.split('T')[0]}</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" onClick={() => { setCurrentUser(user); setOpenEdit(true); }}>
                                         <Edit />
@@ -149,9 +149,10 @@ const User = () => {
                 </Table>
             </TableContainer>
 
+
             {/* Modale */}
             <AddUserModal open={openAdd} onClose={() => setOpenAdd(false)} onAdd={handleAdd} />
-            <EditUserModal open={openEdit} onClose={() => setOpenEdit(false)} employee={currentUser} onUpdate={handleEdit} />
+            <EditUserModal open={openEdit} onClose={() => setOpenEdit(false)} user={currentUser} onUpdate={handleEdit} />
             <DeleteConfirmModal open={openDelete} onClose={() => setOpenDelete(false)} onDelete={handleDelete} />
         </Box>
     );

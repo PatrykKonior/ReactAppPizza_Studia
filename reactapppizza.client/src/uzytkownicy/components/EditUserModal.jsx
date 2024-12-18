@@ -3,17 +3,29 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const EditUserModal = ({ open, onClose, user, onUpdate }) => {
     const [formData, setFormData] = useState({
-        Imię: '',
-        Nazwisko: '',
-        Login: '',
-        HasłoHash: '',
-        Email: '',
-        PoziomDostępu: '',
-        DataRejestracji: '',
+        użytkownikID: '',
+        imię: '',
+        nazwisko: '',
+        login: '',
+        hasłoHash: '',
+        email: '',
+        poziomDostępu: '',
+        dataRejestracji: '',
     });
 
     useEffect(() => {
-        if (user) setFormData(user);
+        if (user) {
+            setFormData({
+                użytkownikID: user.użytkownikID,
+                imię: user.imię,
+                nazwisko: user.nazwisko,
+                login: user.login,
+                hasłoHash: user.hasłoHash,
+                email: user.email,
+                poziomDostępu: user.poziomDostępu,
+                dataRejestracji: user.dataRejestracji ? user.dataRejestracji.split('T')[0] : '',
+            });
+        }
     }, [user]);
 
     const handleChange = (e) => {
@@ -22,8 +34,11 @@ const EditUserModal = ({ open, onClose, user, onUpdate }) => {
     };
 
     const handleUpdate = () => {
+        if (!formData.imię || !formData.nazwisko || !formData.login || !formData.email) {
+            alert("Proszę wypełnić wymagane pola: Imię, Nazwisko, Login, Email.");
+            return;
+        }
         onUpdate(formData);
-        onClose();
     };
 
     if (!user) return null;
@@ -33,18 +48,18 @@ const EditUserModal = ({ open, onClose, user, onUpdate }) => {
             <DialogTitle>Edytuj Użytkownika</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Imię" name="Imię" value={formData.Imię} onChange={handleChange} />
-                    <TextField label="Nazwisko" name="Nazwisko" value={formData.Nazwisko} onChange={handleChange} />
-                    <TextField label="Stanowisko" name="Login" value={formData.Login} onChange={handleChange} />
-                    <TextField label="Telefon" name="HasłoHash" value={formData.HasłoHash} onChange={handleChange} />
-                    <TextField label="Email" name="Email" value={formData.Email} onChange={handleChange} />
-                    <TextField label="Email" name="PoziomDostępu" value={formData.PoziomDostępu} onChange={handleChange} />
+                    <TextField label="Imię" name="imię" value={formData.imię} onChange={handleChange} required />
+                    <TextField label="Nazwisko" name="nazwisko" value={formData.nazwisko} onChange={handleChange} required />
+                    <TextField label="Login" name="login" value={formData.login} onChange={handleChange} required />
+                    <TextField label="Hasło" name="hasłoHash" type="password" value={formData.hasłoHash} onChange={handleChange} />
+                    <TextField label="Email" name="email" value={formData.email} onChange={handleChange} required />
+                    <TextField label="Poziom Dostępu" name="poziomDostępu" value={formData.poziomDostępu} onChange={handleChange} />
                     <TextField
                         label="Data Rejestracji"
-                        name="DataRejestracji"
+                        name="dataRejestracji"
                         type="date"
                         InputLabelProps={{ shrink: true }}
-                        value={formData.DataRejestracji}
+                        value={formData.dataRejestracji}
                         onChange={handleChange}
                     />
                 </Box>

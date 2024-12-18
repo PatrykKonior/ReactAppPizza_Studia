@@ -3,13 +3,13 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, B
 
 const AddUserModal = ({ open, onClose, onAdd }) => {
     const [newUser, setNewUser] = useState({
-        Imię: '',
-        Nazwisko: '',
-        Login: '',
-        HasłoHash: '',
-        Email: '',
-        PoziomDostępu: '',
-        DataRejestracji: '',
+        imię: '',
+        nazwisko: '',
+        login: '',
+        hasłoHash: '',
+        email: '',
+        poziomDostępu: '',
+        dataRejestracji: '',
     });
 
     const handleChange = (e) => {
@@ -18,8 +18,20 @@ const AddUserModal = ({ open, onClose, onAdd }) => {
     };
 
     const handleAdd = () => {
+        if (!newUser.imię || !newUser.nazwisko || !newUser.login || !newUser.email) {
+            alert("Proszę wypełnić wymagane pola: Imię, Nazwisko, Login, Email.");
+            return;
+        }
         onAdd(newUser);
-        onClose();
+        setNewUser({
+            imię: '',
+            nazwisko: '',
+            login: '',
+            hasłoHash: '',
+            email: '',
+            poziomDostępu: '',
+            dataRejestracji: '',
+        });
     };
 
     return (
@@ -27,17 +39,18 @@ const AddUserModal = ({ open, onClose, onAdd }) => {
             <DialogTitle>Dodaj Nowego Użytkownika</DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <TextField label="Imię" name="Imię" onChange={handleChange} />
-                    <TextField label="Nazwisko" name="Nazwisko" onChange={handleChange} />
-                    <TextField label="Stanowisko" name="Login" onChange={handleChange} />
-                    <TextField label="Telefon" name="HasłoHash" onChange={handleChange} />
-                    <TextField label="Email" name="Email" onChange={handleChange} />
-                    <TextField label="Poziom Dostępu" name="PoziomDostępu" onChange={handleChange} />
+                    <TextField label="Imię" name="imię" value={newUser.imię} onChange={handleChange} required />
+                    <TextField label="Nazwisko" name="nazwisko" value={newUser.nazwisko} onChange={handleChange} required />
+                    <TextField label="Login" name="login" value={newUser.login} onChange={handleChange} required />
+                    <TextField label="Hasło" name="hasłoHash" type="password" value={newUser.hasłoHash} onChange={handleChange} />
+                    <TextField label="Email" name="email" value={newUser.email} onChange={handleChange} required />
+                    <TextField label="Poziom Dostępu" name="poziomDostępu" value={newUser.poziomDostępu} onChange={handleChange} />
                     <TextField
                         label="Data Rejestracji"
-                        name="DataRejestracji"
+                        name="dataRejestracji"
                         type="date"
                         InputLabelProps={{ shrink: true }}
+                        value={newUser.dataRejestracji}
                         onChange={handleChange}
                     />
                 </Box>
